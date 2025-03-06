@@ -9,7 +9,7 @@ class Player
 public:
     int money = 0;
     int mana = 5;
-    std::vector<std::shared_ptr<Character>> inventory;
+    std::vector<std::shared_ptr<Object>> inventory;
     
     void printInventory();
 };

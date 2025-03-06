@@ -15,10 +15,7 @@ public:
 	
 	bool move();
 	bool attack();
-	virtual std::string getName() const
-	{
-	    return "empty";
-	}
+	std::string getName() const override;
 	
 };
 

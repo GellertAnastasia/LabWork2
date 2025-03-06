@@ -19,7 +19,6 @@ int main() {
         std::cout << "1. Start\n";
         std::cout << "2. Exit\n";
         std::cout << "Your choice: ";
-
         int choice;
         std::cin >> choice;
 
@@ -29,46 +28,50 @@ int main() {
             player.inventory.push_back(std::make_shared<Fighter>());
             player.inventory.push_back(std::make_shared<Wizard>());
             player.inventory.push_back(std::make_shared<Archer>());
-            
-            clearScreen();
-            drawField(field);
-            
-            std::cout << "Choose an action:\n";
-            std::cout << "1. Play a card\n";
-            std::cout << "2. Move character\n";
-            std::cout << "Your choice: ";
-            
-            
-            std::cin >> choice;
-            
-            if (choice == 1) {
+
+            for (int turn = 1; turn <= 10; turn++) {
                 clearScreen();
-                drawField(field);
-                
-                player.printInventory();
-                
+                drawField(field, player);
+
+                std::cout << "Choose an action:\n";
+                std::cout << "1. Play a card\n";
+                std::cout << "2. Move character\n";
                 std::cout << "Your choice: ";
                 std::cin >> choice;
-                
-                clearScreen();
-                drawField(field);
-                int x,y;
-                std::cout << "Write the coordinates: ";
-                std::cin >> x >> y;
-                field.addObject(x,y);
-                player.inventory.erase(player.inventory.begin() + choice-1);
-                clearScreen();
-                drawField(field);
-                player.printInventory();
-                
-            } else {
-                
-                std::cout << "Choose a character\n";
-                //std::cin >> choice;
-                
+
+                if (choice == 1) {
+                    clearScreen();
+                    drawField(field, player);
+
+                    player.printInventory();
+
+                    std::cout << "Your choice: ";
+                    std::cin >> choice;
+
+                    clearScreen();
+                    drawField(field, player);
+                    int x,y;
+                    std::cout << "Write the coordinates: ";
+                    std::cin >> x >> y;
+                    Coordinates coordinates(x,y);
+                    field.addObject(coordinates);
+                    player.inventory.erase(player.inventory.begin() + choice-1);
+                    clearScreen();
+                    drawField(field, player);
+                    player.printInventory();
+                    continue;
+
+                } else {
+                    clearScreen();
+                    drawField(field, player);
+                    std::cout << "Choose a character\n";
+                    field.printObjectsOnGrid();
+                    std::cin >> choice;
+                    break;
+
+                }
+                break;
             }
-            break;
-            
         } else if (choice == 2) {
             std::cout << "Выход из игры.\n";
             break;

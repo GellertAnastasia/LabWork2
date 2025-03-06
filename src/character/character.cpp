@@ -10,3 +10,8 @@ bool Character::attack()
     return true;
 }
 
+std::string Character::getName() const
+{
+    return "empty";
+}
+
