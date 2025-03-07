@@ -3,8 +3,8 @@
 
 class Card
 {
-private:
-    int cost;
+public:
+    int cost = 1;
 };
 
 #endif

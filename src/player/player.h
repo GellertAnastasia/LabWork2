@@ -7,8 +7,11 @@
 class Player
 {
 public:
-    int money = 0;
-    int mana = 5;
+    Player(int Mana, int Money);
+
+    int mana;
+    int money;
+    
     std::vector<std::shared_ptr<Object>> inventory;
     
     void printInventory();

@@ -2,26 +2,34 @@
 
 Field::Field() : grid(HEIGHT, std::vector<Object>(WIDTH)), full(HEIGHT, std::vector<bool>(WIDTH, false)) {}
 
-void Field::addObject(Coordinates coordinates) 
+void Field::addObject(Player player, Coordinates coordinates, std::shared_ptr<Object> object) 
 {
     int x = coordinates.x;
     int y = coordinates.y;
     if (x >= 0 && x < WIDTH+1 && y >= 0 && y < HEIGHT+1) {
         full[y-1][x-1] = true;
-        objectsOnGrid.push_back(std::make_shared<Fighter>());
+        charactersOnGrid.push_back(object);
         place.push_back(coordinates);
+        //player.mana = player.mana - 1;
+        
     }
 }
-/*
-void Field::moveObject(int x, int y)
-{
-    if 
-*/
 
-void Field::printObjectsOnGrid() {
-    for (size_t i = 0; i < objectsOnGrid.size(); ++i) {
-        if (objectsOnGrid[i]) {
-            std::cout << i+1 << ". " << objectsOnGrid[i]->getName() << "\n";
+void Field::deleteObject(int choice)
+{
+    int x = place[choice-1].x;
+    int y = place[choice-1].y;
+    if (x >= 0 && x < WIDTH+1 && y >= 0 && y < HEIGHT+1) {
+        full[y-1][x-1] = false;
+        charactersOnGrid.erase(charactersOnGrid.begin() + choice-1);
+        place.erase(place.begin() + choice-1);
+    }
+}
+
+void Field::printCharactersOnGrid() {
+    for (size_t i = 0; i < charactersOnGrid.size(); ++i) {
+        if (charactersOnGrid[i]) {
+            std::cout << i+1 << ". " << charactersOnGrid[i]->getName() << "\n";
         } else {
             std::cout << i+1 << ". empty\n";
         }

@@ -24,7 +24,7 @@ int main() {
 
         if (choice == 1) {
             Field field;
-            Player player;
+            Player player(5,0);
             player.inventory.push_back(std::make_shared<Fighter>());
             player.inventory.push_back(std::make_shared<Wizard>());
             player.inventory.push_back(std::make_shared<Archer>());
@@ -54,21 +54,34 @@ int main() {
                     std::cout << "Write the coordinates: ";
                     std::cin >> x >> y;
                     Coordinates coordinates(x,y);
-                    field.addObject(coordinates);
+                    field.addObject(player, coordinates, player.inventory[choice-1]);
+                    player.mana -= 1;
                     player.inventory.erase(player.inventory.begin() + choice-1);
                     clearScreen();
                     drawField(field, player);
                     player.printInventory();
                     continue;
 
-                } else {
+                } else if (choice == 2) {
                     clearScreen();
                     drawField(field, player);
                     std::cout << "Choose a character\n";
-                    field.printObjectsOnGrid();
+                    field.printCharactersOnGrid();
                     std::cin >> choice;
-                    break;
-
+                    clearScreen();
+                    drawField(field, player);
+                    std::cout << "Write the coordinates: ";
+                    int x, y;
+                    std::cin >> x >> y;
+                    Coordinates coordinates(x,y);
+                    field.addObject(player, coordinates, field.charactersOnGrid[choice-1]);
+                    field.deleteObject(choice);
+                    clearScreen();
+                    drawField(field, player);
+                    
+                    continue;
+                } else {
+                    std::cout << "Неверный выбор! Попробуйте снова.\n";
                 }
                 break;
             }
