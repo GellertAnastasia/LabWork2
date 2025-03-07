@@ -12,7 +12,7 @@ class Field
 {
 public:
     Field();
-    std::vector<std::vector<Object>> grid;
+    std::vector<std::vector<std::shared_ptr<Object>>> grid;
     std::vector<std::vector<bool>> full;
     
     std::vector<std::shared_ptr<Object>> charactersOnGrid;

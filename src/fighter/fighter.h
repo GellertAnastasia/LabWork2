@@ -5,6 +5,7 @@
 class Fighter: public Character
 {
 public:
+    Fighter();
     std::string getName() const override;
 };
 

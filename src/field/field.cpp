@@ -1,6 +1,6 @@
 #include "field.h"
 
-Field::Field() : grid(HEIGHT, std::vector<Object>(WIDTH)), full(HEIGHT, std::vector<bool>(WIDTH, false)) {}
+Field::Field() : grid(HEIGHT, std::vector<std::shared_ptr<Object>>(WIDTH)), full(HEIGHT, std::vector<bool>(WIDTH, false)) {}
 
 void Field::addObject(Player player, Coordinates coordinates, std::shared_ptr<Object> object) 
 {
@@ -8,6 +8,7 @@ void Field::addObject(Player player, Coordinates coordinates, std::shared_ptr<Ob
     int y = coordinates.y;
     if (x >= 0 && x < WIDTH+1 && y >= 0 && y < HEIGHT+1) {
         full[y-1][x-1] = true;
+        grid[y-1][x-1] = object;
         charactersOnGrid.push_back(object);
         place.push_back(coordinates);
         //player.mana = player.mana - 1;
@@ -52,9 +53,9 @@ void drawField(Field field, Player player) {
         for (int x = 0; x < WIDTH; ++x) {
             if (field.full[y][x] == false) {
                 std::cout << EMPTY_CELL;
-                } else {
-                std::cout << field.grid[y][x].cell;
-                }
+            } else {
+                std::cout << field.grid[y][x]->getCell();
+            }
             if (x != WIDTH - 1) std::cout << " ";
         }
         if (y == 1) {

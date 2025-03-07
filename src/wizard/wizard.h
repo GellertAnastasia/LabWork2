@@ -5,6 +5,7 @@
 class Wizard: public Character
 {
 public:
+    Wizard();
     std::string getName() const override;
 };
 

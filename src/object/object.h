@@ -5,9 +5,11 @@
 
 class Object: public Card
 {
+protected:
+    char cell;
 public:
-    char cell = 'X';
-    
+    void setCell(char value);
+    char getCell() const;
     virtual std::string getName() const
     {
         return "empty";
