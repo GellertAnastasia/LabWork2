@@ -10,7 +10,7 @@ void Field::addCharacter(Player player, std::shared_ptr<Coordinates> coordinates
         full[y-1][x-1] = true;
         grid[y-1][x-1] = character;
         charactersOnGrid.push_back(character);
-        place.push_back(coordinates);
+        location.push_back(coordinates);
         //player.mana = player.mana - 1;
         
     }
@@ -18,12 +18,12 @@ void Field::addCharacter(Player player, std::shared_ptr<Coordinates> coordinates
 
 void Field::deleteObject(int choice)
 {
-    int x = place[choice-1]->x;
-    int y = place[choice-1]->y;
+    int x = location[choice-1]->x;
+    int y = location[choice-1]->y;
     if (x >= 0 && x < WIDTH+1 && y >= 0 && y < HEIGHT+1) {
         full[y-1][x-1] = false;
         charactersOnGrid.erase(charactersOnGrid.begin() + choice-1);
-        place.erase(place.begin() + choice-1);
+        location.erase(location.begin() + choice-1);
     }
 }
 
@@ -51,7 +51,9 @@ void drawField(Field field, Player player) {
         std::cout << static_cast<char>('A' + y) << " ";
 
         for (int x = 0; x < WIDTH; ++x) {
-            if (field.full[y][x] == false) {
+            if (y == 0 && (x == 4 || x == 5)) {
+                std::cout << "B";
+            } else if (field.full[y][x] == false) {
                 std::cout << EMPTY_CELL;
             } else {
                 std::cout << field.grid[y][x]->getCell();

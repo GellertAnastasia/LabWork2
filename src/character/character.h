@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "constants.h"
 #include "../object/object.h"
 #include "../coordinates/coordinates.h"
 
@@ -19,6 +20,8 @@ public:
 	bool attack();
 	void calculateMovement(std::shared_ptr<Coordinates> coordinates);
 	void printMovement();
+	//void calculateAttack(std::shared_ptr<Coordinates> coordinates);
+	//void printAttack();
 	std::string getName() const override;
 	
 };

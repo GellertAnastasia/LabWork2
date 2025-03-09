@@ -1,5 +1,3 @@
-#include <iostream>
-#include "constants.h"
 #include "character.h"
 
 
@@ -12,16 +10,16 @@ void Character::calculateMovement(std::shared_ptr<Coordinates> coordinates)
 {
     int x = coordinates->x;
     int y = coordinates->y;
-    if (x-1 > 0 && x-1 <= WIDTH && y > 0 && y <= HEIGHT) {
+    if (x-1 > 0 && x-1 <= WIDTH && y > 0 && y <= HEIGHT && !(y == 1 && (x-1 == 5 || x-1 == 6))) {
         movement.push_back(std::make_shared<Coordinates>(x-1,y));
     }
-    if (x > 0 && x <= WIDTH && y-1 > 0 && y-1 <= HEIGHT) {
+    if (x > 0 && x <= WIDTH && y-1 > 0 && y-1 <= HEIGHT && !(y-1 == 1 && (x == 5 || x == 6))) {
         movement.push_back(std::make_shared<Coordinates>(x,y-1));
     }
-    if (x+1 > 0 && x+1 <= WIDTH && y > 0 && y <= HEIGHT) {
+    if (x+1 > 0 && x+1 <= WIDTH && y > 0 && y <= HEIGHT && !(y == 1 && (x+1 == 5 || x+1 == 6))) {
         movement.push_back(std::make_shared<Coordinates>(x+1,y));
     }
-    if (x > 0 && x <= WIDTH && y+1 > 0 && y+1 <= HEIGHT) {
+    if (x > 0 && x <= WIDTH && y+1 > 0 && y+1 <= HEIGHT && !(y+1 == 1 && (x == 5 || x == 6))) {
         movement.push_back(std::make_shared<Coordinates>(x,y+1));
     }
 }

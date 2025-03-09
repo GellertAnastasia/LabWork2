@@ -36,6 +36,7 @@ int main() {
                 std::cout << "Choose an action:\n";
                 std::cout << "1. Play a card\n";
                 std::cout << "2. Move character\n";
+                std::cout << "3. Attack\n";
                 std::cout << "Your choice: ";
                 std::cin >> choice;
 
@@ -70,7 +71,7 @@ int main() {
                     clearScreen();
                     drawField(field, player);
                     std::cout << "Choose the coordinates:\n";
-                    field.charactersOnGrid[choice-1]->calculateMovement(field.place[choice-1]);
+                    field.charactersOnGrid[choice-1]->calculateMovement(field.location[choice-1]);
                     field.charactersOnGrid[choice-1]->printMovement();
                     int choice1;
                     std::cin >> choice1;
@@ -81,6 +82,19 @@ int main() {
                     drawField(field, player);
                     
                     continue;
+                    
+                } else if (choice == 3) {
+                    clearScreen();
+                    drawField(field, player);
+                    std::cout << "Choose a character\n";
+                    field.printCharactersOnGrid();
+                    std::cin >> choice;
+                    clearScreen();
+                    drawField(field, player);
+                    
+                    
+                    continue;
+                    
                 } else {
                     std::cout << "Неверный выбор! Попробуйте снова.\n";
                 }

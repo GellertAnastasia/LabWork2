@@ -2,6 +2,8 @@
 #define OBJECT_H
 #include <string>
 #include "../card/card.h"
+#include "../coordinates/coordinates.h"
+
 
 class Object: public Card
 {
