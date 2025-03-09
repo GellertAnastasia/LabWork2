@@ -12,7 +12,7 @@ public:
     int mana;
     int money;
     
-    std::vector<std::shared_ptr<Object>> inventory;
+    std::vector<std::shared_ptr<Character>> inventory;
     
     void printInventory();
 };

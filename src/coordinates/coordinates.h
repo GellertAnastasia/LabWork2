@@ -1,5 +1,6 @@
 #ifndef COORDINATES_H
 #define COORDINATES_H
+#include <iostream>
 
 class Coordinates {
 public:
@@ -7,6 +8,7 @@ public:
     int y;
     
     Coordinates(int X, int Y);
+    void print() const;
 };
 
 #endif

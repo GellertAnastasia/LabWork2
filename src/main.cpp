@@ -53,8 +53,7 @@ int main() {
                     int x,y;
                     std::cout << "Write the coordinates: ";
                     std::cin >> x >> y;
-                    Coordinates coordinates(x,y);
-                    field.addObject(player, coordinates, player.inventory[choice-1]);
+                    field.addCharacter(player, std::make_shared<Coordinates>(x,y), player.inventory[choice-1]);
                     player.mana -= 1;
                     player.inventory.erase(player.inventory.begin() + choice-1);
                     clearScreen();
@@ -70,11 +69,13 @@ int main() {
                     std::cin >> choice;
                     clearScreen();
                     drawField(field, player);
-                    std::cout << "Write the coordinates: ";
-                    int x, y;
-                    std::cin >> x >> y;
-                    Coordinates coordinates(x,y);
-                    field.addObject(player, coordinates, field.charactersOnGrid[choice-1]);
+                    std::cout << "Choose the coordinates:\n";
+                    field.charactersOnGrid[choice-1]->calculateMovement(field.place[choice-1]);
+                    field.charactersOnGrid[choice-1]->printMovement();
+                    int choice1;
+                    std::cin >> choice1;
+                    field.addCharacter(player, field.charactersOnGrid[choice-1]->movement[choice1-1], field.charactersOnGrid[choice-1]);
+                    field.charactersOnGrid[choice-1]->movement.clear();
                     field.deleteObject(choice);
                     clearScreen();
                     drawField(field, player);
