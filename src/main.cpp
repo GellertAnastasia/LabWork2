@@ -71,7 +71,7 @@ int main() {
                     clearScreen();
                     drawField(field, player);
                     std::cout << "Choose the coordinates:\n";
-                    field.charactersOnGrid[choice-1]->calculateMovement(field.location[choice-1]);
+                    field.charactersOnGrid[choice-1]->calculateMovement(field.location[choice-1], field.location);
                     field.charactersOnGrid[choice-1]->printMovement();
                     int choice1;
                     std::cin >> choice1;
@@ -91,7 +91,12 @@ int main() {
                     std::cin >> choice;
                     clearScreen();
                     drawField(field, player);
-                    
+                    std::cout << "Choose the coordinates:\n";
+                    field.charactersOnGrid[choice-1]->calculateAttack(field.location[choice-1], field.location);
+                    field.charactersOnGrid[choice-1]->printAttack();
+                    int choice1;
+                    std::cin >> choice1;
+                    //attack();
                     
                     continue;
                     

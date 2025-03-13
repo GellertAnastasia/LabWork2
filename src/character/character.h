@@ -16,12 +16,12 @@ public:
 	int shield;
 	int speed;	
 	std::vector<std::shared_ptr<Coordinates>> movement;
+	std::vector<std::shared_ptr<Coordinates>> attack;
 	
-	bool attack();
-	void calculateMovement(std::shared_ptr<Coordinates> coordinates);
+	void calculateMovement(std::shared_ptr<Coordinates> coordinates, std::vector<std::shared_ptr<Coordinates>> location);
 	void printMovement();
-	//void calculateAttack(std::shared_ptr<Coordinates> coordinates);
-	//void printAttack();
+	void calculateAttack(std::shared_ptr<Coordinates> coordinates, std::vector<std::shared_ptr<Coordinates>> location);
+	void printAttack();
 	std::string getName() const override;
 	
 };

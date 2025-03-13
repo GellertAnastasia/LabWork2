@@ -4,9 +4,9 @@ Field::Field() : grid(HEIGHT, std::vector<std::shared_ptr<Object>>(WIDTH)), full
 
 void Field::addCharacter(Player player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Character> character) 
 {
-    int x = coordinates->x;
-    int y = coordinates->y;
-    if (x >= 0 && x < WIDTH+1 && y >= 0 && y < HEIGHT+1) {
+    int x = coordinates->getX();
+    int y = coordinates->getY();
+    if (isWithinBounds(coordinates) && isFree(coordinates, location)) {
         full[y-1][x-1] = true;
         grid[y-1][x-1] = character;
         charactersOnGrid.push_back(character);
@@ -18,8 +18,8 @@ void Field::addCharacter(Player player, std::shared_ptr<Coordinates> coordinates
 
 void Field::deleteObject(int choice)
 {
-    int x = location[choice-1]->x;
-    int y = location[choice-1]->y;
+    int x = location[choice-1]->getX();
+    int y = location[choice-1]->getY();
     if (x >= 0 && x < WIDTH+1 && y >= 0 && y < HEIGHT+1) {
         full[y-1][x-1] = false;
         charactersOnGrid.erase(charactersOnGrid.begin() + choice-1);
