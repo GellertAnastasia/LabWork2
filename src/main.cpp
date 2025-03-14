@@ -1,7 +1,9 @@
 #include "functions/functions.h"
 #include "playerTurn/playerTurn.h"
+#include "generateCard/generateCard.h"
 
 int main() {
+    srand(static_cast<unsigned int>(time(0)));
     while (true) {
         clearScreen();
 
@@ -16,14 +18,10 @@ int main() {
             Field field;
             Player player1(5,0);
             Player player2(5,0);
-            player1.inventory.push_back(std::make_shared<Fighter>());
-            player1.inventory.push_back(std::make_shared<Wizard>());
-            player1.inventory.push_back(std::make_shared<Archer>());
-            player2.inventory.push_back(std::make_shared<Fighter>());
-            player2.inventory.push_back(std::make_shared<Wizard>());
-            player2.inventory.push_back(std::make_shared<Archer>());
+            player1.inventory.push_back(generateCard());
     
             for (int turn = 1; turn <= 10; turn++) {
+                player1.inventory.push_back(generateCard());
                 /*if (turn % 2 == 1) {
                     std::cout << "Turn player №1\n"
                 */
