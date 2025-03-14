@@ -1,15 +1,5 @@
-#include "../include/constants.h"
-#include "player/player.h"
-#include "field/field.h"
-#include "fighter/fighter.h"
-#include "wizard/wizard.h"
-#include "archer/archer.h"
-
-void clearScreen() {
-    std::cout << "\033[2J";
-    std::cout << "\033[H";
-}
-
+#include "functions/functions.h"
+#include "playerTurn/playerTurn.h"
 
 int main() {
     while (true) {
@@ -24,94 +14,32 @@ int main() {
 
         if (choice == 1) {
             Field field;
-            Player player(5,0);
-            player.inventory.push_back(std::make_shared<Fighter>());
-            player.inventory.push_back(std::make_shared<Wizard>());
-            player.inventory.push_back(std::make_shared<Archer>());
-
+            Player player1(5,0);
+            Player player2(5,0);
+            player1.inventory.push_back(std::make_shared<Fighter>());
+            player1.inventory.push_back(std::make_shared<Wizard>());
+            player1.inventory.push_back(std::make_shared<Archer>());
+            player2.inventory.push_back(std::make_shared<Fighter>());
+            player2.inventory.push_back(std::make_shared<Wizard>());
+            player2.inventory.push_back(std::make_shared<Archer>());
+    
             for (int turn = 1; turn <= 10; turn++) {
-                clearScreen();
-                drawField(field, player);
-
-                std::cout << "Choose an action:\n";
-                std::cout << "1. Play a card\n";
-                std::cout << "2. Move character\n";
-                std::cout << "3. Attack\n";
-                std::cout << "Your choice: ";
-                std::cin >> choice;
-
-                if (choice == 1) {
-                    clearScreen();
-                    drawField(field, player);
-
-                    player.printInventory();
-
-                    std::cout << "Your choice: ";
-                    std::cin >> choice;
-
-                    clearScreen();
-                    drawField(field, player);
-                    int x,y;
-                    std::cout << "Write the coordinates: ";
-                    std::cin >> x >> y;
-                    field.addCharacter(player, std::make_shared<Coordinates>(x,y), player.inventory[choice-1]);
-                    player.mana -= 1;
-                    player.inventory.erase(player.inventory.begin() + choice-1);
-                    clearScreen();
-                    drawField(field, player);
-                    player.printInventory();
-                    continue;
-
-                } else if (choice == 2) {
-                    clearScreen();
-                    drawField(field, player);
-                    std::cout << "Choose a character\n";
-                    field.printCharactersOnGrid();
-                    std::cin >> choice;
-                    clearScreen();
-                    drawField(field, player);
-                    std::cout << "Choose the coordinates:\n";
-                    field.charactersOnGrid[choice-1]->calculateMovement(field.location[choice-1], field.location);
-                    field.charactersOnGrid[choice-1]->printMovement();
-                    int choice1;
-                    std::cin >> choice1;
-                    field.addCharacter(player, field.charactersOnGrid[choice-1]->movement[choice1-1], field.charactersOnGrid[choice-1]);
-                    field.charactersOnGrid[choice-1]->movement.clear();
-                    field.deleteObject(choice);
-                    clearScreen();
-                    drawField(field, player);
-                    
-                    continue;
-                    
-                } else if (choice == 3) {
-                    clearScreen();
-                    drawField(field, player);
-                    std::cout << "Choose a character\n";
-                    field.printCharactersOnGrid();
-                    std::cin >> choice;
-                    clearScreen();
-                    drawField(field, player);
-                    std::cout << "Choose the coordinates:\n";
-                    field.charactersOnGrid[choice-1]->calculateAttack(field.location[choice-1], field.location);
-                    field.charactersOnGrid[choice-1]->printAttack();
-                    int choice1;
-                    std::cin >> choice1;
-                    //attack();
-                    
-                    continue;
-                    
-                } else {
-                    std::cout << "Неверный выбор! Попробуйте снова.\n";
-                }
-                break;
+                /*if (turn % 2 == 1) {
+                    std::cout << "Turn player №1\n"
+                */
+                playerTurn(player1, field);
             }
+        
         } else if (choice == 2) {
-            std::cout << "Выход из игры.\n";
+            std::cout << "Exit...\n";
             break;
         } else {
-            std::cout << "Неверный выбор! Попробуйте снова.\n";
+            std::cout << "Error. Try again\n";
+            pause();
+            continue;
         }
     }
 
     return 0;
 }
+

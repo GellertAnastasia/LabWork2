@@ -1,0 +1,65 @@
+#include "functions.h"
+
+void clearScreen() {
+    std::cout << "\033[2J";
+    std::cout << "\033[H";
+}
+
+void playCard(Player& player, Field& field) {
+    clearScreen();
+    drawField(field, player);
+
+    player.printInventory();
+
+    std::cout << "Your choice: ";
+    int choice;
+    std::cin >> choice;
+
+    clearScreen();
+    drawField(field, player);
+    int x,y;
+    std::cout << "Write the coordinates: ";
+    std::cin >> x >> y;
+    field.addCharacter(player, std::make_shared<Coordinates>(x,y), player.inventory[choice-1]);
+    //player.mana -= 1;
+    player.inventory.erase(player.inventory.begin() + choice-1);
+    clearScreen();
+    drawField(field, player);
+    player.printInventory();
+}
+
+void moveCharacter(Player& player, Field& field) {
+    clearScreen();
+    drawField(field, player);
+    std::cout << "Choose a character\n";
+    field.printCharactersOnGrid();
+    int choice;
+    std::cin >> choice;
+    clearScreen();
+    drawField(field, player);
+    std::cout << "Choose the coordinates:\n";
+    field.charactersOnGrid[choice-1]->calculateMovement(field.location[choice-1], field.location);
+    field.charactersOnGrid[choice-1]->printMovement();
+    int choice1;
+    std::cin >> choice1;
+    field.addCharacter(player, field.charactersOnGrid[choice-1]->movement[choice1-1], field.charactersOnGrid[choice-1]);
+    field.charactersOnGrid[choice-1]->movement.clear();
+    field.deleteObject(choice);
+    clearScreen();
+    drawField(field, player);
+}
+
+void attack(Player& player, Field& field) {
+clearScreen();
+                    drawField(field, player);
+                    std::cout << "Choose a character\n";
+                    field.printCharactersOnGrid();
+                    std::cin >> choice;
+                    clearScreen();
+                    drawField(field, player);
+                    std::cout << "Choose the coordinates:\n";
+                    field.charactersOnGrid[choice-1]->calculateAttack(field.location[choice-1], field.location);
+                    field.charactersOnGrid[choice-1]->printAttack();
+                    int choice1;
+                    std::cin >> choice1;
+}

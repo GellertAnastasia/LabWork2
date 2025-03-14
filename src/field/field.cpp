@@ -1,8 +1,13 @@
 #include "field.h"
 
+void clearScreen() {
+    std::cout << "\033[2J";
+    std::cout << "\033[H";
+}
+
 Field::Field() : grid(HEIGHT, std::vector<std::shared_ptr<Object>>(WIDTH)), full(HEIGHT, std::vector<bool>(WIDTH, false)) {}
 
-void Field::addCharacter(Player player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Character> character) 
+void Field::addCharacter(Player& player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Character> character) 
 {
     int x = coordinates->getX();
     int y = coordinates->getY();
@@ -39,6 +44,7 @@ void Field::printCharactersOnGrid() {
 
 
 void drawField(Field field, Player player) {
+    clearScreen();
     std::cout << "  ";
     for (int x = 0; x < WIDTH; ++x) {
         std::cout << x + 1;
@@ -51,7 +57,7 @@ void drawField(Field field, Player player) {
         std::cout << static_cast<char>('A' + y) << " ";
 
         for (int x = 0; x < WIDTH; ++x) {
-            if (y == 0 && (x == 4 || x == 5)) {
+            if ((y == 0 || y == 9) && (x == 4 || x == 5)) {
                 std::cout << "B";
             } else if (field.full[y][x] == false) {
                 std::cout << EMPTY_CELL;

@@ -14,7 +14,8 @@ public:
 	int level;
 	int power;
 	int shield;
-	int speed;	
+	int speed;
+	bool hasActed = false;	
 	std::vector<std::shared_ptr<Coordinates>> movement;
 	std::vector<std::shared_ptr<Coordinates>> attack;
 	

@@ -8,6 +8,8 @@
 #include "../fighter/fighter.h"
 #include "../coordinates/coordinates.h"
 
+void clearScreen();
+
 class Field
 {
 public:
@@ -18,7 +20,7 @@ public:
     std::vector<std::shared_ptr<Character>> charactersOnGrid;
     std::vector<std::shared_ptr<Coordinates>> location;
     
-    void addCharacter(Player player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Character> character);
+    void addCharacter(Player& player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Character> character);
     void printCharactersOnGrid();
     void deleteObject(int choice);
 };
