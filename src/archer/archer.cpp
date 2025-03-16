@@ -5,7 +5,7 @@ Archer::Archer() {
 }
 
 std::string Archer::getName() const {
-        return "Archer";
+        return "Archer (hp: "+ std::to_string(health) +", power: "+ std::to_string(power) +")";
 }
 
 

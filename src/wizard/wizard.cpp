@@ -5,5 +5,5 @@ Wizard::Wizard() {
 }
 
 std::string Wizard::getName() const {
-     return "Wizard";
+     return "Wizard (hp: "+ std::to_string(health) +", power: "+ std::to_string(power) +")";
 }

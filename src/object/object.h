@@ -9,8 +9,9 @@ class Object: public Card
 {
 protected:
     char cell;
-    int color;
 public:
+    int health = 20;
+    int color;
     void setCell(char value);
     char getCell() const;
     void setColor(int value);
@@ -20,6 +21,5 @@ public:
         return "empty";
     }
 };
-
 
 #endif

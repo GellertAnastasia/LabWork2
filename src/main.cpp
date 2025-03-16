@@ -1,7 +1,6 @@
 #include "functions/functions.h"
 #include "playerTurn/playerTurn.h"
 #include "generateCard/generateCard.h"
-#include "buyCard/buyCard.h"
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));

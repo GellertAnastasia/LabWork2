@@ -36,44 +36,26 @@ void Character::printMovement() {
         }
     }
 }
-/*
-void Character::calculateAttack(std::shared_ptr<Coordinates> coordinates, std::vector<std::shared_ptr<Coordinates>> location)
+
+void Character::calculateAttack(std::vector<std::vector<bool>> full, std::vector<std::vector<std::shared_ptr<Object>>> grid)
 {
-    int x = coordinates->getX();
-    int y = coordinates->getY();
-    auto coord = std::make_shared<Coordinates>(x-1,y);
-    coord->setX(x-1);
-    coord->setY(y);
-    if (isWithinBounds(coord) && isFree(coord, attack)) {
-        attack.push_back(std::make_shared<Coordinates>(x-1,y));
-    }
-    coord->setX(x);
-    coord->setY(y-1);
-    if (isWithinBounds(coord) && isFree(coord, attack)) {
-        attack.push_back(std::make_shared<Coordinates>(x,y-1));
-    }
-    coord->setX(x+1);
-    coord->setY(y);
-    if (isWithinBounds(coord) && isFree(coord, attack)) {
-        attack.push_back(std::make_shared<Coordinates>(x+1,y));
-    }
-    coord->setX(x);
-    coord->setY(y+1);
-    if (isWithinBounds(coord) && isFree(coord, attack)) {
-        attack.push_back(std::make_shared<Coordinates>(x,y+1));
+    for (size_t y = 0; y < full.size(); y++) {
+        for (size_t x = 0; x < full[y].size(); x++) {
+            if ((full[y][x] == true) && (grid[y][x]->color != color)) {
+                attack.push_back(grid[y][x]);
+            }
+        }
     }
 }
 
 void Character::printAttack() {
     for (size_t i = 0; i < attack.size(); ++i) {
         if (attack[i]) {
-            std::cout << i + 1 << ". ";
-            attack[i]->print();
-            std::cout << "\n";
+            std::cout << i + 1 << ". " << attack[i]->getName() << "\n";
         }
     }
 }
-*/
+
 std::string Character::getName() const
 {
     return "empty";

@@ -63,7 +63,7 @@ void playerTurn(Player& player, Field& field) {
             continue;
         } else if (action == 2) {
             current->hasActed = true;
-            std::cout << "attack!\n";
+            attack(choice, player, field);
             pause();
             continue;
         } else if (action == 3) {

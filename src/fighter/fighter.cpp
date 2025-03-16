@@ -5,5 +5,5 @@ Fighter::Fighter() {
 }
 
 std::string Fighter::getName() const {
-        return "Fighter";
+        return "Fighter (hp: "+ std::to_string(health) +", power: "+ std::to_string(power) +")";
 }

@@ -7,9 +7,10 @@
 #include "../fighter/fighter.h"
 #include "../wizard/wizard.h"
 #include "../archer/archer.h"
+#include "../addHealth/addHealth.h"
 
 void playCard(Player& player, Field& field);
 void moveCharacter(int choice, Player& player, Field& field);
-void attack(Player& player, Field& field);
+void attack(int choice, Player& player, Field& field);
 void pause();
 #endif
