@@ -1,6 +1,7 @@
 #include "functions/functions.h"
 #include "playerTurn/playerTurn.h"
 #include "generateCard/generateCard.h"
+#include "buyCard/buyCard.h"
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
@@ -16,8 +17,8 @@ int main() {
 
         if (choice == 1) {
             Field field;
-            Player player1(5,0, 34);
-            Player player2(5,0, 31);
+            Player player1(5,2, 34);
+            Player player2(5,2, 31);
             for (int i = 0; i<2; i++) {
                 player1.inventory.push_back(generateCard());
                 player2.inventory.push_back(generateCard());

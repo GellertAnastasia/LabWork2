@@ -12,9 +12,8 @@ void playerTurn(Player& player, Field& field) {
         if (choice == 1) {
             playCard(player, field);
         } else if (choice == 2) {
-            std::cout<<"buy\n";
+            buyCard(player);
             pause();
-            //buyCard();
         } else if (choice == 3) {
             cardsPhase = false;
         } else {
