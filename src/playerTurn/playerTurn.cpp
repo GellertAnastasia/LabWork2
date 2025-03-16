@@ -22,7 +22,7 @@ void playerTurn(Player& player, Field& field) {
         }
     }
 
-    for(auto& c : field.charactersOnGrid) {
+    for(auto& c : player.charactersOnGrid) {
         c->hasActed = false;
     }
     bool actionsPhase = true;
@@ -30,25 +30,26 @@ void playerTurn(Player& player, Field& field) {
         drawField(field, player);
         std::cout << "Character action phase:\n\n";
         std::cout << "Choose a character\n";
-        field.printCharactersOnGrid();
-        std::cout << field.charactersOnGrid.size()+1 << ". End your turn\n";
+        player.printCharactersOnGrid();
+        std::cout << player.charactersOnGrid.size()+1 << ". End your turn\n";
         size_t choice;
         std::cin >> choice;
 
-        if (choice == field.charactersOnGrid.size()+1) {
+        if (choice == player.charactersOnGrid.size()+1) {
             std::cout << "next turn\n";
             pause();
             break;
-        } else if(choice < 0 || choice > field.charactersOnGrid.size()) {
+        } else if(choice <= 0 || choice > player.charactersOnGrid.size()) {
             std::cout << "Error. Try again\n";
             pause();
             continue;
         }
 
-        std::shared_ptr<Character> current = field.charactersOnGrid[choice-1];
+        std::shared_ptr<Character> current = player.charactersOnGrid[choice-1];
         if (current->hasActed) {
             std::cout << "acted\n";
             pause();
+            continue;
         }
         
         drawField(field, player);
@@ -58,9 +59,8 @@ void playerTurn(Player& player, Field& field) {
         std::cin >> action;
 
         if (action == 1) {
-            moveCharacter(choice, player, field);
-                
             current->hasActed = true;
+            moveCharacter(choice, player, field);
             continue;
         } else if (action == 2) {
             current->hasActed = true;

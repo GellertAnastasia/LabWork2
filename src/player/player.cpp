@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(int Mana, int Money) : mana(Mana), money(Money) {}
+Player::Player(int Mana, int Money, int Color) : mana(Mana), money(Money), color(Color) {}
 
 void Player::printInventory() {
     std::cout << "Inventory:\n";
@@ -12,3 +12,15 @@ void Player::printInventory() {
         }
     }
 }
+
+void Player::printCharactersOnGrid() {
+    for (size_t i = 0; i < charactersOnGrid.size(); ++i) {
+        if (charactersOnGrid[i]) {
+            std::cout << i+1 << ". " << charactersOnGrid[i]->getName() << "\n";
+        } else {
+            std::cout << i+1 << ". empty\n";
+        }
+    }
+}
+
+

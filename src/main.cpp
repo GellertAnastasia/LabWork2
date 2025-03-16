@@ -16,18 +16,27 @@ int main() {
 
         if (choice == 1) {
             Field field;
-            Player player1(5,0);
-            Player player2(5,0);
-            player1.inventory.push_back(generateCard());
-    
-            for (int turn = 1; turn <= 10; turn++) {
+            Player player1(5,0, 34);
+            Player player2(5,0, 31);
+            for (int i = 0; i<2; i++) {
                 player1.inventory.push_back(generateCard());
-                /*if (turn % 2 == 1) {
-                    std::cout << "Turn player №1\n"
-                */
-                playerTurn(player1, field);
+                player2.inventory.push_back(generateCard());
             }
-        
+            for (int turn = 1; turn <= 10; turn++) {
+                if (turn % 2 == 1) {
+                    player1.inventory.push_back(generateCard());
+                    clearScreen();
+                    std::cout << "Turn player №1\n";
+                    pause();
+                    playerTurn(player1, field);
+                } else {
+                    player2.inventory.push_back(generateCard());
+                    clearScreen();
+                    std::cout << "Turn player №2\n";
+                    pause();
+                    playerTurn(player2, field);
+                }
+            }
         } else if (choice == 2) {
             std::cout << "Exit...\n";
             break;

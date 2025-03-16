@@ -24,6 +24,6 @@ public:
 };
 
 bool isWithinBounds(std::shared_ptr<Coordinates> coordinates);
-bool isFree(std::shared_ptr<Coordinates> coordinates, std::vector<std::shared_ptr<Coordinates>> location);
+bool isFree(std::shared_ptr<Coordinates> coordinates, std::vector<std::vector<bool>> full);
 
 #endif

@@ -11,37 +11,28 @@ void Field::addCharacter(Player& player, std::shared_ptr<Coordinates> coordinate
 {
     int x = coordinates->getX();
     int y = coordinates->getY();
-    if (isWithinBounds(coordinates) && isFree(coordinates, location)) {
+    character->setColor(player.color);
+    if (isWithinBounds(coordinates) && isFree(coordinates, full)) {
         full[y-1][x-1] = true;
         grid[y-1][x-1] = character;
-        charactersOnGrid.push_back(character);
-        location.push_back(coordinates);
+        player.charactersOnGrid.push_back(character);
+        player.location.push_back(coordinates);
         //player.mana = player.mana - 1;
         
     }
 }
 
-void Field::deleteObject(int choice)
+void Field::deleteObject(int choice, Player& player)
 {
-    int x = location[choice-1]->getX();
-    int y = location[choice-1]->getY();
-    if (x >= 0 && x < WIDTH+1 && y >= 0 && y < HEIGHT+1) {
+    int x = player.location[choice-1]->getX();
+    int y = player.location[choice-1]->getY();
+    if (x >= 1 && x <= WIDTH && y >= 1 && y <= HEIGHT) {
         full[y-1][x-1] = false;
-        charactersOnGrid.erase(charactersOnGrid.begin() + choice-1);
-        location.erase(location.begin() + choice-1);
+        grid[y-1][x-1] = nullptr;
+        player.charactersOnGrid.erase(player.charactersOnGrid.begin() + choice-1);
+        player.location.erase(player.location.begin() + choice-1);
     }
 }
-
-void Field::printCharactersOnGrid() {
-    for (size_t i = 0; i < charactersOnGrid.size(); ++i) {
-        if (charactersOnGrid[i]) {
-            std::cout << i+1 << ". " << charactersOnGrid[i]->getName() << "\n";
-        } else {
-            std::cout << i+1 << ". empty\n";
-        }
-    }
-}
-
 
 void drawField(Field field, Player player) {
     clearScreen();
@@ -57,12 +48,14 @@ void drawField(Field field, Player player) {
         std::cout << static_cast<char>('A' + y) << " ";
 
         for (int x = 0; x < WIDTH; ++x) {
-            if ((y == 0 || y == 9) && (x == 4 || x == 5)) {
-                std::cout << "B";
+            if ((y == 0) && (x == 4 || x == 5)) {
+                std::cout <<"\033[31;1m" << "B" << "\033[0m";
+            } else if ((y == 9) && (x == 4 || x == 5)) {
+                std::cout <<"\033[34;1m" << "B" << "\033[0m";
             } else if (field.full[y][x] == false) {
                 std::cout << EMPTY_CELL;
             } else {
-                std::cout << field.grid[y][x]->getCell();
+                std::cout << "\033[" << field.grid[y][x]->getColor() << ";1m" << field.grid[y][x]->getCell() << "\033[0m";
             }
             if (x != WIDTH - 1) std::cout << " ";
         }

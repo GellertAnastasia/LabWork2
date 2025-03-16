@@ -22,30 +22,30 @@ void playCard(Player& player, Field& field) {
 void moveCharacter(int choice, Player& player, Field& field) {
     drawField(field, player);
     std::cout << "Choose the coordinates:\n";
-    field.charactersOnGrid[choice-1]->calculateMovement(field.location[choice-1], field.location);
-    field.charactersOnGrid[choice-1]->printMovement();
+    player.charactersOnGrid[choice-1]->calculateMovement(player.location[choice-1], field.full);
+    player.charactersOnGrid[choice-1]->printMovement();
     int choice1;
     std::cin >> choice1;
-    field.addCharacter(player, field.charactersOnGrid[choice-1]->movement[choice1-1], field.charactersOnGrid[choice-1]);
-    field.charactersOnGrid[choice-1]->movement.clear();
-    field.deleteObject(choice);
+    field.addCharacter(player, player.charactersOnGrid[choice-1]->movement[choice1-1], player.charactersOnGrid[choice-1]);
+    player.charactersOnGrid[choice-1]->movement.clear();
+    field.deleteObject(choice, player);
     drawField(field, player);
 }
-
+/*
 void attack(Player& player, Field& field) {
     drawField(field, player);
     std::cout << "Choose a character\n";
-    field.printCharactersOnGrid();
+    player.printCharactersOnGrid();
     int choice;
     std::cin >> choice;
     drawField(field, player);
     std::cout << "Choose the coordinates:\n";
-    field.charactersOnGrid[choice-1]->calculateAttack(field.location[choice-1], field.location);
-    field.charactersOnGrid[choice-1]->printAttack();
+    player.charactersOnGrid[choice-1]->calculateAttack(field.location[choice-1], field.location);
+    player.charactersOnGrid[choice-1]->printAttack();
     int choice1;
     std::cin >> choice1;
 }
-
+*/
 void pause() {
      std::cout << "Click Enter to continue...";
      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

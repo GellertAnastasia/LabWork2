@@ -28,27 +28,15 @@ void Coordinates::print() const {
 bool isWithinBounds(std::shared_ptr<Coordinates> coordinates) {
     int x = coordinates->getX();
     int y = coordinates->getY();
-    return (x > 0 && x <= WIDTH && y > 0 && y <= HEIGHT);
+    return (x >= 1 && x <= WIDTH && y >= 1 && y <= HEIGHT);
 }
 
-bool isFree(std::shared_ptr<Coordinates> coordinates, std::vector<std::shared_ptr<Coordinates>> location) {
+bool isFree(std::shared_ptr<Coordinates> coordinates, std::vector<std::vector<bool>> full) {
     int x = coordinates->getX();
     int y = coordinates->getY();
-    if (y == 1 && (x == 5 || x == 6)) {
+    if ((y == 1 || y == 10) && (x == 5 || x == 6)) {
         return false;
     } else {
-        auto it = std::find_if(location.begin(), location.end(),
-        [coordinates](const std::shared_ptr<Coordinates>& coord) {
-            return *coord == *coordinates; // Сравнение объектов по значениям
-        });
-        if (it != location.end()) {
-            return false;
-        } else {
-            if (!location.empty() && *location.back() == *coordinates) {
-                return false;
-            } else {
-                return true;
-            }
-        }
+        return !(full[y-1][x-1]);
     }
 }

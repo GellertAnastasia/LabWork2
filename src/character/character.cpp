@@ -1,28 +1,28 @@
 #include "character.h"
 
-void Character::calculateMovement(std::shared_ptr<Coordinates> coordinates, std::vector<std::shared_ptr<Coordinates>> location)
+void Character::calculateMovement(std::shared_ptr<Coordinates> coordinates, std::vector<std::vector<bool>> full)
 {
     int x = coordinates->getX();
     int y = coordinates->getY();
     auto coord = std::make_shared<Coordinates>(x-1,y);
     coord->setX(x-1);
     coord->setY(y);
-    if (isWithinBounds(coord) && isFree(coord, location)) {
+    if (isWithinBounds(coord) && isFree(coord, full)) {
         movement.push_back(std::make_shared<Coordinates>(x-1,y));
     }
     coord->setX(x);
     coord->setY(y-1);
-    if (isWithinBounds(coord) && isFree(coord, location)) {
+    if (isWithinBounds(coord) && isFree(coord, full)) {
         movement.push_back(std::make_shared<Coordinates>(x,y-1));
     }
     coord->setX(x+1);
     coord->setY(y);
-    if (isWithinBounds(coord) && isFree(coord, location)) {
+    if (isWithinBounds(coord) && isFree(coord, full)) {
         movement.push_back(std::make_shared<Coordinates>(x+1,y));
     }
     coord->setX(x);
     coord->setY(y+1);
-    if (isWithinBounds(coord) && isFree(coord, location)) {
+    if (isWithinBounds(coord) && isFree(coord, full)) {
         movement.push_back(std::make_shared<Coordinates>(x,y+1));
     }
 }
@@ -36,7 +36,7 @@ void Character::printMovement() {
         }
     }
 }
-
+/*
 void Character::calculateAttack(std::shared_ptr<Coordinates> coordinates, std::vector<std::shared_ptr<Coordinates>> location)
 {
     int x = coordinates->getX();
@@ -73,7 +73,7 @@ void Character::printAttack() {
         }
     }
 }
-
+*/
 std::string Character::getName() const
 {
     return "empty";

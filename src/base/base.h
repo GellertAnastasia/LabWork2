@@ -4,6 +4,7 @@
 class Base
 {
 public:
+    Base(int Health);
     int health;
 };
 

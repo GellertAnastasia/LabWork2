@@ -19,7 +19,7 @@ public:
 	std::vector<std::shared_ptr<Coordinates>> movement;
 	std::vector<std::shared_ptr<Coordinates>> attack;
 	
-	void calculateMovement(std::shared_ptr<Coordinates> coordinates, std::vector<std::shared_ptr<Coordinates>> location);
+	void calculateMovement(std::shared_ptr<Coordinates> coordinates, std::vector<std::vector<bool>> full);
 	void printMovement();
 	void calculateAttack(std::shared_ptr<Coordinates> coordinates, std::vector<std::shared_ptr<Coordinates>> location);
 	void printAttack();
