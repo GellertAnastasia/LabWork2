@@ -2,6 +2,7 @@
 #define FIELD_H
 #include <vector>
 #include <memory>
+#include <limits>
 #include "../../include/constants.h"
 #include "../player/player.h"
 #include "../character/character.h"
@@ -9,18 +10,18 @@
 #include "../coordinates/coordinates.h"
 
 void clearScreen();
+void pause();
 
 class Field
 {
 public:
     Field();
     std::vector<std::vector<std::shared_ptr<Object>>> grid;
-    std::vector<std::vector<bool>> full;
     
-    void addCharacter(Player& player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Character> character);
+    bool addCharacter(Player& player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Character> character);
     void deleteObject(int choice, Player& player);
 };
 
-void drawField(Field field, Player player);
+void drawField(Field& field, Player& player, Player& enemy);
 
 #endif

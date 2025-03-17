@@ -1,6 +1,7 @@
 #include "player.h"
 
-Player::Player(int Mana, int Money, int Color) : mana(Mana), money(Money), color(Color) {}
+Player::Player(int Mana, int Money, int Color, std::shared_ptr<Base>& b) 
+	: mana(Mana), money(Money), color(Color), base(b) {}
 
 void Player::printInventory() {
     std::cout << "Inventory:\n";

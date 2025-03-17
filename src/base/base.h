@@ -1,11 +1,12 @@
 #ifndef BASE_H
 #define BASE_H
+#include "../coordinates/coordinates.h"
+#include "../object/object.h"
 
-class Base
+class Base : public Object
 {
 public:
-    Base(int Health);
-    int health;
+    //char cell = 'A';
+    std::string getName() const override;
 };
-
 #endif

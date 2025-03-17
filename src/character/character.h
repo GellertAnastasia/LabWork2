@@ -14,13 +14,14 @@ public:
 	int level = 1;
 	int power = 1;
 	int shield = 0;
-	bool hasActed = false;	
+	bool hasActed = false;
 	std::vector<std::shared_ptr<Coordinates>> movement;
-	std::vector<std::shared_ptr<Object>> attack;
-	
-	void calculateMovement(std::shared_ptr<Coordinates> coordinates, std::vector<std::vector<bool>> full);
+	std::vector<std::shared_ptr<Object>> attack;	
+
+	void calculateMovement(const std::shared_ptr<Coordinates>& coordinates, const std::vector<std::vector<std::shared_ptr<Object>>>& grid);
 	void printMovement();
-	void calculateAttack(std::vector<std::vector<bool>> full, std::vector<std::vector<std::shared_ptr<Object>>> grid);
+	bool isWithinAttackRange(int targetX, int targetY, const std::shared_ptr<Coordinates>& coordinates);
+	void calculateAttack(const std::shared_ptr<Coordinates>& coordinates, const std::vector<std::vector<std::shared_ptr<Object>>>& grid);
 	void printAttack();
 	std::string getName() const override;
 	

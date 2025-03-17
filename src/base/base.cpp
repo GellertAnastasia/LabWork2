@@ -1,3 +1,5 @@
 #include "base.h"
 
-Base::Base(int Health) : health(Health) {}
+std::string Base::getName() const {
+        return "Base (hp: "+ std::to_string(health)+")";
+}

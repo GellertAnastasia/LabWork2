@@ -5,6 +5,6 @@
 #include "../functions/functions.h"
 #include "../buyCard/buyCard.h"
 
-void playerTurn(Player& player, Field& field);
+void playerTurn(Player& player, Player& enemy, Field& field);
 
 #endif

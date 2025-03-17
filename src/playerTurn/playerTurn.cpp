@@ -1,23 +1,22 @@
 #include "playerTurn.h"
 
-void playerTurn(Player& player, Field& field) {
+void playerTurn(Player& player, Player& enemy, Field& field) {
     bool cardsPhase = true;
     while(cardsPhase) {
-        drawField(field, player);
+        drawField(field, player, enemy);
         std::cout << "Card playing phase\n\n";
         std::cout << "Choose an action\n";
         std::cout << "1. Play card\n2. Buy card\n3. Go next step\nYour choice: ";
         int choice;
         std::cin >> choice;
         if (choice == 1) {
-            playCard(player, field);
+            playCard(player, enemy, field);
         } else if (choice == 2) {
             buyCard(player);
             pause();
         } else if (choice == 3) {
             cardsPhase = false;
         } else {
-            std::cout<<"Error. Try again\n";
         }
     }
 
@@ -26,11 +25,11 @@ void playerTurn(Player& player, Field& field) {
     }
     bool actionsPhase = true;
     while(actionsPhase) {
-        drawField(field, player);
+        drawField(field, player, enemy);
         std::cout << "Character action phase:\n\n";
         std::cout << "Choose a character\n";
         player.printCharactersOnGrid();
-        std::cout << player.charactersOnGrid.size()+1 << ". End your turn\n";
+        std::cout << player.charactersOnGrid.size()+1 << ". End your turn\nYour choice: ";
         size_t choice;
         std::cin >> choice;
 
@@ -39,8 +38,6 @@ void playerTurn(Player& player, Field& field) {
             pause();
             break;
         } else if(choice <= 0 || choice > player.charactersOnGrid.size()) {
-            std::cout << "Error. Try again\n";
-            pause();
             continue;
         }
 
@@ -51,7 +48,7 @@ void playerTurn(Player& player, Field& field) {
             continue;
         }
         
-        drawField(field, player);
+        drawField(field, player, enemy);
         std::cout << "Choose an action\n";
         std::cout << "1. moving\n2. attack\nYour choice: ";
         int action;
@@ -59,17 +56,16 @@ void playerTurn(Player& player, Field& field) {
 
         if (action == 1) {
             current->hasActed = true;
-            moveCharacter(choice, player, field);
+            moveCharacter(choice, player, enemy, field);
             continue;
         } else if (action == 2) {
             current->hasActed = true;
-            attack(choice, player, field);
+            attack(choice, player, enemy, field);
             pause();
             continue;
         } else if (action == 3) {
             actionsPhase = false;
         } else {
-            std::cout << "Error. Try again\n";
         }
     }
 }
