@@ -6,7 +6,6 @@ class Archer: public Character
 {
 public:
     Archer();
-    char cell = 'A';
     std::string getName() const override;
 };
 

@@ -57,11 +57,11 @@ void drawField(Field& field, Player& player, Player& enemy) {
         std::cout << static_cast<char>('A' + y) << " ";
 
         for (int x = 0; x < WIDTH; ++x) {
-            if ((y == 0) && (x == 4 || x == 5)) {
-                std::cout <<"\033[31;1m" << "B" << "\033[0m";
-            } else if ((y == 9) && (x == 4 || x == 5)) {
-                std::cout <<"\033[34;1m" << "B" << "\033[0m";
-            } else if (field.grid[y][x] == nullptr) {
+            //if ((y == 0) && (x == 4 || x == 5)) {
+              //  std::cout <<"\033[31;1m" << "B" << "\033[0m";
+            //} else if ((y == 9) && (x == 4 || x == 5)) {
+              //  std::cout <<"\033[34;1m" << "B" << "\033[0m";
+            if (field.grid[y][x] == nullptr) {
                 std::cout << EMPTY_CELL;
             } else {
                 std::cout << "\033[" << field.grid[y][x]->getColor() << ";1m" << field.grid[y][x]->getCell() << "\033[0m";

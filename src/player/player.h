@@ -15,8 +15,8 @@ public:
     int color = 0;
     std::shared_ptr<Base> base;
     
-    std::vector<std::shared_ptr<Character>> inventory;
-    std::vector<std::shared_ptr<Character>> charactersOnGrid;
+    std::vector<std::shared_ptr<Object>> inventory;
+    std::vector<std::shared_ptr<Object>> charactersOnGrid;
     std::vector<std::shared_ptr<Coordinates>> location;
     
     void printInventory();

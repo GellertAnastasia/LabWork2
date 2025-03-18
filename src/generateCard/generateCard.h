@@ -6,7 +6,8 @@
 #include "../fighter/fighter.h"
 #include "../wizard/wizard.h"
 #include "../archer/archer.h"
+#include "../barrier/barrier.h"
 
-std::shared_ptr<Character> generateCard();
+std::shared_ptr<Object> generateCard();
 
 #endif

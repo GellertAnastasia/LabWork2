@@ -18,12 +18,14 @@ int main() {
             Field field;
             auto base1 = std::make_shared<Base>();
             auto base2 = std::make_shared<Base>();
+            base1->setColor(34);
+            base2->setColor(31);
             field.grid[9][4] = base1;
             field.grid[9][5] = base1;
             field.grid[0][4] = base2;
             field.grid[0][5] = base2;
-            Player player1(5,2, 34, base1);
-            Player player2(5,2, 31, base2);
+            Player player1(5,2, base1->getColor(), base1);
+            Player player2(5,2, base2->getColor(), base2);
             for (int i = 0; i<2; i++) {
                 player1.inventory.push_back(generateCard());
                 player2.inventory.push_back(generateCard());

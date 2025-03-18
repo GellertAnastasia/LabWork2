@@ -6,7 +6,8 @@
 class Base : public Object
 {
 public:
-    //char cell = 'A';
+    Base();
     std::string getName() const override;
 };
+
 #endif
