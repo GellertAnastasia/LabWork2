@@ -33,18 +33,14 @@ void Character::printMovement() {
 }
 
 bool Character::isWithinAttackRange(int targetX, int targetY, const std::shared_ptr<Coordinates>& coordinates) {
-    const int currentX = coordinates->getX();
-    const int currentY = coordinates->getY();
+    const int currentX = coordinates->getX()-1;
+    const int currentY = coordinates->getY()-1;
     const std::vector<std::pair<int, int>> directions = {
-        {-1, 0},
         {1, 0},
-        {0, -1},
         {0, 1}
     };
     int dx = std::abs(targetX - currentX);
     int dy = std::abs(targetY - currentY);
-
-    return (dx == 1 && dy == 0) || (dy == 1 && dx == 0);
     for (const auto& [x, y] : directions) {
         if (dx == x && dy == y) {
             return true;

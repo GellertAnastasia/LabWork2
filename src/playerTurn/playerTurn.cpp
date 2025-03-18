@@ -62,6 +62,10 @@ void playerTurn(Player& player, Player& enemy, Field& field) {
             current->hasActed = true;
             attack(choice, player, enemy, field);
             pause();
+            if (player.base->health <= 0 || enemy.base->health <= 0) {
+                actionsPhase = false;
+                //break;
+            }
             continue;
         } else if (action == 3) {
             actionsPhase = false;

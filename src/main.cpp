@@ -29,7 +29,7 @@ int main() {
                 player2.inventory.push_back(generateCard());
             }
             int turn = 0;
-            while (player1.base->health != 0 && player2.base->health != 0) {
+            while (player1.base->health > 0 && player2.base->health > 0) {
                 turn += 1;
                 if (turn % 2 == 1) {
                     player1.inventory.push_back(generateCard());
@@ -45,6 +45,17 @@ int main() {
                     playerTurn(player2, player1, field);
                 }
             }
+            
+            clearScreen();
+            std::cout << "Game over\n";
+            if (player1.base->health <= 0) {
+                std::cout << "Winner:\033["<< player2.color <<"m Player\033[0m\n";
+                pause();
+            } else {
+                std::cout << "Winner:\033["<< player1.color <<"m Player\033[0m\n";
+                pause();
+            }
+            
         } else if (choice == 2) {
             std::cout << "Exit...\n";
             break;
