@@ -14,12 +14,15 @@ public:
     int color;
     std::shared_ptr<Coordinates> location;
     bool hasActed = false;
+    
     void setCell(char value);
     char getCell() const;
     void setColor(int value);
     int getColor() const;
     void setLocation(const std::shared_ptr<Coordinates>& newLocation);
     std::shared_ptr<Coordinates> getLocation() const;
+    
+    void addHealth(int profit);
     virtual std::string getName() const
     {
         return "empty";

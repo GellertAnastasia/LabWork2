@@ -59,7 +59,7 @@ void attack(size_t choice, Player& player, Player& enemy, Field& field) {
     size_t targetChoice;
     std::cin >> targetChoice; 
     auto& target = attacker->attack[targetChoice-1];
-    addHealth(target, -attacker->power);
+    target->addHealth(-attacker->power);
     std::cout << "Health after attack: " << target->health << "\n";
 
     if (target->health <= 0) {
