@@ -1,7 +1,7 @@
 #include "functions.h"
 
 void playCard(Player& player, Player& enemy, Field& field) {
-    int choice;
+    size_t choice;
     drawField(field, player, enemy);
     player.printInventory();
     std::cout << "Your choice: ";
@@ -21,27 +21,42 @@ void playCard(Player& player, Player& enemy, Field& field) {
     player.printInventory();
 }
 
-void moveCharacter(int choice, Player& player, Player& enemy, Field& field) {
+void moveCharacter(size_t choice, Player& player, Player& enemy, Field& field) {
+
+    auto& character = player.charactersOnGrid[choice - 1];
     drawField(field, player, enemy);
+    character->calculateMovement(character->location, field.grid);
+    if (character->movement.empty()) {
+        std::cout << "No available moves!\n";
+        pause();
+        return;
+    }
     std::cout << "Choose the coordinates:\n";
-    player.charactersOnGrid[choice-1]->calculateMovement(player.location[choice-1], field.grid);
-    player.charactersOnGrid[choice-1]->printMovement();
-    int choice1;
+    character->printMovement();
+    size_t choice1;
     std::cin >> choice1;
-    field.addCharacter(player, player.charactersOnGrid[choice-1]->movement[choice1-1], player.charactersOnGrid[choice-1]);
-    player.charactersOnGrid[choice-1]->movement.clear();
-    field.deleteObject(choice, player);
+    if (choice1 < 1 || choice1 > character->movement.size()) {
+        std::cout << "Invalid coordinate choice!\n";
+        pause();
+        return;
+    }
+
+    auto newCoords = character->movement[choice1 - 1];
+    field.deleteObject(character->location, player);
+    character->location = newCoords;
+    field.addCharacter(player, newCoords, character);
+    character->movement.clear();
     drawField(field, player, enemy);
 }
 
-void attack(int choice, Player& player, Player& enemy, Field& field) { 
+void attack(size_t choice, Player& player, Player& enemy, Field& field) { 
     drawField(field, player, enemy);
     std::cout << "Choose the coordinates:\n"; 
     auto& attacker = player.charactersOnGrid[choice-1];
-    attacker->calculateAttack(player.location[choice-1], field.grid);
+    attacker->calculateAttack(attacker->location, field.grid);
     attacker->printAttack(); 
 
-    int targetChoice;
+    size_t targetChoice;
     std::cin >> targetChoice; 
     auto& target = attacker->attack[targetChoice-1];
     addHealth(target, -attacker->power);
@@ -54,9 +69,9 @@ void attack(int choice, Player& player, Player& enemy, Field& field) {
         target
         );
         if (it != enemy.charactersOnGrid.end()) {
-            size_t index = std::distance(enemy.charactersOnGrid.begin(), it);
+            //size_t index = std::distance(enemy.charactersOnGrid.begin(), it);
             enemy.charactersOnGrid.erase(it);
-            enemy.location.erase(enemy.location.begin() + index);
+            //enemy.location.erase(enemy.location.begin() + index);
         }
         for (size_t y = 0; y < field.grid.size(); ++y) {
             for (size_t x = 0; x < field.grid[y].size(); ++x) {

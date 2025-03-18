@@ -16,8 +16,8 @@ public:
     std::shared_ptr<Base> base;
     
     std::vector<std::shared_ptr<Object>> inventory;
-    std::vector<std::shared_ptr<Object>> charactersOnGrid;
-    std::vector<std::shared_ptr<Coordinates>> location;
+    std::vector<std::shared_ptr<Character>> charactersOnGrid;
+    //std::vector<std::shared_ptr<Coordinates>> location;
     
     void printInventory();
     void printCharactersOnGrid();

@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <memory>
 #include "constants.h"
-#include "../object/object.h"
 
 
 class Coordinates {
@@ -23,8 +22,5 @@ public:
     
     void print() const;
 };
-
-bool isWithinBounds(std::shared_ptr<Coordinates> coordinates);
-bool isFree(std::shared_ptr<Coordinates> coordinates, std::vector<std::vector<std::shared_ptr<Object>>> grid);
 
 #endif

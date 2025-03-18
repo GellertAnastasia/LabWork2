@@ -7,7 +7,7 @@ void playerTurn(Player& player, Player& enemy, Field& field) {
         std::cout << "Card playing phase\n\n";
         std::cout << "Choose an action\n";
         std::cout << "1. Play card\n2. Buy card\n3. Go next step\nYour choice: ";
-        int choice;
+        size_t choice;
         std::cin >> choice;
         if (choice == 1) {
             playCard(player, enemy, field);
@@ -41,7 +41,7 @@ void playerTurn(Player& player, Player& enemy, Field& field) {
             continue;
         }
 
-        std::shared_ptr<Character> current = player.charactersOnGrid[choice-1];
+        std::shared_ptr<Object> current = player.charactersOnGrid[choice-1];
         if (current->hasActed) {
             std::cout << "acted\n";
             pause();
@@ -51,7 +51,7 @@ void playerTurn(Player& player, Player& enemy, Field& field) {
         drawField(field, player, enemy);
         std::cout << "Choose an action\n";
         std::cout << "1. moving\n2. attack\nYour choice: ";
-        int action;
+        size_t action;
         std::cin >> action;
 
         if (action == 1) {
@@ -64,7 +64,6 @@ void playerTurn(Player& player, Player& enemy, Field& field) {
             pause();
             if (player.base->health <= 0 || enemy.base->health <= 0) {
                 actionsPhase = false;
-                //break;
             }
             continue;
         } else if (action == 3) {

@@ -15,3 +15,11 @@ void Object::setColor(int value) {
 int Object::getColor() const {
     return color;
 }
+
+void Object::setLocation(const std::shared_ptr<Coordinates>& newLocation) {
+    location = newLocation;
+}
+
+std::shared_ptr<Coordinates> Object::getLocation() const {
+    return location;
+}

@@ -9,6 +9,6 @@
 #include "../addHealth/addHealth.h"
 
 void playCard(Player& player, Player& enemy, Field& field);
-void moveCharacter(int choice, Player& player, Player& enemy, Field& field);
-void attack(int choice, Player& player, Player& enemy, Field& field);
+void moveCharacter(size_t choice, Player& player, Player& enemy, Field& field);
+void attack(size_t choice, Player& player, Player& enemy, Field& field);
 #endif

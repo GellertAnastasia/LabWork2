@@ -7,6 +7,7 @@
 #include "constants.h"
 #include "../object/object.h"
 #include "../coordinates/coordinates.h"
+#include "../func/func.h"
 
 class Character: public Object
 {
@@ -14,7 +15,6 @@ public:
 	int level = 1;
 	int power = 1;
 	int shield = 0;
-	bool hasActed = false;
 	std::vector<std::shared_ptr<Coordinates>> movement;
 	std::vector<std::shared_ptr<Object>> attack;	
 
