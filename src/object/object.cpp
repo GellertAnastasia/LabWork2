@@ -21,6 +21,6 @@ std::shared_ptr<Coordinates> Object::getLocation() const {
     return location;
 }
 
-void Object::addHealth(int profit) {
-    health += profit;
+void Object::changeHealth(int points) {
+    health += points;
 }

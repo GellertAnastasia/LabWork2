@@ -1,7 +1,7 @@
 #include "generateCard.h"
 
-std::shared_ptr<Object> generateCard(Player* owner) {
-    int randomValue = rand() % 4;
+std::shared_ptr<Card> generateCard(Player* owner) {
+    int randomValue = rand() %7;
     if (randomValue == 0) {
         return std::make_shared<Fighter>();
     } else if (randomValue == 1) {
@@ -10,7 +10,11 @@ std::shared_ptr<Object> generateCard(Player* owner) {
             return std::make_shared<Archer>();
     } else if (randomValue == 3) {
             return std::make_shared<Farm>(owner);
-    } else {
+    } else if (randomValue == 4) {
             return std::make_shared<Barrier>();
+    } else if (randomValue == 5) {
+            return std::make_shared<AddHealth>();
+    } else {
+            return std::make_shared<LevelUp>();
     }
 }

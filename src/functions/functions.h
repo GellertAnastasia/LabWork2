@@ -6,6 +6,7 @@
 #include "../fighter/fighter.h"
 #include "../wizard/wizard.h"
 #include "../archer/archer.h"
+#include "../improvement/improvement.h"
 
 void playCard(Player& player, Player& enemy, Field& field);
 void moveCharacter(size_t choice, Player& player, Player& enemy, Field& field);

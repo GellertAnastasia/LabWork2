@@ -8,7 +8,9 @@
 #include "../archer/archer.h"
 #include "../barrier/barrier.h"
 #include "../farm/farm.h"
+#include "../addHealth/addHealth.h"
+#include "../levelUp/levelUp.h"
 
-std::shared_ptr<Object> generateCard(Player* owner);
+std::shared_ptr<Card> generateCard(Player* owner);
 
 #endif

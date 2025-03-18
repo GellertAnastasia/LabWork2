@@ -15,7 +15,7 @@ public:
     int color = 0;
     std::shared_ptr<Base> base;
     
-    std::vector<std::shared_ptr<Object>> inventory;
+    std::vector<std::shared_ptr<Card>> inventory;
     std::vector<std::shared_ptr<Character>> charactersOnGrid;
     
     void addMoney(int profit);

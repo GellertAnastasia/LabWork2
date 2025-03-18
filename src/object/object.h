@@ -22,11 +22,7 @@ public:
     void setLocation(const std::shared_ptr<Coordinates>& newLocation);
     std::shared_ptr<Coordinates> getLocation() const;
     
-    void addHealth(int profit);
-    virtual std::string getName() const
-    {
-        return "empty";
-    }
+    void changeHealth(int points);
 };
 
 #endif

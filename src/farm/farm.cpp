@@ -23,7 +23,6 @@ void pause() {
     std::cin.get();
 }
 void clearScreen() {
-    std::cout << "\033[2J";
-    std::cout << "\033[H";
+    std::cout << "\033c";
 }
 
