@@ -18,3 +18,4 @@ bool isFree(std::shared_ptr<Coordinates> coordinates, std::vector<std::vector<st
         return false;
     }
 }
+

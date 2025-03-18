@@ -17,8 +17,8 @@ public:
     
     std::vector<std::shared_ptr<Object>> inventory;
     std::vector<std::shared_ptr<Character>> charactersOnGrid;
-    //std::vector<std::shared_ptr<Coordinates>> location;
     
+    void addMoney(int profit);
     void printInventory();
     void printCharactersOnGrid();
 };

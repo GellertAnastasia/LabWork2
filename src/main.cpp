@@ -27,20 +27,20 @@ int main() {
             Player player1(5,2, base1->getColor(), base1);
             Player player2(5,2, base2->getColor(), base2);
             for (int i = 0; i<2; i++) {
-                player1.inventory.push_back(generateCard());
-                player2.inventory.push_back(generateCard());
+                player1.inventory.push_back(generateCard(&player1));
+                player2.inventory.push_back(generateCard(&player2));
             }
             int turn = 0;
             while (player1.base->health > 0 && player2.base->health > 0) {
                 turn += 1;
                 if (turn % 2 == 1) {
-                    player1.inventory.push_back(generateCard());
+                    player1.inventory.push_back(generateCard(&player1));
                     clearScreen();
                     std::cout << "Turn player №1\n";
                     pause();
                     playerTurn(player1, player2, field);
                 } else {
-                    player2.inventory.push_back(generateCard());
+                    player2.inventory.push_back(generateCard(&player2));
                     clearScreen();
                     std::cout << "Turn player №2\n";
                     pause();

@@ -7,7 +7,8 @@
 #include "../wizard/wizard.h"
 #include "../archer/archer.h"
 #include "../barrier/barrier.h"
+#include "../farm/farm.h"
 
-std::shared_ptr<Object> generateCard();
+std::shared_ptr<Object> generateCard(Player* owner);
 
 #endif

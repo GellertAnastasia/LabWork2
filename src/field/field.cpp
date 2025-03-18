@@ -1,15 +1,5 @@
 #include "field.h"
 
-void clearScreen() {
-    std::cout << "\033[2J";
-    std::cout << "\033[H";
-}
-void pause() {
-    std::cout << "Click Enter to continue...";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cin.get();
-}
-
 Field::Field() : grid(HEIGHT, std::vector<std::shared_ptr<Object>>(WIDTH, nullptr)) {}
 
 bool Field::addCharacter(Player& player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Object> character) {
@@ -50,6 +40,20 @@ void Field::deleteObject(const std::shared_ptr<Coordinates>& coords, Player& pla
     }
 }
 
+void Field::processFarmsIncome(Player& player) {
+    for (const auto& row : grid) {
+        for (const auto& cell : row) {
+            if (cell) {
+                auto farm = std::dynamic_pointer_cast<Farm>(cell);
+                if (farm && farm->owner == &player) {
+                    farm->bringMoney();
+                }
+            }
+        }
+    }
+}
+
+
 void drawField(Field& field, Player& player, Player& enemy) {
     clearScreen();
     std::cout << "  ";
@@ -64,10 +68,6 @@ void drawField(Field& field, Player& player, Player& enemy) {
         std::cout << static_cast<char>('A' + y) << " ";
 
         for (int x = 0; x < WIDTH; ++x) {
-            //if ((y == 0) && (x == 4 || x == 5)) {
-              //  std::cout <<"\033[31;1m" << "B" << "\033[0m";
-            //} else if ((y == 9) && (x == 4 || x == 5)) {
-              //  std::cout <<"\033[34;1m" << "B" << "\033[0m";
             if (field.grid[y][x] == nullptr) {
                 std::cout << EMPTY_CELL;
             } else {

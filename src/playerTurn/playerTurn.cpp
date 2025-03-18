@@ -1,6 +1,7 @@
 #include "playerTurn.h"
 
 void playerTurn(Player& player, Player& enemy, Field& field) {
+    field.processFarmsIncome(player);
     bool cardsPhase = true;
     while(cardsPhase) {
         drawField(field, player, enemy);

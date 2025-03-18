@@ -69,9 +69,7 @@ void attack(size_t choice, Player& player, Player& enemy, Field& field) {
         target
         );
         if (it != enemy.charactersOnGrid.end()) {
-            //size_t index = std::distance(enemy.charactersOnGrid.begin(), it);
             enemy.charactersOnGrid.erase(it);
-            //enemy.location.erase(enemy.location.begin() + index);
         }
         for (size_t y = 0; y < field.grid.size(); ++y) {
             for (size_t x = 0; x < field.grid[y].size(); ++x) {
