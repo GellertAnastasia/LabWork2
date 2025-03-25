@@ -6,6 +6,12 @@ class Archer: public Character
 {
 public:
     Archer();
+    std::vector<std::pair<int, int>> directionOfMove = {
+        {-1, -1},
+        {-1, 1},
+        {1, -1},
+        {1, 1}
+    };
     std::string getName() const override;
 };
 

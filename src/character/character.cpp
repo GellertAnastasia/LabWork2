@@ -1,18 +1,27 @@
 #include "character.h"
 
+
+const std::vector<std::pair<int, int>>& Character::getDirectionOfMove() const {
+    return directionOfMove;
+}
+void Character::setDirectionOfMove(const std::vector<std::pair<int, int>>& newDirections) {
+    directionOfMove = newDirections;
+}
+const std::vector<std::pair<int, int>>& Character::getDirectionOfAttack() const {
+    return directionOfAttack;
+}
+void Character::setDirectionOfAttack(const std::vector<std::pair<int, int>>& newDirections) {
+    directionOfAttack = newDirections;
+}
+
+
 void Character::calculateMovement(const std::shared_ptr<Coordinates>& coordinates, const std::vector<std::vector<std::shared_ptr<Object>>>& grid) 
 {
     movement.clear();
     const int currentX = coordinates->getX();
     const int currentY = coordinates->getY();
-    const std::vector<std::pair<int, int>> directions = {
-        {-1, 0},
-        {1, 0},
-        {0, -1},
-        {0, 1}
-    };
 
-    for (const auto& [dx, dy] : directions) {
+    for (const auto& [dx, dy] : directionOfMove) {
         const int newX = currentX + dx;
         const int newY = currentY + dy;
         auto newCoords = std::make_shared<Coordinates>(newX, newY);
@@ -35,13 +44,9 @@ void Character::printMovement() {
 bool Character::isWithinAttackRange(int targetX, int targetY, const std::shared_ptr<Coordinates>& coordinates) {
     const int currentX = coordinates->getX()-1;
     const int currentY = coordinates->getY()-1;
-    const std::vector<std::pair<int, int>> directions = {
-        {1, 0},
-        {0, 1}
-    };
     int dx = std::abs(targetX - currentX);
     int dy = std::abs(targetY - currentY);
-    for (const auto& [x, y] : directions) {
+    for (const auto& [x, y] : directionOfAttack) {
         if (dx == x && dy == y) {
             return true;
         }

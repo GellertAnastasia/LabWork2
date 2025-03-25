@@ -2,6 +2,15 @@
 
 Archer::Archer() {
     setCell('A');
+    setDirectionOfMove({
+        {-1, -1},
+        {-1, 1},
+        {1, -1},
+        {1, 1}
+    });
+    setDirectionOfAttack({
+        {1, 1},
+    });
 }
 
 std::string Archer::getName() const {
