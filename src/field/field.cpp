@@ -40,16 +40,18 @@ void Field::deleteObject(const std::shared_ptr<Coordinates>& coords, Player& pla
     }
 }
 
-void Field::processFarmsIncome(Player& player) {
+int Field::processFarmsIncome(Player& player) {
+    int totalProfit = 0;
     for (const auto& row : grid) {
         for (const auto& cell : row) {
             if (cell) {
                 auto farm = std::dynamic_pointer_cast<Farm>(cell);
                 if (farm && farm->owner == &player) {
-                    farm->bringMoney();
+                    totalProfit += farm->bringMoney();
                 }
             }
         }
     }
+    return totalProfit;
 }
 

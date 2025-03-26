@@ -3,7 +3,6 @@
 CardsPhase::CardsPhase(Field& field) : field(field), fieldUI(field) {} 
 
 void CardsPhase::start(Field& field, Player& player, Player& enemy) {
-    field.processFarmsIncome(player);
     bool cardsPhase = true;
     while(cardsPhase) {
         fieldUI.draw(player, enemy);

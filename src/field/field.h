@@ -18,7 +18,7 @@ public:
     
     bool addCharacter(Player& player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Object> character);
     void deleteObject(const std::shared_ptr<Coordinates>& coords, Player& player);
-    void processFarmsIncome(Player& player);
+    int processFarmsIncome(Player& player);
 };
 
 #endif

@@ -11,7 +11,7 @@ public:
 
     Farm(Player* owner);
     std::string getName() const override;
-    void bringMoney();
+    int bringMoney();
 };
 
 #endif
