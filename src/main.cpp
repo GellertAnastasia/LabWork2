@@ -1,14 +1,11 @@
 #include "game/game.h"
+#include "ui/ui.h"
 
 int main() {
     srand(static_cast<unsigned int>(time(0)));
     while (true) {
-        clearScreen();
-
-        std::cout << "Меню игры:\n";
-        std::cout << "1. Start\n";
-        std::cout << "2. Rules\n";
-        std::cout << "3. Exit\n";
+        printTitle();
+        printMenu();
         std::cout << "Your choice: ";
         int choice;
         std::cin >> choice;
