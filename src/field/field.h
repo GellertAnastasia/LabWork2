@@ -4,11 +4,11 @@
 #include <memory>
 #include <limits>
 #include "../../include/constants.h"
-#include "../player/player.h"
 #include "../character/character.h"
 #include "../fighter/fighter.h"
 #include "../farm/farm.h"
 #include "../coordinates/coordinates.h"
+#include "../player/player.h"
 
 class Field
 {
@@ -20,7 +20,5 @@ public:
     void deleteObject(const std::shared_ptr<Coordinates>& coords, Player& player);
     void processFarmsIncome(Player& player);
 };
-
-void drawField(Field& field, Player& player, Player& enemy);
 
 #endif

@@ -6,7 +6,7 @@
 class Base : public Object
 {
 public:
-    Base();
+    Base(int value);
     std::string getName() const override;
 };
 

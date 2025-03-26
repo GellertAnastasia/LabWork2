@@ -17,12 +17,3 @@ void Farm::bringMoney() {
     }
 }
 
-void pause() {
-    std::cout << "Click Enter to continue...";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cin.get();
-}
-void clearScreen() {
-    std::cout << "\033c";
-}
-

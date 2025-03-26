@@ -8,7 +8,7 @@
 class Player
 {
 public:
-    Player(int Mana, int Money, int Color, std::shared_ptr<Base>& b);
+    Player(int Mana, int Money, int Color);
 
     int mana;
     int money;

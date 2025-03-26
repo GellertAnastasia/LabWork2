@@ -1,10 +1,16 @@
 #ifndef PLAYERTURN_H
 #define PLAYERTURN_H
-#include "../player/player.h"
-#include "../field/field.h"
-#include "../functions/functions.h"
-#include "../buyCard/buyCard.h"
+#include "../cardsPhase/cardsPhase.h"
+#include "../actionsPhase/actionsPhase.h"
 
-void playerTurn(Player& player, Player& enemy, Field& field);
+class PlayerTurn {
+public:
+    Field& field;
+    CardsPhase cardsphase;
+    ActionsPhase actionsPhase;
+    
+    PlayerTurn(Field& field);
+    void start(Player& player, Player& enemy, Field& field);
+};
 
 #endif

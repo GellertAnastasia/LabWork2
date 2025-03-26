@@ -1,7 +1,7 @@
 #include "player.h"
 
-Player::Player(int Mana, int Money, int Color, std::shared_ptr<Base>& b) 
-	: mana(Mana), money(Money), color(Color), base(b) {}
+Player::Player(int Mana, int Money, int Color) 
+	: mana(Mana), money(Money), color(Color), base(std::make_shared<Base>(Color)){}
 
 void Player::addMoney(int profit) {
     money += profit;
