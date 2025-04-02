@@ -9,8 +9,8 @@ private:
 public:
     ActionsPhase(Field& field);
     void start(Field& field, Player& player, Player& enemy);
-    void moveCharacter(size_t choice, Player& player, Player& enemy, Field& field);
-    void attack(size_t choice, Player& player, Player& enemy, Field& field);
+    bool moveCharacter(size_t choice, Player& player, Player& enemy, Field& field);
+    bool attack(size_t choice, Player& player, Player& enemy, Field& field);
 };
 
 #endif

@@ -57,6 +57,7 @@ bool Character::isWithinAttackRange(int targetX, int targetY, const std::shared_
 
 void Character::calculateAttack(const std::shared_ptr<Coordinates>& coordinates, const std::vector<std::vector<std::shared_ptr<Object>>>& grid) 
 {
+    attack.clear();
     for (size_t y = 0; y < grid.size(); y++) {         
         for (size_t x = 0; x < grid[y].size(); x++) {
              if ((grid[y][x] != nullptr) && (grid[y][x]->color != color) && isWithinAttackRange(x, y, coordinates)) {                 
