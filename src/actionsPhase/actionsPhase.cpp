@@ -82,9 +82,7 @@ void ActionsPhase::start(Field& field, Player& player, Player& enemy)
 
 bool ActionsPhase::moveCharacter(size_t choice, Player& player, Player& enemy, Field& field)
 {
-
     auto& character = player.charactersOnGrid[choice - 1];
-    //fieldUI.draw(player, enemy);
     character->calculateMovement(character->location, field.grid);
     if (character->movement.empty())
     {
@@ -92,11 +90,6 @@ bool ActionsPhase::moveCharacter(size_t choice, Player& player, Player& enemy, F
         pause();
         return false;
     }
-    //std::cout << "Choose the coordinates:\n";
-    //character->printMovement();
-    //std::cout << character->movement.size()+1 << ". back\n";
-
-    
     bool done = false;
     while (done != true)
     {
@@ -106,11 +99,11 @@ bool ActionsPhase::moveCharacter(size_t choice, Player& player, Player& enemy, F
         std::cout << character->movement.size()+1 << ". back\n";
         size_t choice1;
         if (!(std::cin >> choice1))
-            {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                continue;
-            }
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
         if (choice1 < 1 || choice1 > character->movement.size()+1)
         {
             std::cout << "Invalid coordinate choice!\n";
@@ -121,79 +114,81 @@ bool ActionsPhase::moveCharacter(size_t choice, Player& player, Player& enemy, F
         {
             return false;
         }
-            auto newCoords = character->movement[choice1 - 1];
-            field.deleteObject(character->location, player);
-            character->location = newCoords;
-            field.addCharacter(player, newCoords, character);
-            character->movement.clear();
-            fieldUI.draw(player, enemy);
-            return true;
-        
+        auto newCoords = character->movement[choice1 - 1];
+        field.deleteObject(character->location, player);
+        character->location = newCoords;
+        field.addCharacter(player, newCoords, character);
+        character->movement.clear();
+        fieldUI.draw(player, enemy);
+        return true;
+
     }
     return true;
 }
 bool ActionsPhase::attack(size_t choice, Player& player, Player& enemy, Field& field)
 {
-    
+
     auto& attacker = player.charactersOnGrid[choice-1];
     attacker->calculateAttack(attacker->location, field.grid);
-    
+
     bool done = false;
     while (done != true)
     {
-    fieldUI.draw(player, enemy);
-    std::cout << "Choose the enemy:\n";
-    attacker->printAttack();
-    std::cout << attacker->attack.size()+1 << ". back\n";
-    size_t targetChoice;
-    if (!(std::cin >> targetChoice))
+        fieldUI.draw(player, enemy);
+        std::cout << "Choose the enemy:\n";
+        auto wizardPtr = std::dynamic_pointer_cast<Wizard>(attacker);
+
+        attacker->printAttack();
+        std::cout << attacker->attack.size()+1 << ". back\n";
+        size_t targetChoice;
+        if (!(std::cin >> targetChoice))
         {
-             std::cin.clear();
-             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-             continue;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
         }
-    if (targetChoice < 1 || targetChoice > attacker->attack.size()+1)
+        if (targetChoice < 1 || targetChoice > attacker->attack.size()+1)
         {
             std::cout << "Invalid choice!\n";
             pause();
             continue;
         }
-    else if (targetChoice == attacker->attack.size()+1)
+        else if (targetChoice == attacker->attack.size()+1)
         {
             return false;
         }
-    else {
-    auto& target = attacker->attack[targetChoice-1];
-    
-    target->changeHealth(-attacker->power-attacker->level);
-    std::cout << "Health after attack: " << target->health << "\n";
-
-    if (target->health <= 0)
-    {
-        auto it = std::find(
-                      enemy.charactersOnGrid.begin(),
-                      enemy.charactersOnGrid.end(),
-                      target
-                  );
-        if (it != enemy.charactersOnGrid.end())
+        else
         {
-            enemy.charactersOnGrid.erase(it);
-        }
-        for (size_t y = 0; y < field.grid.size(); ++y)
-        {
-            for (size_t x = 0; x < field.grid[y].size(); ++x)
+            auto& target = attacker->attack[targetChoice-1];
+            target->changeHealth(-attacker->power-attacker->level);
+            std::cout << "Health after attack: " << target->health << "\n";
+            if (target->health <= 0)
             {
-                const auto& obj = field.grid[y][x];
-                if (obj == target)
+                auto it = std::find(
+                              enemy.charactersOnGrid.begin(),
+                              enemy.charactersOnGrid.end(),
+                              target
+                          );
+                if (it != enemy.charactersOnGrid.end())
                 {
-                    field.grid[y][x] = nullptr;
+                    enemy.charactersOnGrid.erase(it);
+                }
+                for (size_t y = 0; y < field.grid.size(); ++y)
+                {
+                    for (size_t x = 0; x < field.grid[y].size(); ++x)
+                    {
+                        const auto& obj = field.grid[y][x];
+                        if (obj == target)
+                        {
+                            field.grid[y][x] = nullptr;
+                        }
+                    }
                 }
             }
         }
+
+        done = true;
     }
-    }
-    done = true;
-}
-attacker->attack.clear();
+    attacker->attack.clear();
     return true;
 }

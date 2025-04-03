@@ -4,16 +4,18 @@
 #include <memory>
 #include "../base/base.h"
 #include "../character/character.h"
+#include "../zone/zone.h"
 
 class Player
 {
 public:
-    Player(int Mana, int Money, int Color);
+    Player(int Mana, int Money, int Color, const Zone& zone);
 
     int mana;
     int money;
     int color = 0;
     std::shared_ptr<Base> base;
+    Zone zone;
     
     std::vector<std::shared_ptr<Card>> inventory;
     std::vector<std::shared_ptr<Character>> charactersOnGrid;

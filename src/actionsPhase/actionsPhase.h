@@ -1,6 +1,7 @@
 #ifndef ACTIONSPHASE_H
 #define ACTIONSPHASE_H
 #include "../fieldUI/fieldUI.h"
+#include "../wizard/wizard.h"
 
 class ActionsPhase {
 private:

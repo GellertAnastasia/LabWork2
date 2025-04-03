@@ -5,8 +5,8 @@ Field::Field() : grid(HEIGHT, std::vector<std::shared_ptr<Object>>(WIDTH, nullpt
 bool Field::addCharacter(Player& player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Object> character) {
     int x = coordinates->getX() - 1;
     int y = coordinates->getY() - 1;
-    if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT) {
-        std::cout << "Coordinates out of bounds!\n";
+    if (x < player.zone.getMinX() || x > player.zone.getMaxX() || y < player.zone.getMinY() || y > player.zone.getMaxY()) {
+        std::cout << "Coordinates out of your zone\n";
         pause();
         return false;
     } else if (grid[y][x] != nullptr) {

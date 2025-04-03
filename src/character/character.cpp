@@ -14,7 +14,6 @@ void Character::setDirectionOfAttack(const std::vector<std::pair<int, int>>& new
     directionOfAttack = newDirections;
 }
 
-
 void Character::calculateMovement(const std::shared_ptr<Coordinates>& coordinates, const std::vector<std::vector<std::shared_ptr<Object>>>& grid) 
 {
     movement.clear();

@@ -62,8 +62,6 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
                 //player.mana -= 1;
                 player.inventory.erase(player.inventory.begin() + choice-1);
                 played = true;
-                //fieldUI.draw(player, enemy);
-                //player.printInventory();
             } else {
                 if (player.charactersOnGrid.size()<=0) {
                     std::cout << "no characters on field. try again\n";
