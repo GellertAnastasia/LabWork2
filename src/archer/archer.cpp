@@ -1,7 +1,7 @@
 #include "archer.h"
 
 Archer::Archer() {
-    setCell('A');
+    setCell("➶");
     setDirectionOfMove({
         {-1, -1},
         {-1, 1},

@@ -1,7 +1,7 @@
 #include "base.h"
 
 Base::Base(int value) {
-    setCell('B');
+    setCell("☖");
     setColor(value);
 }
 

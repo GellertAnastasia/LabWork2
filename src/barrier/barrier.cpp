@@ -1,7 +1,7 @@
 #include "barrier.h"
 
 Barrier::Barrier() {
-    setCell('O');
+    setCell("≡");
 }
 
 std::string Barrier::getName() const {

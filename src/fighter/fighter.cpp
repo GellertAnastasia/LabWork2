@@ -1,7 +1,7 @@
 #include "fighter.h"
 
 Fighter::Fighter() {
-    setCell('F');
+    setCell("⚔︎");
 }
 
 std::string Fighter::getName() const {

@@ -3,8 +3,8 @@
 Game::Game() : 
     zone1(0, 9, 6, 9),
     zone2(0, 9, 0, 3),
-    player1(5, 2, 34, zone1),
-    player2(5, 2, 31, zone2),
+    player1(5, 2, 94, zone1),
+    player2(5, 2, 32, zone2),
     playerTurn(field)
 {
     field.grid[9][4] = player1.base;

@@ -1,9 +1,9 @@
 #include "object.h"
 
-void Object::setCell(char value) {
+void Object::setCell(const std::string& value) {
     cell = value;
 }
-char Object::getCell() const {
+std::string Object::getCell() const {
     return cell;
 }
 

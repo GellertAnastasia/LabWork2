@@ -8,15 +8,15 @@
 class Object: public Card
 {
 protected:
-    char cell;
+    std::string cell;
 public:
     int health = 1;
     int color;
     std::shared_ptr<Coordinates> location;
     bool hasActed = false;
     
-    void setCell(char value);
-    char getCell() const;
+    void setCell(const std::string& value);
+    std::string getCell() const;
     void setColor(int value);
     int getColor() const;
     void setLocation(const std::shared_ptr<Coordinates>& newLocation);

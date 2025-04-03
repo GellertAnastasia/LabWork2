@@ -2,7 +2,7 @@
 
 Wizard::Wizard()
 {
-    setCell('W');
+    setCell("✫");
     setDirectionOfAttack(
     {
         {0, 1},

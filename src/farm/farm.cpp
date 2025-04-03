@@ -1,7 +1,7 @@
 #include "farm.h"
 
 Farm::Farm(Player* owner) : owner(owner) {
-    setCell('M');
+    setCell("⛃");
 }
 
 std::string Farm::getName() const {
