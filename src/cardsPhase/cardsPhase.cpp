@@ -54,9 +54,28 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
                 int x,y;
                 bool added = false;
                 while (added != true) {
+                    bool coord = false;
+                    while (coord != true) {
                     fieldUI.draw(player, enemy);
                     std::cout << "Write the coordinates: ";
-                    std::cin >> x >> y;
+                    if (!(std::cin >> x)) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        continue;
+                    }
+                    else if (!(std::cin >> y)) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        continue;
+                    }
+                    else if (x < player.zone.getMinX() || x > player.zone.getMaxX() || y < player.zone.getMinY() || y > player.zone.getMaxY()) {
+                        std::cout << "Coordinates out of your zone\n";
+                        pause();
+                        continue;
+                    } else {
+                    coord = true;
+                    }
+                    }
                     added = field.addCharacter(player, std::make_shared<Coordinates>(x,y), objectPtr);
                 }
                 //player.mana -= 1;

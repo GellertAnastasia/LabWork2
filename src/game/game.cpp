@@ -1,8 +1,8 @@
 #include "game.h"
 
 Game::Game() : 
-    zone1(0, 9, 6, 9),
-    zone2(0, 9, 0, 3),
+    zone1(1, 10, 7, 10),
+    zone2(1, 10, 1, 4),
     player1(5, 2, 94, zone1),
     player2(5, 2, 32, zone2),
     playerTurn(field)
