@@ -94,6 +94,7 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
                     std::cin >> choice1;
                     improvePtr->addPoints(player.charactersOnGrid[choice1-1]);
                     pause();
+                    player.inventory.erase(player.inventory.begin() + choice-1);
                     played = true;
                 }
             }

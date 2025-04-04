@@ -5,7 +5,8 @@ Game::Game() :
     zone2(1, 10, 1, 4),
     player1(5, 2, 94, zone1),
     player2(5, 2, 32, zone2),
-    playerTurn(field)
+    playerTurn(field),
+    botTurn(field, player2)
 {
     field.grid[9][4] = player1.base;
     field.grid[9][5] = player1.base;
@@ -41,6 +42,36 @@ void Game::start() {
     std::cout << "Game over\n";
     if (player1.base->health <= 0) {
         std::cout << "Winner:\033["<< player2.color <<"m Player\033[0m\n";
+        pause();
+    } else {
+        std::cout << "Winner:\033["<< player1.color <<"m Player\033[0m\n";
+        pause();
+    }
+}
+void Game::startB() {
+    //AIController ai(player2);
+    int turn = 0;
+    while (player1.base->health > 0 && player2.base->health > 0) {
+        turn += 1;
+        if (turn % 2 == 1) {
+            player1.inventory.push_back(generateCard(&player1));
+            clearScreen();
+            std::cout << "Turn player\n";
+            pause();
+            playerTurn.start(player1, player2, field);
+        } else {
+            player2.inventory.push_back(generateCard(&player2));
+            clearScreen();
+            std::cout << "Turn bot\n";
+            pause();
+            botTurn.start(player2, player1, field);
+        }
+    }
+
+    clearScreen();
+    std::cout << "Game over\n";
+    if (player1.base->health <= 0) {
+        std::cout << "Winner:\033["<< player2.color <<"m Bot\033[0m\n";
         pause();
     } else {
         std::cout << "Winner:\033["<< player1.color <<"m Player\033[0m\n";
