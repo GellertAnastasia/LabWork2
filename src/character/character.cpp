@@ -33,9 +33,7 @@ void Character::calculateMovement(const std::shared_ptr<Coordinates>& coordinate
 void Character::printMovement() {
     for (size_t i = 0; i < movement.size(); ++i) {
         if (movement[i]) {
-            std::cout << i + 1 << ". ";
-            movement[i]->print();
-            std::cout << "\n";
+            std::cout << i + 1 << ". " << movement[i]->get() << "\n";
         }
     }
 }

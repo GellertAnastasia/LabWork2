@@ -5,5 +5,9 @@ Fighter::Fighter() {
 }
 
 std::string Fighter::getName() const {
-        return "Fighter (hp: "+ std::to_string(health) +", power: "+ std::to_string(power) +")";
+    if (getLocation() != nullptr) {
+        return "Fighter" + getLocation()->get() + ": " + std::to_string(health) + HEALTH + " " + std::to_string(power) + POWER;
+    } else {
+        return "Fighter: " + std::to_string(health) + HEALTH + " " + std::to_string(power) + POWER;
+    }
 }

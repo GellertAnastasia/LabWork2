@@ -107,7 +107,7 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
             player.money -= 1;
             auto character = generateCard(&player);
             player.inventory.push_back(character);
-            std::cout << character->getName() << " added to inventory\n";
+            std::cout << character->getName() << "  added to inventory\n";
         } else {
             std::cout << "not enough money\n";
         }

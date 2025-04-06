@@ -1,8 +1,8 @@
-#ifndef LEVELUP_H
-#define LEVELUP_H
+#ifndef ADDPOWER_H
+#define ADDPOWER_H
 #include "../improvement/improvement.h"
 
-class LevelUp: public Improvement
+class AddPower: public Improvement
 {
 public:
     

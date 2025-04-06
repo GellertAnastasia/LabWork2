@@ -160,7 +160,7 @@ bool ActionsPhase::attack(size_t choice, Player& player, Player& enemy, Field& f
         else
         {
             auto& target = attacker->attack[targetChoice-1];
-            target->changeHealth(-attacker->power-attacker->level);
+            target->changeHealth(-attacker->power);
             std::cout << "Health after attack: " << target->health << "\n";
             if (target->health <= 0)
             {

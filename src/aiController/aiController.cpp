@@ -134,7 +134,7 @@ bool AIController::aiAttack(std::shared_ptr<Character> attacker, Player& enemy, 
     auto target = selectBestTarget(attacker, enemy);
     if (!target) return false;
 
-    target->changeHealth(-attacker->power - attacker->level);
+    target->changeHealth(-attacker->power);
     attacker->hasActed = true;
 
     if (target->health <= 0)

@@ -18,7 +18,7 @@ void Coordinates::setY(int newY) {
     y = newY;
 }
 
-void Coordinates::print() const {
-    std::cout << "(" << x << ", " << y << ")";
+std::string Coordinates::get() const {
+    return "(" + std::to_string(x) + "," + std::to_string(y) + ")";
 }
 

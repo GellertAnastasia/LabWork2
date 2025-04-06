@@ -6,5 +6,9 @@ Base::Base(int value) {
 }
 
 std::string Base::getName() const {
-        return "Base (hp: "+ std::to_string(health)+")";
+    if (getLocation() != nullptr) {
+        return "Base" + getLocation()->get() + ": " + std::to_string(health) + HEALTH;
+    } else {
+        return "Base: " + std::to_string(health) + HEALTH;
+    }
 }

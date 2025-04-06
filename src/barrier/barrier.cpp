@@ -5,5 +5,9 @@ Barrier::Barrier() {
 }
 
 std::string Barrier::getName() const {
-        return "Barrier (hp: "+ std::to_string(health)+")";
+    if (getLocation() != nullptr) {
+        return "Barrier" + getLocation()->get() + ": " + std::to_string(health) + HEALTH;
+    } else {
+        return "Barrier: " + std::to_string(health) + HEALTH;
+    }
 }

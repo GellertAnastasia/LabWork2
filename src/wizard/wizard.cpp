@@ -13,5 +13,9 @@ Wizard::Wizard()
 
 std::string Wizard::getName() const
 {
-    return "Wizard (hp: "+ std::to_string(health) +", power: "+ std::to_string(power) +")";
+    if (getLocation() != nullptr) {
+        return "Wizard" + getLocation()->get() + ": " + std::to_string(health) + HEALTH + " " + std::to_string(power) + POWER;
+    } else {
+        return "Wizard: " + std::to_string(health) + HEALTH + " " + std::to_string(power) + POWER;
+    }
 }

@@ -15,6 +15,6 @@ std::shared_ptr<Card> generateCard(Player* owner) {
     } else if (randomValue == 5) {
             return std::make_shared<AddHealth>();
     } else {
-            return std::make_shared<LevelUp>();
+            return std::make_shared<AddPower>();
     }
 }

@@ -12,7 +12,6 @@
 class Character: public Object
 {
 public:
-	int level = 1;
 	int power = 1;
 	int shield = 0;
 	std::vector<std::pair<int, int>> directionOfMove = {

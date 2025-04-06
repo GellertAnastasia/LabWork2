@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include <memory>
+#include <string>
 #include "constants.h"
 
 
@@ -20,7 +21,7 @@ public:
     int getY() const;
     void setY(int newY);
     
-    void print() const;
+    std::string get() const;
 };
 
 #endif

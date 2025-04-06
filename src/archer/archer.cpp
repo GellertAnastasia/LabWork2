@@ -14,7 +14,11 @@ Archer::Archer() {
 }
 
 std::string Archer::getName() const {
-        return "Archer (hp: "+ std::to_string(health) +", power: "+ std::to_string(power) +")";
+    if (getLocation() != nullptr) {
+        return "Archer" + getLocation()->get() + ": "+ std::to_string(health) + HEALTH + " " + std::to_string(power) + POWER;
+    } else {
+        return "Archer: "+ std::to_string(health) + HEALTH + " " + std::to_string(power) + POWER;
+    }
 }
 
 

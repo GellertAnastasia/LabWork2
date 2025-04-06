@@ -5,7 +5,11 @@ Farm::Farm(Player* owner) : owner(owner) {
 }
 
 std::string Farm::getName() const {
-        return "Farm (hp: "+ std::to_string(health)+")";
+    if (getLocation() != nullptr) {
+        return "Farm" + getLocation()->get() + ": " + std::to_string(health) + HEALTH;
+    } else {
+        return "Farm: " + std::to_string(health) + HEALTH;
+    }
 }
 
 int Farm::bringMoney() {
