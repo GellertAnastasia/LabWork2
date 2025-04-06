@@ -7,6 +7,8 @@ AIController::AIController(Player& player, Field& field) : player(player), field
 
 void AIController::makeMove(Field& field, Player& enemy)
 {
+    fieldUI.draw(player, enemy);
+    pause();
     while (shouldBuyCard())
     {
         buyRandomCard();
@@ -14,6 +16,7 @@ void AIController::makeMove(Field& field, Player& enemy)
     while(!player.inventory.empty() && shouldPlayCard(field, enemy))
     {
         playRandomCard(field, enemy);
+        
     }
 
 }
@@ -34,6 +37,8 @@ void AIController::playRandomCard(Field& field, Player& enemy)
         while (!field.addCharacter(player, std::make_shared<Coordinates>(x, y), objectPtr));
 
         player.inventory.erase(player.inventory.begin() + choice);
+        fieldUI.draw(player, enemy);
+        pause();
     }
     else if (auto improvePtr = std::dynamic_pointer_cast<Improvement>(card))
     {
@@ -41,6 +46,8 @@ void AIController::playRandomCard(Field& field, Player& enemy)
         {
             size_t charChoice = rand() % player.charactersOnGrid.size();
             improvePtr->addPoints(player.charactersOnGrid[charChoice]);
+            std::cout << improvePtr -> getName();
+            pause();
             player.inventory.erase(player.inventory.begin() + choice);
         }
     }
@@ -66,40 +73,59 @@ bool AIController::shouldPlayCard(const Field& field, const Player& enemy) const
     return true;
 }
 
-void AIController::makeActionsMove(Field& field, Player& enemy)
-{
-    for (auto& character : player.charactersOnGrid)
-    {
-        if (character->hasActed) continue;
-        bool actionSuccess = false;
-        actionSuccess = aiAttack(character, enemy, field);
-        while (actionSuccess != true)
-        {
-            actionSuccess = aiMoveCharacter(character, enemy, field);
+void AIController::makeActionsMove(Field& field, Player& enemy) {
+    bool restartLoop = false;
+    
+    do {
+        restartLoop = false;
+        for (auto& character : player.charactersOnGrid) {
+            if (character->hasActed) continue;
+            
+            bool actionSuccess = aiAttack(character, enemy, field);
+            if (enemy.base->health <= 0) return;
+            if (!actionSuccess) {
+                actionSuccess = aiMoveCharacter(character, enemy, field);
+            }            
+            if (actionSuccess) {
+                fieldUI.draw(player, enemy);
+                pause();
+                restartLoop = true;
+                break;
+            }
         }
-        character->hasActed = actionSuccess;
-        fieldUI.draw(player, enemy);
-        pause();
-        if (enemy.base->health <= 0) break;
-    }
+        
+    } while (restartLoop);
 }
 
-bool AIController::aiMoveCharacter(std::shared_ptr<Character> character, Player& enemy, Field& field)
-{
+bool AIController::aiMoveCharacter(std::shared_ptr<Character> character, Player& enemy, Field& field) {
     character->calculateMovement(character->location, field.grid);
     if (character->movement.empty()) return false;
 
-    int moveChoice = rand() % character->movement.size();
-    auto newCoords = character->movement[moveChoice];
+    const Coordinates target1(4, 9);
+    const Coordinates target2(5, 9);
+    
+    std::shared_ptr<Coordinates> bestMove = character->movement[0];
+    int minDistance = INT_MAX;
+
+    for (const auto& move : character->movement) {
+        int dist1 = abs(move->getX() - target1.getX()) + abs(move->getY() - target1.getY());
+        int dist2 = abs(move->getX() - target2.getX()) + abs(move->getY() - target2.getY());
+        int currentDist = std::min(dist1, dist2);
+        
+        if (currentDist < minDistance) {
+            minDistance = currentDist;
+            bestMove = move;
+        }
+    }
 
     field.deleteObject(character->location, player);
-    character->location = newCoords;
-    field.addCharacter(player, newCoords, character);
+    character->location = bestMove;
+    field.addCharacter(player, bestMove, character);
     character->movement.clear();
+    character->hasActed = true;
 
     return true;
 }
-
 bool AIController::aiAttack(std::shared_ptr<Character> attacker, Player& enemy, Field& field)
 {
     attacker->calculateAttack(attacker->location, field.grid);
@@ -109,6 +135,7 @@ bool AIController::aiAttack(std::shared_ptr<Character> attacker, Player& enemy, 
     if (!target) return false;
 
     target->changeHealth(-attacker->power - attacker->level);
+    attacker->hasActed = true;
 
     if (target->health <= 0)
     {
@@ -136,18 +163,6 @@ bool AIController::aiAttack(std::shared_ptr<Character> attacker, Player& enemy, 
 
 std::shared_ptr<Object> AIController::selectBestTarget(std::shared_ptr<Character> attacker, Player& enemy)
 {
-/*
-    if (attacker->attack.empty()) return nullptr;
-
-    std::shared_ptr<Object> bestTarget = attacker->attack[0];
-    for (auto& target : attacker->attack)
-    {
-        if (target->health < bestTarget->health)
-        {
-            bestTarget = target;
-        }
-    }
-    */
     std::shared_ptr<Object> bestTarget = attacker->attack[0];
     return bestTarget;
 }

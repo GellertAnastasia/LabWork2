@@ -2,6 +2,7 @@
 #define AICONTROLLER_H
 #include <cstdlib>
 #include <ctime> 
+#include <climits>
 #include "../player/player.h"
 #include "../field/field.h"
 #include "../fieldUI/fieldUI.h"
