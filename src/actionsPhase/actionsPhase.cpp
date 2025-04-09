@@ -54,11 +54,13 @@ void ActionsPhase::start(Field& field, Player& player, Player& enemy)
             if (action == 1)
             {
                 current->hasActed = moveCharacter(choice, player, enemy, field);
+                current.reset();
                 done = true;
             }
             else if (action == 2)
             {
                 current->hasActed = attack(choice, player, enemy, field);
+                current.reset();
                 pause();
                 if (player.base->health <= 0 || enemy.base->health <= 0)
                 {
@@ -115,9 +117,8 @@ bool ActionsPhase::moveCharacter(size_t choice, Player& player, Player& enemy, F
             return false;
         }
         auto newCoords = character->movement[choice1 - 1];
-        field.deleteObject(character->location, player);
-        character->location = newCoords;
-        field.addCharacter(player, newCoords, character);
+        
+        field.moveCharacter(player, character->getLocation(), newCoords);
         character->movement.clear();
         fieldUI.draw(player, enemy);
         return true;

@@ -2,25 +2,42 @@
 
 Field::Field() : grid(HEIGHT, std::vector<std::shared_ptr<Object>>(WIDTH, nullptr)) {}
 
-bool Field::addCharacter(Player& player, std::shared_ptr<Coordinates> coordinates, std::shared_ptr<Object> character) {
-    int x = coordinates->getX() - 1;
-    int y = coordinates->getY() - 1;
-    if (grid[y][x] != nullptr) {
-        std::cout << "Cell is occupied!\n";
-        pause();
-        return false;
-    } else {
-         character->setColor(player.color);
-         character->setLocation(coordinates);
-         grid[y][x] = character;
-         auto characterPtr = std::dynamic_pointer_cast<Character>(character);
-         if (characterPtr) {
-             player.charactersOnGrid.push_back(characterPtr);
-         }
-         return true;
-    }
-}
+bool Field::placeNewCharacter(Player& player, const std::shared_ptr<Coordinates>& coords, std::shared_ptr<Object> character) {
+    int x = coords->getX() - 1;
+    int y = coords->getY() - 1;
 
+    if (grid[y][x] != nullptr) {
+        std::cout << "Cannot place character here!\n";
+        return false;
+    }
+
+    character->setColor(player.color);
+    character->setLocation(coords);
+
+    grid[y][x] = character;
+
+    player.charactersOnGrid.push_back(
+        std::dynamic_pointer_cast<Character>(character)
+    );
+
+    return true;
+}
+bool Field::moveCharacter(Player& player, const std::shared_ptr<Coordinates>& from, std::shared_ptr<Coordinates>& to) {
+    int fromX = from->getX() - 1;
+    int fromY = from->getY() - 1;
+    int toX = to->getX() - 1;
+    int toY = to->getY() - 1;
+
+
+    auto& sourceCell = grid[fromY][fromX];
+    auto& destCell = grid[toY][toX];
+
+    destCell = sourceCell;
+    destCell->setLocation(to);
+    sourceCell.reset();
+
+    return true;
+}
 void Field::deleteObject(const std::shared_ptr<Coordinates>& coords, Player& player) {
     int x = coords->getX()-1;
     int y = coords->getY()-1;

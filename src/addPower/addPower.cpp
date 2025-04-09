@@ -12,6 +12,6 @@ std::string AddPower::getName() const {
 
 void AddPower::addPoints(std::shared_ptr<Character>& character) {
     character->power += getPoints();
-    std::cout << "+" + std::to_string(getPoints()) + POWER;
+    std::cout << "+" + std::to_string(getPoints()) + POWER + " for ";
     std::cout << character->getName()+"\n";
 }

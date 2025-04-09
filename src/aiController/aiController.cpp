@@ -34,7 +34,7 @@ void AIController::playRandomCard(Field& field, Player& enemy)
             x = player.zone.getMinX() + rand() % (player.zone.getMaxX() - player.zone.getMinX() + 1);
             y = player.zone.getMinY() + rand() % (player.zone.getMaxY() - player.zone.getMinY() + 1);
         }
-        while (!field.addCharacter(player, std::make_shared<Coordinates>(x, y), objectPtr));
+        while (!field.placeNewCharacter(player, std::make_shared<Coordinates>(x, y), objectPtr));
 
         player.inventory.erase(player.inventory.begin() + choice);
         fieldUI.draw(player, enemy);
@@ -46,7 +46,6 @@ void AIController::playRandomCard(Field& field, Player& enemy)
         {
             size_t charChoice = rand() % player.charactersOnGrid.size();
             improvePtr->addPoints(player.charactersOnGrid[charChoice]);
-            std::cout << improvePtr -> getName();
             pause();
             player.inventory.erase(player.inventory.begin() + choice);
         }
@@ -118,9 +117,7 @@ bool AIController::aiMoveCharacter(std::shared_ptr<Character> character, Player&
         }
     }
 
-    field.deleteObject(character->location, player);
-    character->location = bestMove;
-    field.addCharacter(player, bestMove, character);
+    field.moveCharacter(player, character->getLocation(), bestMove);
     character->movement.clear();
     character->hasActed = true;
 

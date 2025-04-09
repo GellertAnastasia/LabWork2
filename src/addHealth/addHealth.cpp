@@ -12,6 +12,6 @@ std::string AddHealth::getName() const {
 
 void AddHealth::addPoints(std::shared_ptr<Character>& character) {
     character->health += getPoints();
-    std::cout << "+" + std::to_string(getPoints()) + HEALTH;
+    std::cout << "+" + std::to_string(getPoints()) + HEALTH + " for ";
     std::cout << character->getName()+"\n";
 } 

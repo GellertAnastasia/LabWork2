@@ -76,7 +76,7 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
                     coord = true;
                     }
                     }
-                    added = field.addCharacter(player, std::make_shared<Coordinates>(x,y), objectPtr);
+                    added = field.placeNewCharacter(player, std::make_shared<Coordinates>(x,y), objectPtr);
                 }
                 //player.mana -= 1;
                 player.inventory.erase(player.inventory.begin() + choice-1);
