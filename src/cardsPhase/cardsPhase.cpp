@@ -22,6 +22,7 @@ void CardsPhase::start(Field& field, Player& player, Player& enemy) {
             buyCard(player);
             pause();
         } else if (choice == 3) {
+            //std::cout<<"akdiopfakflsd\n";
             cardsPhase = false;
         } else {
         }

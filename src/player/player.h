@@ -14,16 +14,13 @@ public:
     int mana;
     int money;
     int color = 0;
-    //bool human = true;
+
     std::shared_ptr<Base> base;
     Zone zone;
     
     std::vector<std::shared_ptr<Card>> inventory;
     std::vector<std::shared_ptr<Character>> charactersOnGrid;
     
-    //void setHuman(bool _human);
-    
-    //bool isHuman();
     void addMoney(int profit);
     void printInventory();
     void printCharactersOnGrid();

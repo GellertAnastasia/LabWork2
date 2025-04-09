@@ -9,9 +9,13 @@ void PlayerTurn::start(Player& player, Player& enemy, Field& field) {
         pause();
     }
     cardsphase.start(field, player, enemy);
-    for(auto& c : player.charactersOnGrid) {
+for (auto& c : player.charactersOnGrid) {
+    if (c) { // Проверка на валидность указателя
         c->hasActed = false;
+    } else {
+        std::cerr << "Warning: nullptr detected in charactersOnGrid!" << std::endl;
     }
+}
     actionsPhase.start(field, player, enemy);
 }
 

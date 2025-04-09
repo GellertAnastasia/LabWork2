@@ -7,7 +7,8 @@ bool Field::placeNewCharacter(Player& player, const std::shared_ptr<Coordinates>
     int y = coords->getY() - 1;
 
     if (grid[y][x] != nullptr) {
-        std::cout << "Cannot place character here!\n";
+        std::cout << "Cell is occupied!\n";
+        pause();
         return false;
     }
 
@@ -16,9 +17,10 @@ bool Field::placeNewCharacter(Player& player, const std::shared_ptr<Coordinates>
 
     grid[y][x] = character;
 
-    player.charactersOnGrid.push_back(
-        std::dynamic_pointer_cast<Character>(character)
-    );
+    auto characterPtr = std::dynamic_pointer_cast<Character>(character);
+    if (characterPtr) {
+        player.charactersOnGrid.push_back(characterPtr);
+    }
 
     return true;
 }
