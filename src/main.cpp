@@ -1,5 +1,5 @@
 #include "game/game.h"
-#include "ui/ui.h"
+#include "startUI/startUI.h"
 
 int main()
 {
@@ -7,7 +7,7 @@ int main()
     while (true)
     {
         printTitle();
-        printMenu();
+        printMenu("START", "RULES", "EXIT");
         std::cout << "Your choice: ";
         int choice;
         if (!(std::cin >> choice))
@@ -22,7 +22,8 @@ int main()
         {
             Game game;
             clearScreen();
-            std::cout << "1. Player vs Player\n2. Player vs Bot\n3. Back\nYour choice:";
+            printMenu("Player vs Player", "Player vs Bot", "Back");
+            std::cout << "Your choice: ";
             int choice1;
             if (!(std::cin >> choice1))
             {

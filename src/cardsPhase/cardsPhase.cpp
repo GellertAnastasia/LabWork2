@@ -6,7 +6,7 @@ void CardsPhase::start(Field& field, Player& player, Player& enemy) {
     bool cardsPhase = true;
     while(cardsPhase) {
         fieldUI.draw(player, enemy);
-        std::cout << "Card playing phase\n\n";
+        std::cout << purple << "Card playing phase\n\n" << reset;
         std::cout << "Choose an action\n";
         std::cout << "1. Play card\n2. Buy card\n3. Go next step\nYour choice: ";
         size_t choice;

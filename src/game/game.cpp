@@ -20,14 +20,6 @@ Game::Game() :
 }
 
 void Game::start() {
-    for (int x = 0; x < WIDTH; ++x) {
-        for (int y = 0; y < WIDTH; ++y) {
-            // Если ячейка пуста - размещаем волшебника
-            if (player1.isInsideZone(x+1, y+1) && !field.grid[y][x]) {
-                field.grid[y][x] = std::make_shared<Wizard>();
-            }
-        }
-    }
     int turn = 0;
     while (player1.base->health > 0 && player2.base->health > 0) {
         turn += 1;
@@ -46,25 +38,13 @@ void Game::start() {
         }
     }
 
-    clearScreen();
-    std::cout << "Game over\n";
     if (player1.base->health <= 0) {
-        std::cout << "Winner:\033["<< player2.color <<"m Player\033[0m\n";
-        pause();
+        showGameOverScreen("\033["+ std::to_string(player2.color) +"m Player\033[0m\n");
     } else {
-        std::cout << "Winner:\033["<< player1.color <<"m Player\033[0m\n";
-        pause();
+        showGameOverScreen("\033["+ std::to_string(player1.color) +"m Player\033[0m\n");
     }
 }
 void Game::startB() {
-    for (int x = 0; x < WIDTH; ++x) {
-        for (int y = 0; y < WIDTH; ++y) {
-            // Если ячейка пуста - размещаем волшебника
-            if (player1.isInsideZone(x+1, y+1) && !field.grid[y][x]) {
-                field.grid[y][x] = std::make_shared<Wizard>();
-            }
-        }
-    }
     int turn = 0;
     while (player1.base->health > 0 && player2.base->health > 0) {
         turn += 1;
@@ -86,10 +66,8 @@ void Game::startB() {
     clearScreen();
     std::cout << "Game over\n";
     if (player1.base->health <= 0) {
-        std::cout << "Winner:\033["<< player2.color <<"m Bot\033[0m\n";
-        pause();
+        showGameOverScreen("\033["+ std::to_string(player2.color) +"m Bot\033[0m\n");
     } else {
-        std::cout << "Winner:\033["<< player1.color <<"m Player\033[0m\n";
-        pause();
+        showGameOverScreen("\033["+ std::to_string(player1.color) +"m Player\033[0m\n");
     }
 }

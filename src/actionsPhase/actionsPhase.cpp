@@ -8,7 +8,7 @@ void ActionsPhase::start(Field& field, Player& player, Player& enemy)
     while(actionsPhase)
     {
         fieldUI.draw(player, enemy);
-        std::cout << "Character action phase:\n\n";
+        std::cout << purple << "Character action phase:\n\n" << reset;
         std::cout << "Choose a character\n";
         player.printCharactersOnGrid();
         std::cout << player.charactersOnGrid.size()+1 << ". End your turn\nYour choice: ";

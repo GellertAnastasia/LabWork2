@@ -3,7 +3,7 @@
 #include "../playerTurn/playerTurn.h"
 #include "../botTurn/botTurn.h"
 #include "../zone/zone.h"
-
+#include "../endUI/endUI.h"
 
 class Game {
 public:
