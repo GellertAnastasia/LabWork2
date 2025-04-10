@@ -13,10 +13,9 @@ void AIController::makeMove(Field& field, Player& enemy)
     {
         buyRandomCard();
     }
-    while(!player.inventory.empty() && shouldPlayCard(field, enemy))
+    while(!player.inventory.empty() && shouldPlayCard())
     {
         playRandomCard(field, enemy);
-        
     }
 
 }
@@ -34,7 +33,7 @@ void AIController::playRandomCard(Field& field, Player& enemy)
             x = player.zone.getMinX() + rand() % (player.zone.getMaxX() - player.zone.getMinX() + 1);
             y = player.zone.getMinY() + rand() % (player.zone.getMaxY() - player.zone.getMinY() + 1);
         }
-        while (!field.placeNewCharacter(player, std::make_shared<Coordinates>(x, y), objectPtr));
+        while (field.grid[y-1][x-1]!=nullptr || !field.placeNewCharacter(player, std::make_shared<Coordinates>(x, y), objectPtr));
 
         player.inventory.erase(player.inventory.begin() + choice);
         fieldUI.draw(player, enemy);
@@ -67,9 +66,13 @@ bool AIController::shouldBuyCard() const
     return player.money >= 1;
 }
 
-bool AIController::shouldPlayCard(const Field& field, const Player& enemy) const
+bool AIController::shouldPlayCard() const
 {
-    return true;
+    if (field.isEmpty(player)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void AIController::makeActionsMove(Field& field, Player& enemy) {

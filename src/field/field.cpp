@@ -2,6 +2,18 @@
 
 Field::Field() : grid(HEIGHT, std::vector<std::shared_ptr<Object>>(WIDTH, nullptr)) {}
 
+bool Field::isEmpty(Player& player) {
+for (size_t x = 0; x < grid.size(); ++x) {
+    for (size_t y = 0; y < grid[x].size(); ++y) {
+        if (player.isInsideZone(x+1, y+1) && grid[y][x] == nullptr) {
+            return true;
+        }
+    }
+}
+return false;
+}
+ 
+
 bool Field::placeNewCharacter(Player& player, const std::shared_ptr<Coordinates>& coords, std::shared_ptr<Object> character) {
     int x = coords->getX() - 1;
     int y = coords->getY() - 1;

@@ -18,7 +18,7 @@ public:
     void playRandomCard(Field& field, Player& enemy);
     void buyRandomCard();
     bool shouldBuyCard() const;
-    bool shouldPlayCard(const Field& field, const Player& enemy) const;
+    bool shouldPlayCard() const;
 
     void makeActionsMove(Field& field, Player& enemy);
     bool aiMoveCharacter(std::shared_ptr<Character> character, Player& enemy, Field& field);

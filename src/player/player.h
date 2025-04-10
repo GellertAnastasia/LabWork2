@@ -21,6 +21,7 @@ public:
     std::vector<std::shared_ptr<Card>> inventory;
     std::vector<std::shared_ptr<Character>> charactersOnGrid;
     
+    bool isInsideZone(int x, int y);
     void addMoney(int profit);
     void printInventory();
     void printCharactersOnGrid();

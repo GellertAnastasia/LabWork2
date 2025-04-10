@@ -9,6 +9,7 @@ public:
     Zone() = default; 
     Zone(int minX, int maxX, int minY, int maxY); 
     Zone(const Zone&) = default; 
+    
     int getMinX() const;
     int getMaxX() const;
     int getMinY() const;

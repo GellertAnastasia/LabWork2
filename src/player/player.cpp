@@ -2,13 +2,13 @@
 
 Player::Player(int Mana, int Money, int Color, const Zone& zone) 
 	: mana(Mana), money(Money), color(Color), base(std::make_shared<Base>(Color)), zone(zone){}
-/*
-bool Player::isHuman() {
-    return human;
+
+bool Player::isInsideZone(int x, int y) {
+    return (x >= zone.getMinX() && 
+        x <= zone.getMaxX() && 
+        y >= zone.getMinY() && 
+        y <= zone.getMaxY());
 }
-void Player::setHuman(bool _human) {
-    human = _human;
-}*/
 
 void Player::addMoney(int profit) {
     money += profit;

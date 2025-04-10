@@ -22,7 +22,6 @@ void CardsPhase::start(Field& field, Player& player, Player& enemy) {
             buyCard(player);
             pause();
         } else if (choice == 3) {
-            //std::cout<<"akdiopfakflsd\n";
             cardsPhase = false;
         } else {
         }
@@ -51,6 +50,7 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
             auto objectPtr = std::dynamic_pointer_cast<Object>(player.inventory[choice-1]);
             auto improvePtr = std::dynamic_pointer_cast<Improvement>(player.inventory[choice-1]);
             if (objectPtr) {
+                if (field.isEmpty(player)) {
                 fieldUI.draw(player, enemy);
                 int x,y;
                 bool added = false;
@@ -69,7 +69,7 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         continue;
                     }
-                    else if (x < player.zone.getMinX() || x > player.zone.getMaxX() || y < player.zone.getMinY() || y > player.zone.getMaxY()) {
+                    else if (!player.isInsideZone(x, y)) {
                         std::cout << "Coordinates out of your zone\n";
                         pause();
                         continue;
@@ -82,9 +82,14 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
                 //player.mana -= 1;
                 player.inventory.erase(player.inventory.begin() + choice-1);
                 played = true;
+                } else {
+                   std::cout << "There is no place for objects\n";
+                   pause();
+                   continue;
+                }
             } else {
                 if (player.charactersOnGrid.size()<=0) {
-                    std::cout << "no characters on field. try again\n";
+                    std::cout << "No characters on field. try again\n";
                     pause();
                     continue;
                 } else {
@@ -92,7 +97,15 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
                     fieldUI.draw(player, enemy);
                     player.printCharactersOnGrid();
                     std::cout << "Your choice: ";
-                    std::cin >> choice1;
+                    if (!(std::cin >> choice1)) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        continue;
+                    } else if (choice1 >= player.charactersOnGrid.size()+1) {
+                        std::cout << "Error. Try again\n";
+                        pause();
+                        continue;
+                    }
                     improvePtr->addPoints(player.charactersOnGrid[choice1-1]);
                     pause();
                     player.inventory.erase(player.inventory.begin() + choice-1);
@@ -110,6 +123,6 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
             player.inventory.push_back(character);
             std::cout << character->getName() << "  added to inventory\n";
         } else {
-            std::cout << "not enough money\n";
+            std::cout << "Not enough money\n";
         }
     }
