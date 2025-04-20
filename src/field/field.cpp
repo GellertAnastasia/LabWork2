@@ -17,13 +17,12 @@ return false;
 bool Field::placeNewCharacter(Player& player, const std::shared_ptr<Coordinates>& coords, std::shared_ptr<Object> character) {
     int x = coords->getX() - 1;
     int y = coords->getY() - 1;
-
+    
     if (grid[y][x] != nullptr) {
         std::cout << "Cell is occupied!\n";
         pause();
         return false;
     }
-
     character->setColor(player.color);
     character->setLocation(coords);
 

@@ -2,6 +2,9 @@
 
 Fighter::Fighter() {
     setCell("⚔︎");
+    setHealth(3);
+    setPower(3);
+    setCost(2);
 }
 
 std::string Fighter::getName() const {

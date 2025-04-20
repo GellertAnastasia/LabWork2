@@ -2,6 +2,9 @@
 
 Archer::Archer() {
     setCell("➶");
+    setHealth(2);
+    setPower(2);
+    setCost(2);
     setDirectionOfMove({
         {-1, -1},
         {-1, 1},
@@ -10,6 +13,7 @@ Archer::Archer() {
     });
     setDirectionOfAttack({
         {1, 1},
+        {2, 2}
     });
 }
 

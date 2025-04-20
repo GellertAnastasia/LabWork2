@@ -13,6 +13,12 @@ void Object::setColor(int value) {
 int Object::getColor() const {
     return color;
 }
+void Object::setHealth(int value) {
+    health = value;
+}
+int Object::getHealth() const {
+    return health;
+}
 
 void Object::setLocation(const std::shared_ptr<Coordinates>& newLocation) {
     location = newLocation;

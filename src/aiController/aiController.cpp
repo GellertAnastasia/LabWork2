@@ -24,6 +24,7 @@ void AIController::playRandomCard(Field& field, Player& enemy)
 {
     size_t choice = rand() % player.inventory.size();
     auto card = player.inventory[choice];
+    player.changeMana(-card->getCost());
 
     if (auto objectPtr = std::dynamic_pointer_cast<Object>(card))
     {
@@ -34,7 +35,6 @@ void AIController::playRandomCard(Field& field, Player& enemy)
             y = player.zone.getMinY() + rand() % (player.zone.getMaxY() - player.zone.getMinY() + 1);
         }
         while (field.grid[y-1][x-1]!=nullptr || !field.placeNewCharacter(player, std::make_shared<Coordinates>(x, y), objectPtr));
-
         player.inventory.erase(player.inventory.begin() + choice);
         fieldUI.draw(player, enemy);
         pause();
@@ -53,9 +53,9 @@ void AIController::playRandomCard(Field& field, Player& enemy)
 
 void AIController::buyRandomCard()
 {
-    if (player.money >= 1)
+    if (player.money >= 3)
     {
-        player.money -= 1;
+        player.money -= 3;
         auto character = generateCard(&player);
         player.inventory.push_back(character);
     }
@@ -63,12 +63,12 @@ void AIController::buyRandomCard()
 
 bool AIController::shouldBuyCard() const
 {
-    return player.money >= 1;
+    return player.money >= 3;
 }
 
 bool AIController::shouldPlayCard() const
 {
-    if (field.isEmpty(player)) {
+    if (field.isEmpty(player) && player.getMana() >= 3) {
         return true;
     } else {
         return false;

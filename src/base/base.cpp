@@ -3,6 +3,7 @@
 Base::Base(int value) {
     setCell("☖");
     setColor(value);
+    setHealth(10);
 }
 
 std::string Base::getName() const {

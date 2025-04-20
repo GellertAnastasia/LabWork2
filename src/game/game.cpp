@@ -3,8 +3,8 @@
 Game::Game() : 
     zone1(1, 10, 7, 10),
     zone2(1, 10, 1, 4),
-    player1(5, 2, 94, zone1),
-    player2(5, 2, 32, zone2),
+    player1(3, 3, 94, zone1),
+    player2(5, 3, 32, zone2),
     playerTurn(field),
     botTurn(field, player2)
 {

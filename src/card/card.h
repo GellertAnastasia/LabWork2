@@ -10,6 +10,9 @@ public:
     {
         return "empty";
     }
+    
+    void setCost(int value);
+    int getCost() const;
 };
 
 #endif

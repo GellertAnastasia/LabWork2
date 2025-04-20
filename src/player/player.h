@@ -21,10 +21,14 @@ public:
     std::vector<std::shared_ptr<Card>> inventory;
     std::vector<std::shared_ptr<Character>> charactersOnGrid;
     
+    int getMana() const;
+    
     bool isInsideZone(int x, int y);
     void addMoney(int profit);
     void printInventory();
     void printCharactersOnGrid();
+    void changeMana(int points);
+    
 };
 
 

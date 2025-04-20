@@ -3,6 +3,7 @@
 BotTurn::BotTurn(Field& field, Player& player) : field(field), ai(player, field) {}
 
 void BotTurn::start(Player& player, Player& enemy, Field& field) {
+    player.changeMana(2);
     field.processFarmsIncome(player);
     for(auto& c : player.charactersOnGrid) {
         c->hasActed = false;

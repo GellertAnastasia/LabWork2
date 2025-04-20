@@ -1,6 +1,13 @@
 #include "character.h"
 
 
+void Character::setPower(int value) {
+    power = value;
+}
+int Character::getPower() const {
+    return power;
+}
+
 const std::vector<std::pair<int, int>>& Character::getDirectionOfMove() const {
     return directionOfMove;
 }
@@ -76,4 +83,3 @@ std::string Character::getName() const
 {
     return "empty";
 }
-

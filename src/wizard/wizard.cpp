@@ -3,6 +3,8 @@
 Wizard::Wizard()
 {
     setCell("✫");
+    setHealth(2);
+    setPower(1);
     setDirectionOfAttack(
     {
         {0, 1},

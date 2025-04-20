@@ -3,6 +3,10 @@
 Player::Player(int Mana, int Money, int Color, const Zone& zone) 
 	: mana(Mana), money(Money), color(Color), base(std::make_shared<Base>(Color)), zone(zone){}
 
+int Player::getMana() const {
+    return mana;
+}
+
 bool Player::isInsideZone(int x, int y) {
     return (x >= zone.getMinX() && 
         x <= zone.getMaxX() && 
@@ -34,4 +38,6 @@ void Player::printCharactersOnGrid() {
     }
 }
 
-
+void Player::changeMana(int points) {
+    mana += points;
+}

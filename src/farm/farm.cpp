@@ -2,6 +2,7 @@
 
 Farm::Farm(Player* owner) : owner(owner) {
     setCell("⛃");
+    setCost(3);
 }
 
 std::string Farm::getName() const {

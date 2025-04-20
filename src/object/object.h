@@ -19,6 +19,8 @@ public:
     std::string getCell() const;
     void setColor(int value);
     int getColor() const;
+    void setHealth(int value);
+    int getHealth() const;
     void setLocation(const std::shared_ptr<Coordinates>& newLocation);
     std::shared_ptr<Coordinates> getLocation() const;
     

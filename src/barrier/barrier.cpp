@@ -2,6 +2,7 @@
 
 Barrier::Barrier() {
     setCell("≡");
+    setHealth(5);
 }
 
 std::string Barrier::getName() const {

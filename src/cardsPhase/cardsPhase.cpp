@@ -2,110 +2,158 @@
 
 CardsPhase::CardsPhase(Field& field) : field(field), fieldUI(field) {}
 
-void CardsPhase::start(Field& field, Player& player, Player& enemy) {
+void CardsPhase::start(Field& field, Player& player, Player& enemy)
+{
     bool cardsPhase = true;
-    while(cardsPhase) {
+    while(cardsPhase)
+    {
         fieldUI.draw(player, enemy);
         std::cout << purple << "Card playing phase\n\n" << reset;
         std::cout << "Choose an action\n";
         std::cout << "1. Play card\n2. Buy card\n3. Go next step\nYour choice: ";
         size_t choice;
-        if (!(std::cin >> choice)) {
+        if (!(std::cin >> choice))
+        {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        if (choice == 1) {
+        if (choice == 1)
+        {
             playCard(field, player, enemy);
-        } else if (choice == 2) {
+        }
+        else if (choice == 2)
+        {
             buyCard(player);
             pause();
-        } else if (choice == 3) {
+        }
+        else if (choice == 3)
+        {
             cardsPhase = false;
-        } else {
+        }
+        else
+        {
         }
     }
 }
 
 
-void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
+void CardsPhase::playCard(Field& field, Player& player, Player& enemy)
+{
     size_t choice;
     bool played = false;
-    while (played != true) {
-    fieldUI.draw(player, enemy);
-    player.printInventory();
-    std::cout << player.inventory.size()+1 << ". Back\n";
-    std::cout << "Your choice: ";
-        if (!(std::cin >> choice)) {
+    while (played != true)
+    {
+        fieldUI.draw(player, enemy);
+        player.printInventory();
+        std::cout << player.inventory.size()+1 << ". Back\n";
+        std::cout << "Your choice: ";
+        if (!(std::cin >> choice))
+        {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
-        if (choice == player.inventory.size()+1) {
+        if (choice == player.inventory.size()+1)
+        {
             return;
-        } else if ((choice < 1) || (choice > player.inventory.size()+1)) {
+        }
+        else if ((choice < 1) || (choice > player.inventory.size()+1))
+        {
             continue;
-        } else {
+        }
+        else
+        {
             auto objectPtr = std::dynamic_pointer_cast<Object>(player.inventory[choice-1]);
             auto improvePtr = std::dynamic_pointer_cast<Improvement>(player.inventory[choice-1]);
-            if (objectPtr) {
-                if (field.isEmpty(player)) {
+            if (objectPtr)
+            {
+                if (!field.isEmpty(player))
+                {
+                    std::cout << "There is no place for objects\n";
+                    pause();
+                    continue;
+                }
+                else if (player.inventory[choice-1]->getCost() > player.getMana())
+                {
+                    std::cout << "Not enough mana\n";
+                    pause();
+                    continue;
+                }
+                player.changeMana(-player.inventory[choice-1]->getCost());
                 fieldUI.draw(player, enemy);
                 int x,y;
                 bool added = false;
-                while (added != true) {
+                while (added != true)
+                {
                     bool coord = false;
-                    while (coord != true) {
-                    fieldUI.draw(player, enemy);
-                    std::cout << "Write the coordinates: ";
-                    if (!(std::cin >> x)) {
-                        std::cin.clear();
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        continue;
-                    }
-                    else if (!(std::cin >> y)) {
-                        std::cin.clear();
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        continue;
-                    }
-                    else if (!player.isInsideZone(x, y)) {
-                        std::cout << "Coordinates out of your zone\n";
-                        pause();
-                        continue;
-                    } else {
-                    coord = true;
-                    }
+                    while (coord != true)
+                    {
+                        fieldUI.draw(player, enemy);
+                        std::cout << "Write the coordinates: ";
+                        if (!(std::cin >> x))
+                        {
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            continue;
+                        }
+                        else if (!(std::cin >> y))
+                        {
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            continue;
+                        }
+                        else if (!player.isInsideZone(x, y))
+                        {
+                            std::cout << "Coordinates out of your zone\n";
+                            pause();
+                            continue;
+                        }
+                        else
+                        {
+                            coord = true;
+                        }
                     }
                     added = field.placeNewCharacter(player, std::make_shared<Coordinates>(x,y), objectPtr);
                 }
-                //player.mana -= 1;
                 player.inventory.erase(player.inventory.begin() + choice-1);
                 played = true;
-                } else {
-                   std::cout << "There is no place for objects\n";
-                   pause();
-                   continue;
-                }
-            } else {
-                if (player.charactersOnGrid.size()<=0) {
+            }
+
+            else
+            {
+                if (player.charactersOnGrid.size()<=0)
+                {
                     std::cout << "No characters on field. try again\n";
                     pause();
                     continue;
-                } else {
+                }
+                else if (player.inventory[choice-1]->cost > player.getMana())
+                {
+                    std::cout << "Not enough mana\n";
+                    pause();
+                    continue;
+                }
+                else
+                {
                     size_t choice1;
                     fieldUI.draw(player, enemy);
                     player.printCharactersOnGrid();
                     std::cout << "Your choice: ";
-                    if (!(std::cin >> choice1)) {
+                    if (!(std::cin >> choice1))
+                    {
                         std::cin.clear();
                         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         continue;
-                    } else if (choice1 >= player.charactersOnGrid.size()+1) {
+                    }
+                    else if (choice1 >= player.charactersOnGrid.size()+1)
+                    {
                         std::cout << "Error. Try again\n";
                         pause();
                         continue;
                     }
+                    player.changeMana(-player.charactersOnGrid[choice1-1]->getCost());
                     improvePtr->addPoints(player.charactersOnGrid[choice1-1]);
                     pause();
                     player.inventory.erase(player.inventory.begin() + choice-1);
@@ -116,13 +164,17 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy) {
     }
 }
 
-    void CardsPhase::buyCard(Player& player) {
-        if (player.money >= 1) {
-            player.money -= 1;
-            auto character = generateCard(&player);
-            player.inventory.push_back(character);
-            std::cout << character->getName() << "  added to inventory\n";
-        } else {
-            std::cout << "Not enough money\n";
-        }
+void CardsPhase::buyCard(Player& player)
+{
+    if (player.money >= 3)
+    {
+        player.money -= 3;
+        auto character = generateCard(&player);
+        player.inventory.push_back(character);
+        std::cout << character->getName() << "  added to inventory\n";
     }
+    else
+    {
+        std::cout << "Not enough money\n";
+    }
+}
