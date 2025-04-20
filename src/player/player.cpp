@@ -6,6 +6,12 @@ Player::Player(int Mana, int Money, int Color, const Zone& zone)
 int Player::getMana() const {
     return mana;
 }
+int Player::getMoney() const {
+    return money;
+}
+int Player::getColor() const {
+    return color;
+}
 
 bool Player::isInsideZone(int x, int y) {
     return (x >= zone.getMinX() && 

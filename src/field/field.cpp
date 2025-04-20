@@ -23,7 +23,7 @@ bool Field::placeNewCharacter(Player& player, const std::shared_ptr<Coordinates>
         pause();
         return false;
     }
-    character->setColor(player.color);
+    character->setColor(player.getColor());
     character->setLocation(coords);
 
     grid[y][x] = character;

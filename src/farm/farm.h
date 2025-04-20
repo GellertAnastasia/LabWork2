@@ -5,9 +5,13 @@
 #include "../object/object.h"
 
 class Farm : public Object {
-public:
+private:
     int profit = 1;
+public:
     Player* owner;
+    
+    void setProfit(int value);
+    int getProfit() const;
 
     Farm(Player* owner);
     std::string getName() const override;

@@ -5,12 +5,12 @@
 
 class Improvement: public Card
 {
-public:
+private:
     int points = 1;
-    
-    virtual void addPoints(std::shared_ptr<Character>& character)
-    {
-    }
+public:
+    void setPoints(int value);
+    int getPoints() const;
+    virtual void addPoints(std::shared_ptr<Character>& character) {}
 };
 
 #endif

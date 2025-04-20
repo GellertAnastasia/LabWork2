@@ -64,7 +64,7 @@ void Character::calculateAttack(const std::shared_ptr<Coordinates>& coordinates,
     attack.clear();
     for (size_t y = 0; y < grid.size(); y++) {         
         for (size_t x = 0; x < grid[y].size(); x++) {
-             if ((grid[y][x] != nullptr) && (grid[y][x]->color != color) && isWithinAttackRange(x, y, coordinates)) {                 
+             if ((grid[y][x] != nullptr) && (grid[y][x]->getColor() != color) && isWithinAttackRange(x, y, coordinates)) {                 
                  attack.push_back(grid[y][x]);
              }
         }

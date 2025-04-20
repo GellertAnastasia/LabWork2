@@ -33,7 +33,7 @@ int main()
             }
             if (choice1 == 1)
             {
-                game.start();
+                game.startA();
             }
             else if (choice1 == 2)
             {

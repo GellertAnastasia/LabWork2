@@ -1,17 +1,11 @@
 #include "addHealth.h"
 
-void AddHealth::setPoints(char value) {
-    points = value;
-}
-int AddHealth::getPoints() const {
-    return points;
-}
 std::string AddHealth::getName() const {
         return "Add +"+ std::to_string(getPoints()) + HEALTH;
 }
 
 void AddHealth::addPoints(std::shared_ptr<Character>& character) {
-    character->health += getPoints();
+    character->setHealth(character->getHealth() + getPoints());
     std::cout << "+" + std::to_string(getPoints()) + HEALTH + " for ";
     std::cout << character->getName()+"\n";
 } 

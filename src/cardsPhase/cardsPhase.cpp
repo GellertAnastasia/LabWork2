@@ -129,7 +129,7 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy)
                     pause();
                     continue;
                 }
-                else if (player.inventory[choice-1]->cost > player.getMana())
+                else if (player.inventory[choice-1]->getCost() > player.getMana())
                 {
                     std::cout << "Not enough mana\n";
                     pause();
@@ -166,9 +166,9 @@ void CardsPhase::playCard(Field& field, Player& player, Player& enemy)
 
 void CardsPhase::buyCard(Player& player)
 {
-    if (player.money >= 3)
+    if (player.getMoney() >= 3)
     {
-        player.money -= 3;
+        player.addMoney(-3);
         auto character = generateCard(&player);
         player.inventory.push_back(character);
         std::cout << character->getName() << "  added to inventory\n";

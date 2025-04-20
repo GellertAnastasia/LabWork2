@@ -19,9 +19,9 @@ Game::Game() :
     }
 }
 
-void Game::start() {
+void Game::startA() {
     int turn = 0;
-    while (player1.base->health > 0 && player2.base->health > 0) {
+    while (player1.base->getHealth() > 0 && player2.base->getHealth() > 0) {
         turn += 1;
         if (turn % 2 == 1) {
             player1.inventory.push_back(generateCard(&player1));
@@ -38,15 +38,15 @@ void Game::start() {
         }
     }
 
-    if (player1.base->health <= 0) {
-        showGameOverScreen("\033["+ std::to_string(player2.color) +"m Player\033[0m\n");
+    if (player1.base->getHealth() <= 0) {
+        showGameOverScreen("\033["+ std::to_string(player2.getColor()) +"m Player\033[0m\n");
     } else {
-        showGameOverScreen("\033["+ std::to_string(player1.color) +"m Player\033[0m\n");
+        showGameOverScreen("\033["+ std::to_string(player1.getColor()) +"m Player\033[0m\n");
     }
 }
 void Game::startB() {
     int turn = 0;
-    while (player1.base->health > 0 && player2.base->health > 0) {
+    while (player1.base->getHealth() > 0 && player2.base->getHealth() > 0) {
         turn += 1;
         if (turn % 2 == 1) {
             player1.inventory.push_back(generateCard(&player1));
@@ -65,9 +65,9 @@ void Game::startB() {
 
     clearScreen();
     std::cout << "Game over\n";
-    if (player1.base->health <= 0) {
-        showGameOverScreen("\033["+ std::to_string(player2.color) +"m Bot\033[0m\n");
+    if (player1.base->getHealth() <= 0) {
+        showGameOverScreen("\033["+ std::to_string(player2.getColor()) +"m Bot\033[0m\n");
     } else {
-        showGameOverScreen("\033["+ std::to_string(player1.color) +"m Player\033[0m\n");
+        showGameOverScreen("\033["+ std::to_string(player1.getColor()) +"m Player\033[0m\n");
     }
 }

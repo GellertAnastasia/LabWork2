@@ -62,7 +62,7 @@ void ActionsPhase::start(Field& field, Player& player, Player& enemy)
                 current->hasActed = attack(choice, player, enemy, field);
                 current.reset();
                 pause();
-                if (player.base->health <= 0 || enemy.base->health <= 0)
+                if (player.base->getHealth() <= 0 || enemy.base->getHealth() <= 0)
                 {
                     actionsPhase = false;
                 }
@@ -161,9 +161,9 @@ bool ActionsPhase::attack(size_t choice, Player& player, Player& enemy, Field& f
         else
         {
             auto& target = attacker->attack[targetChoice-1];
-            target->changeHealth(-attacker->power);
-            std::cout << "Health after attack: " << target->health << "\n";
-            if (target->health <= 0)
+            target->changeHealth(-attacker->getPower());
+            std::cout << "Health after attack: " << target->getHealth() << "\n";
+            if (target->getHealth() <= 0)
             {
                 auto it = std::find(
                               enemy.charactersOnGrid.begin(),

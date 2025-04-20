@@ -9,11 +9,11 @@ class Object: public Card
 {
 protected:
     std::string cell;
-public:
     int health = 1;
     int color;
-    std::shared_ptr<Coordinates> location;
+public:
     bool hasActed = false;
+    std::shared_ptr<Coordinates> location;
     
     void setCell(const std::string& value);
     std::string getCell() const;

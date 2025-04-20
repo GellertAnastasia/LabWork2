@@ -16,7 +16,7 @@ public:
     BotTurn botTurn;
     
     Game();
-    void start();
+    void startA();
     void startB();
 };
 

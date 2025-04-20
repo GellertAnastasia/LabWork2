@@ -12,12 +12,12 @@ void FieldUI::draw(Player& player, Player& enemy) {
         if (x < 10) {
             std::cout << circled_numbers[x];
         } else {
-            std::cout << x+1; // для номеров >10 используем обычные цифры
+            std::cout << x+1;
         }
         if (x != WIDTH - 1) std::cout << " ";
     }
     std::cout << std::string(field_width - WIDTH - 1, ' ') 
-              << "\033[" << player.color << "m    Player\033[0m's turn\n";
+              << "\033[" << player.getColor() << "m    Player\033[0m's turn\n";
 
     auto formatValue = [](int value, int width) {
         std::ostringstream oss;
@@ -26,12 +26,12 @@ void FieldUI::draw(Player& player, Player& enemy) {
     };
 
     int max_value_width = 2;
-    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(player.base->health).length()));
-    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(enemy.base->health).length()));
-    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(player.mana).length()));
-    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(enemy.mana).length()));
-    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(player.money).length()));
-    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(enemy.money).length()));
+    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(player.base->getHealth()).length()));
+    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(enemy.base->getHealth()).length()));
+    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(player.getMana()).length()));
+    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(enemy.getMana()).length()));
+    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(player.getMoney()).length()));
+    max_value_width = std::max(max_value_width, static_cast<int>(std::to_string(enemy.getMoney()).length()));
 
     for (int y = 0; y < HEIGHT; ++y) {
         if (y < 10) {
@@ -61,19 +61,19 @@ void FieldUI::draw(Player& player, Player& enemy) {
         if (y == 0) {
             std::cout << "   ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌";
         } else if (y == 1) {
-            std::cout << "   \033[" << player.color << "mPlayer\033[0m        \033[" 
-                     << enemy.color << "mPlayer\033[0m";
+            std::cout << "   \033[" << player.getColor() << "mPlayer\033[0m        \033[" 
+                     << enemy.getColor() << "mPlayer\033[0m";
         } else if (y == 2) {
-            std::cout << "   base: " << formatValue(player.base->health, max_value_width) 
-                     << HEALTH << "     base: " << formatValue(enemy.base->health, max_value_width) 
+            std::cout << "   base: " << formatValue(player.base->getHealth(), max_value_width) 
+                     << HEALTH << "     base: " << formatValue(enemy.base->getHealth(), max_value_width) 
                      << HEALTH;
         } else if (y == 3) {
-            std::cout << "   mana: " << formatValue(player.mana, max_value_width) 
-                     << MANA << "     mana: " << formatValue(enemy.mana, max_value_width) 
+            std::cout << "   mana: " << formatValue(player.getMana(), max_value_width) 
+                     << MANA << "     mana: " << formatValue(enemy.getMana(), max_value_width) 
                      << MANA;
         } else if (y == 4) {
-            std::cout << "   money:" << formatValue(player.money, max_value_width) 
-                     << MONEY << "     money:" << formatValue(enemy.money, max_value_width) << MONEY;
+            std::cout << "   money:" << formatValue(player.getMoney(), max_value_width) 
+                     << MONEY << "     money:" << formatValue(enemy.getMoney(), max_value_width) << MONEY;
         }
         std::cout << "\n";
     }

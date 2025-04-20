@@ -11,9 +11,8 @@
 
 class Character: public Object
 {
-public:
+private:
 	int power = 1;
-	int shield = 0;
 	std::vector<std::pair<int, int>> directionOfMove = {
         {-1, 0},
         {1, 0},
@@ -24,6 +23,7 @@ public:
         {1, 0},
         {0, 1}
         };
+public:
 	std::vector<std::shared_ptr<Coordinates>> movement;
 	std::vector<std::shared_ptr<Object>> attack;	
 

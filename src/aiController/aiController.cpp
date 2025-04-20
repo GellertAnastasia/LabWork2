@@ -53,9 +53,9 @@ void AIController::playRandomCard(Field& field, Player& enemy)
 
 void AIController::buyRandomCard()
 {
-    if (player.money >= 3)
+    if (player.getMoney() >= 3)
     {
-        player.money -= 3;
+        player.addMoney(-3);
         auto character = generateCard(&player);
         player.inventory.push_back(character);
     }
@@ -63,7 +63,7 @@ void AIController::buyRandomCard()
 
 bool AIController::shouldBuyCard() const
 {
-    return player.money >= 3;
+    return player.getMoney() >= 3;
 }
 
 bool AIController::shouldPlayCard() const
@@ -84,7 +84,7 @@ void AIController::makeActionsMove(Field& field, Player& enemy) {
             if (character->hasActed) continue;
             
             bool actionSuccess = aiAttack(character, enemy, field);
-            if (enemy.base->health <= 0) return;
+            if (enemy.base->getHealth() <= 0) return;
             if (!actionSuccess) {
                 actionSuccess = aiMoveCharacter(character, enemy, field);
             }            
@@ -134,10 +134,10 @@ bool AIController::aiAttack(std::shared_ptr<Character> attacker, Player& enemy, 
     auto target = selectBestTarget(attacker, enemy);
     if (!target) return false;
 
-    target->changeHealth(-attacker->power);
+    target->changeHealth(-attacker->getPower());
     attacker->hasActed = true;
 
-    if (target->health <= 0)
+    if (target->getHealth() <= 0)
     {
         auto it = std::find(enemy.charactersOnGrid.begin(), enemy.charactersOnGrid.end(), target);
         if (it != enemy.charactersOnGrid.end())
