@@ -1,0 +1,24 @@
+#ifndef GAME_H
+#define GAME_H
+#include "playerTurn.h"
+#include "botTurn.h"
+#include "zone.h"
+#include "endUI.h"
+
+class Game
+{
+public:
+    Field field;
+    Zone zone1;
+    Zone zone2;
+    Player player1;
+    Player player2;
+    PlayerTurn playerTurn;
+    BotTurn botTurn;
+
+    Game();
+    void startA();
+    void startB();
+};
+
+#endif

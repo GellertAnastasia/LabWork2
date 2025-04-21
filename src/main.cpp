@@ -1,5 +1,5 @@
-#include "game/game.h"
-#include "startUI/startUI.h"
+#include "../include/game.h"
+#include "../include/startUI.h"
 
 int main()
 {
