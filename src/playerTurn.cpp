@@ -2,7 +2,7 @@
 
 PlayerTurn::PlayerTurn(Field& field) : field(field), cardsphase(field), actionsPhase(field) {}
 
-void PlayerTurn::start(Player& player, Player& enemy, Field& field)
+void PlayerTurn::start(Player& player, Player& enemy)
 {
     player.changeMana(2);
     int profit = field.processFarmsIncome(player);
@@ -11,7 +11,7 @@ void PlayerTurn::start(Player& player, Player& enemy, Field& field)
         std::cout << "Farm brought you money: " << profit << "\n";
         pause();
     }
-    cardsphase.start(field, player, enemy);
+    cardsphase.start(player, enemy);
     for (auto& c : player.charactersOnGrid)
     {
         if (c)
@@ -23,6 +23,6 @@ void PlayerTurn::start(Player& player, Player& enemy, Field& field)
             std::cerr << "Warning: nullptr detected in charactersOnGrid!" << std::endl;
         }
     }
-    actionsPhase.start(field, player, enemy);
+    actionsPhase.start(player, enemy);
 }
 

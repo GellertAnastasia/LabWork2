@@ -9,7 +9,7 @@ public:
     AIController ai;
 
     BotTurn(Field& field, Player& player);
-    void start(Player& player, Player& enemy, Field& field);
+    void start(Player& player, Player& enemy);
 };
 
 #endif

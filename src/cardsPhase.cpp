@@ -2,7 +2,7 @@
 
 CardsPhase::CardsPhase(Field& field) : field(field), fieldUI(field) {}
 
-void CardsPhase::start(Field& field, Player& player, Player& enemy)
+void CardsPhase::start(Player& player, Player& enemy)
 {
     bool cardsPhase = true;
     while(cardsPhase)
@@ -21,7 +21,7 @@ void CardsPhase::start(Field& field, Player& player, Player& enemy)
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         if (choice == 1)
         {
-            playCard(field, player, enemy);
+            playCard(player, enemy);
         }
         else if (choice == 2)
         {
@@ -39,7 +39,7 @@ void CardsPhase::start(Field& field, Player& player, Player& enemy)
 }
 
 
-void CardsPhase::playCard(Field& field, Player& player, Player& enemy)
+void CardsPhase::playCard(Player& player, Player& enemy)
 {
     size_t choice;
     bool played = false;

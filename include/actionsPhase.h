@@ -10,9 +10,9 @@ private:
     FieldUI fieldUI;
 public:
     ActionsPhase(Field& field);
-    void start(Field& field, Player& player, Player& enemy);
-    bool moveCharacter(size_t choice, Player& player, Player& enemy, Field& field);
-    bool attack(size_t choice, Player& player, Player& enemy, Field& field);
+    void start(Player& player, Player& enemy);
+    bool moveCharacter(size_t choice, Player& player, Player& enemy);
+    bool attack(size_t choice, Player& player, Player& enemy);
 };
 
 #endif

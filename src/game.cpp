@@ -32,7 +32,7 @@ void Game::startA()
             clearScreen();
             std::cout << "Turn player №1\n";
             pause();
-            playerTurn.start(player1, player2, field);
+            playerTurn.start(player1, player2);
         }
         else
         {
@@ -40,7 +40,7 @@ void Game::startA()
             clearScreen();
             std::cout << "Turn player №2\n";
             pause();
-            playerTurn.start(player2, player1, field);
+            playerTurn.start(player2, player1);
         }
     }
 
@@ -65,7 +65,7 @@ void Game::startB()
             clearScreen();
             std::cout << "Turn player\n";
             pause();
-            playerTurn.start(player1, player2, field);
+            playerTurn.start(player1, player2);
         }
         else
         {
@@ -73,7 +73,7 @@ void Game::startB()
             clearScreen();
             std::cout << "Turn bot\n";
             pause();
-            botTurn.start(player2, player1, field);
+            botTurn.start(player2, player1);
         }
     }
 

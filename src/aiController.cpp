@@ -5,7 +5,7 @@ AIController::AIController(Player& player, Field& field) : player(player), field
     std::srand(std::time(0));
 }
 
-void AIController::makeMove(Field& field, Player& enemy)
+void AIController::makeMove(Player& enemy)
 {
     fieldUI.draw(player, enemy);
     pause();
@@ -15,12 +15,12 @@ void AIController::makeMove(Field& field, Player& enemy)
     }
     while(!player.inventory.empty() && shouldPlayCard())
     {
-        playRandomCard(field, enemy);
+        playRandomCard(enemy);
     }
 
 }
 
-void AIController::playRandomCard(Field& field, Player& enemy)
+void AIController::playRandomCard(Player& enemy)
 {
     size_t choice = rand() % player.inventory.size();
     auto card = player.inventory[choice];
@@ -78,7 +78,7 @@ bool AIController::shouldPlayCard() const
     }
 }
 
-void AIController::makeActionsMove(Field& field, Player& enemy)
+void AIController::makeActionsMove(Player& enemy)
 {
     bool restartLoop = false;
 
@@ -89,11 +89,11 @@ void AIController::makeActionsMove(Field& field, Player& enemy)
         {
             if (character->hasActed) continue;
 
-            bool actionSuccess = aiAttack(character, enemy, field);
+            bool actionSuccess = aiAttack(character, enemy);
             if (enemy.base->getHealth() <= 0) return;
             if (!actionSuccess)
             {
-                actionSuccess = aiMoveCharacter(character, enemy, field);
+                actionSuccess = aiMoveCharacter(character, enemy);
             }
             if (actionSuccess)
             {
@@ -108,7 +108,7 @@ void AIController::makeActionsMove(Field& field, Player& enemy)
     while (restartLoop);
 }
 
-bool AIController::aiMoveCharacter(std::shared_ptr<Character> character, Player& enemy, Field& field)
+bool AIController::aiMoveCharacter(std::shared_ptr<Character> character, Player& enemy)
 {
     character->calculateMovement(character->location, field.grid);
     if (character->movement.empty()) return false;
@@ -138,7 +138,7 @@ bool AIController::aiMoveCharacter(std::shared_ptr<Character> character, Player&
 
     return true;
 }
-bool AIController::aiAttack(std::shared_ptr<Character> attacker, Player& enemy, Field& field)
+bool AIController::aiAttack(std::shared_ptr<Character> attacker, Player& enemy)
 {
     attacker->calculateAttack(attacker->location, field.grid);
     if (attacker->attack.empty()) return false;

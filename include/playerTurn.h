@@ -11,7 +11,7 @@ public:
     ActionsPhase actionsPhase;
 
     PlayerTurn(Field& field);
-    void start(Player& player, Player& enemy, Field& field);
+    void start(Player& player, Player& enemy);
 };
 
 #endif

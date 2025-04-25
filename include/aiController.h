@@ -15,15 +15,15 @@ class AIController
 public:
     AIController(Player& player, Field& field);
 
-    void makeMove(Field& field, Player& enemy);
-    void playRandomCard(Field& field, Player& enemy);
+    void makeMove(Player& enemy);
+    void playRandomCard(Player& enemy);
     void buyRandomCard();
     bool shouldBuyCard() const;
     bool shouldPlayCard() const;
 
-    void makeActionsMove(Field& field, Player& enemy);
-    bool aiMoveCharacter(std::shared_ptr<Character> character, Player& enemy, Field& field);
-    bool aiAttack(std::shared_ptr<Character> attacker, Player& enemy, Field& field);
+    void makeActionsMove(Player& enemy);
+    bool aiMoveCharacter(std::shared_ptr<Character> character, Player& enemy);
+    bool aiAttack(std::shared_ptr<Character> attacker, Player& enemy);
     std::shared_ptr<Object> selectBestTarget(std::shared_ptr<Character> attacker, Player& enemy);
 
 private:

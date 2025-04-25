@@ -2,7 +2,7 @@
 
 ActionsPhase::ActionsPhase(Field& field) : field(field), fieldUI(field) {}
 
-void ActionsPhase::start(Field& field, Player& player, Player& enemy)
+void ActionsPhase::start(Player& player, Player& enemy)
 {
     bool actionsPhase = true;
     while(actionsPhase)
@@ -53,13 +53,13 @@ void ActionsPhase::start(Field& field, Player& player, Player& enemy)
 
             if (action == 1)
             {
-                current->hasActed = moveCharacter(choice, player, enemy, field);
+                current->hasActed = moveCharacter(choice, player, enemy);
                 current.reset();
                 done = true;
             }
             else if (action == 2)
             {
-                current->hasActed = attack(choice, player, enemy, field);
+                current->hasActed = attack(choice, player, enemy);
                 current.reset();
                 pause();
                 if (player.base->getHealth() <= 0 || enemy.base->getHealth() <= 0)
@@ -82,7 +82,7 @@ void ActionsPhase::start(Field& field, Player& player, Player& enemy)
     }
 }
 
-bool ActionsPhase::moveCharacter(size_t choice, Player& player, Player& enemy, Field& field)
+bool ActionsPhase::moveCharacter(size_t choice, Player& player, Player& enemy)
 {
     auto& character = player.charactersOnGrid[choice - 1];
     character->calculateMovement(character->location, field.grid);
@@ -126,7 +126,7 @@ bool ActionsPhase::moveCharacter(size_t choice, Player& player, Player& enemy, F
     }
     return true;
 }
-bool ActionsPhase::attack(size_t choice, Player& player, Player& enemy, Field& field)
+bool ActionsPhase::attack(size_t choice, Player& player, Player& enemy)
 {
 
     auto& attacker = player.charactersOnGrid[choice-1];
