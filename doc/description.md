@@ -1,7 +1,7 @@
 ## Overview
 А turn-based, tactical strategy game designed for two players competing to destroy each other’s base. Players utilize a combination of unit cards, upgrade cards, and resource management to outmaneuver their opponent. The game emphasizes strategic planning, dynamic resource allocation, and tactical unit control on a grid-based battlefield.
 
-Target Platform: Desktop (Windows/Linux)
+Target Platform: Desktop (Linux)
 Core Technology: C++
 
 ## Core Game Mechanics
@@ -23,7 +23,6 @@ Spent to play cards
 
 
 Coins:
-Earned by defeating enemy units or via card effects.
 
 Spent to draw additional cards
 
@@ -33,7 +32,7 @@ Card System:
 Unit Cards:
 Summon combat units onto the battlefield.
 
-Units have stats: health, attack, movement range, and special ability.
+Units have stats: health, attack, movement range.
 
 
 Upgrade Cards:
@@ -49,7 +48,7 @@ Grid Layout: 10x10 cells with predefined spawn zones for characters.
 Bases:
 Located at opposite ends of the grid.
 
-Base health: 100 HP (reduces when attacked).
+Base health: 20 HP (reduces when attacked).
 
 
 
@@ -68,11 +67,7 @@ Implemented as a 2D array of Cell objects.
 ## Key Features
 Dynamic Card Combos:
 
-Synergies between unit placements and upgrades (e.g., "Knight + Armor Upgrade = +3 defense").
-
-
-Unit Special Abilities:
-Unique actions per unit type (e.g., archers can attack at range, mages heal allies).
+Synergies between unit placements and upgrades (e.g., "Knight + Armor Upgrade = 3 power").
 
 
 Modular Design:
@@ -132,5 +127,3 @@ Input Handling: Keyboard via standard input (cin)
 Dependencies: Standard Library only
 
 Build System: GNU Make + g++
-
-

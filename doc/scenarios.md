@@ -13,7 +13,7 @@ Sufficient mana.
 Target cell (3,1) is unoccupied and within the player’s zone.
 Result:
 
-The unit is displayed on the battlefield as W.
+The unit is displayed on the battlefield.
 
 Player’s mana is reduced by the card’s cost.
 
@@ -21,7 +21,7 @@ Player’s mana is reduced by the card’s cost.
 Precondition: Player 1’s unit is adjacent to Player 2’s object (e.g., at [7,7]).
 Actions:
 
-Select the unit → Press F → Enter.
+Select the unit → Select the enemy.
 System Calculations:
 
 Damage = unit’s attack value.
@@ -35,7 +35,7 @@ If the object’s health ≤ 0: the object is removed from the battlefield.
 Precondition: Player 1’s unit is adjacent to Player 2’s base (located at [7,7]).
 Actions:
 
-Select the unit → Press F → Enter.
+Select the unit → Select the base.
 System Calculations:
 
 Damage = unit’s attack value.
@@ -47,7 +47,7 @@ If the base’s health ≤ 0: Player 1 wins the game.
 
 ### Use Case 4: Purchasing an Additional Card
 Precondition: The player has coins ≥ the cost of an additional card.
-Actions: Press the B key → Enter.
+Actions: Press the number(from the action selection list)
 System Checks:
 
 Sufficient coins.
