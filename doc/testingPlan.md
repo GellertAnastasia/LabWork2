@@ -80,25 +80,9 @@ Test Cases:
 
 ---
 
-### 7. Cross-Platform Testing  
-Objective: Verify functionality across OSes.  
-Test Cases:  
-- Build and Launch:  
-  Linux (g++), macOS (Clang), Windows (WSL + MinGW).  
-
----
-
 ### 8. Test Automation  
 Tools:  
 - Google Test for C++ unit tests.  
-- Scripts for gameplay scenario verification.  
-Example Test:  
-TEST(EconomyTest, CoinRewardOnKill) {  
-    Player player;  
-    Unit enemy(UnitType::WARRIOR, 10 /* bounty */);  
-    player.OnUnitKilled(enemy);  
-    ASSERT_EQ(player.GetCoins(), 10);  
-}  
 
 ---
 
