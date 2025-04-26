@@ -1,6 +1,6 @@
 #include "func.h"
 
-void pause()
+void pause_()
 {
     std::cout << "Click Enter to continue...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

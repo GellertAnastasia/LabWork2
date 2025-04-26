@@ -31,7 +31,7 @@ void Game::startA()
             player1.inventory.push_back(generateCard(&player1));
             clearScreen();
             std::cout << "Turn player №1\n";
-            pause();
+            pause_();
             playerTurn.start(player1, player2);
         }
         else
@@ -39,7 +39,7 @@ void Game::startA()
             player2.inventory.push_back(generateCard(&player2));
             clearScreen();
             std::cout << "Turn player №2\n";
-            pause();
+            pause_();
             playerTurn.start(player2, player1);
         }
     }
@@ -64,7 +64,7 @@ void Game::startB()
             player1.inventory.push_back(generateCard(&player1));
             clearScreen();
             std::cout << "Turn player\n";
-            pause();
+            pause_();
             playerTurn.start(player1, player2);
         }
         else
@@ -72,7 +72,7 @@ void Game::startB()
             player2.inventory.push_back(generateCard(&player2));
             clearScreen();
             std::cout << "Turn bot\n";
-            pause();
+            pause_();
             botTurn.start(player2, player1);
         }
     }

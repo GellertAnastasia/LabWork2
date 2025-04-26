@@ -26,7 +26,7 @@ bool Field::placeNewCharacter(Player& player, const std::shared_ptr<Coordinates>
     if (grid[y][x] != nullptr)
     {
         std::cout << "Cell is occupied!\n";
-        pause();
+        pause_();
         return false;
     }
     character->setColor(player.getColor());

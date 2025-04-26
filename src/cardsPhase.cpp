@@ -26,7 +26,7 @@ void CardsPhase::start(Player& player, Player& enemy)
         else if (choice == 2)
         {
             buyCard(player);
-            pause();
+            pause_();
         }
         else if (choice == 3)
         {
@@ -72,13 +72,13 @@ void CardsPhase::playCard(Player& player, Player& enemy)
                 if (!field.isEmpty(player))
                 {
                     std::cout << "There is no place for objects\n";
-                    pause();
+                    pause_();
                     continue;
                 }
                 else if (player.inventory[choice-1]->getCost() > player.getMana())
                 {
                     std::cout << "Not enough mana\n";
-                    pause();
+                    pause_();
                     continue;
                 }
                 player.changeMana(-player.inventory[choice-1]->getCost());
@@ -107,7 +107,7 @@ void CardsPhase::playCard(Player& player, Player& enemy)
                         else if (!player.isInsideZone(x, y))
                         {
                             std::cout << "Coordinates out of your zone\n";
-                            pause();
+                            pause_();
                             continue;
                         }
                         else
@@ -126,13 +126,13 @@ void CardsPhase::playCard(Player& player, Player& enemy)
                 if (player.charactersOnGrid.size()<=0)
                 {
                     std::cout << "No characters on field. try again\n";
-                    pause();
+                    pause_();
                     continue;
                 }
                 else if (player.inventory[choice-1]->getCost() > player.getMana())
                 {
                     std::cout << "Not enough mana\n";
-                    pause();
+                    pause_();
                     continue;
                 }
                 else
@@ -150,12 +150,12 @@ void CardsPhase::playCard(Player& player, Player& enemy)
                     else if (choice1 >= player.charactersOnGrid.size()+1)
                     {
                         std::cout << "Error. Try again\n";
-                        pause();
+                        pause_();
                         continue;
                     }
                     player.changeMana(-player.charactersOnGrid[choice1-1]->getCost());
                     improvePtr->addPoints(player.charactersOnGrid[choice1-1]);
-                    pause();
+                    pause_();
                     player.inventory.erase(player.inventory.begin() + choice-1);
                     played = true;
                 }

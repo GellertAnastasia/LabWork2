@@ -32,7 +32,6 @@ int Farm::bringMoney()
     if (owner)
     {
         owner->addMoney(profit);
-        clearScreen();
         return profit;
     }
     return 0;

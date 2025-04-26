@@ -8,7 +8,7 @@ AIController::AIController(Player& player, Field& field) : player(player), field
 void AIController::makeMove(Player& enemy)
 {
     fieldUI.draw(player, enemy);
-    pause();
+    pause_();
     while (shouldBuyCard())
     {
         buyRandomCard();
@@ -37,7 +37,7 @@ void AIController::playRandomCard(Player& enemy)
         while (field.grid[y-1][x-1]!=nullptr || !field.placeNewCharacter(player, std::make_shared<Coordinates>(x, y), objectPtr));
         player.inventory.erase(player.inventory.begin() + choice);
         fieldUI.draw(player, enemy);
-        pause();
+        pause_();
     }
     else if (auto improvePtr = std::dynamic_pointer_cast<Improvement>(card))
     {
@@ -45,7 +45,7 @@ void AIController::playRandomCard(Player& enemy)
         {
             size_t charChoice = rand() % player.charactersOnGrid.size();
             improvePtr->addPoints(player.charactersOnGrid[charChoice]);
-            pause();
+            pause_();
             player.inventory.erase(player.inventory.begin() + choice);
         }
     }
@@ -98,7 +98,7 @@ void AIController::makeActionsMove(Player& enemy)
             if (actionSuccess)
             {
                 fieldUI.draw(player, enemy);
-                pause();
+                pause_();
                 restartLoop = true;
                 break;
             }

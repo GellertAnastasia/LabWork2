@@ -9,7 +9,7 @@ void PlayerTurn::start(Player& player, Player& enemy)
     if (profit > 0)
     {
         std::cout << "Farm brought you money: " << profit << "\n";
-        pause();
+        pause_();
     }
     cardsphase.start(player, enemy);
     for (auto& c : player.charactersOnGrid)

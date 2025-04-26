@@ -22,7 +22,7 @@ void ActionsPhase::start(Player& player, Player& enemy)
         if (choice == player.charactersOnGrid.size()+1)
         {
             std::cout << "next turn\n";
-            pause();
+            pause_();
             break;
         }
         else if(choice <= 0 || choice > player.charactersOnGrid.size())
@@ -34,7 +34,7 @@ void ActionsPhase::start(Player& player, Player& enemy)
         if (current->hasActed)
         {
             std::cout << "acted\n";
-            pause();
+            pause_();
             continue;
         }
         size_t action;
@@ -61,7 +61,7 @@ void ActionsPhase::start(Player& player, Player& enemy)
             {
                 current->hasActed = attack(choice, player, enemy);
                 current.reset();
-                pause();
+                pause_();
                 if (player.base->getHealth() <= 0 || enemy.base->getHealth() <= 0)
                 {
                     actionsPhase = false;
@@ -89,7 +89,7 @@ bool ActionsPhase::moveCharacter(size_t choice, Player& player, Player& enemy)
     if (character->movement.empty())
     {
         std::cout << "No available moves!\n";
-        pause();
+        pause_();
         return false;
     }
     bool done = false;
@@ -109,7 +109,7 @@ bool ActionsPhase::moveCharacter(size_t choice, Player& player, Player& enemy)
         if (choice1 < 1 || choice1 > character->movement.size()+1)
         {
             std::cout << "Invalid coordinate choice!\n";
-            pause();
+            pause_();
             continue;
         }
         else if (choice1 == character->movement.size()+1)
@@ -151,7 +151,7 @@ bool ActionsPhase::attack(size_t choice, Player& player, Player& enemy)
         if (targetChoice < 1 || targetChoice > attacker->attack.size()+1)
         {
             std::cout << "Invalid choice!\n";
-            pause();
+            pause_();
             continue;
         }
         else if (targetChoice == attacker->attack.size()+1)
