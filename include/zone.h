@@ -1,24 +1,66 @@
+/**
+ * @file zone.h
+ * @brief Класс для определения прямоугольной зоны на игровом поле
+ * 
+ * Используется для ограничения области действий игрока, 
+ * размещения объектов и управления доступными клетками.
+ */
+
 #ifndef ZONE_H
 #define ZONE_H
 
-class Zone
-{
+/**
+ * @class Zone
+ * @brief Представляет прямоугольную область координат
+ * 
+ * Хранит границы зоны и предоставляет методы для:
+ * - Установки границ
+ * - Получения текущих значений границ
+ * - Копирования зон
+ */
+class Zone {
 private:
-    int minX, maxX, minY, maxY;
+    int minX; ///< Минимальная X-координата (левый край)
+    int maxX; ///< Максимальная X-координата (правый край)
+    int minY; ///< Минимальная Y-координата (нижний край)
+    int maxY; ///< Максимальная Y-координата (верхний край)
 
 public:
+    /**
+     * @brief Конструктор по умолчанию
+     * @warning Создает невалидную зону (0,0,0,0)
+     */
     Zone() = default;
+
+    /**
+     * @brief Основной конструктор зоны
+     * @param minX Левая граница (включительно, >=1)
+     * @param maxX Правая граница (включительно, <=WIDTH)
+     * @param minY Нижняя граница (включительно, >=1)
+     * @param maxY Верхняя граница (включительно, <=HEIGHT)
+     */
     Zone(int minX, int maxX, int minY, int maxY);
-    Zone(const Zone&) = default;
 
-    int getMinX() const;
-    int getMaxX() const;
-    int getMinY() const;
-    int getMaxY() const;
+    /// @name Конструкторы копирования
+    /// @{
+    Zone(const Zone&) = default; ///< Копирует границы существующей зоны
+    /// @}
 
-    void setMinX(int value);
-    void setMaxX(int value);
-    void setMinY(int value);
-    void setMaxY(int value);
+    /// @name Геттеры границ
+    /// @{
+    int getMinX() const; ///< Возвращает minX
+    int getMaxX() const; ///< Возвращает maxX
+    int getMinY() const; ///< Возвращает minY
+    int getMaxY() const; ///< Возвращает maxY
+    /// @}
+
+    /// @name Сеттеры границ
+    /// @{
+    void setMinX(int value); ///< Устанавливает minX (без проверок)
+    void setMaxX(int value); ///< Устанавливает maxX (без проверок)
+    void setMinY(int value); ///< Устанавливает minY (без проверок)
+    void setMaxY(int value); ///< Устанавливает maxY (без проверок)
+    /// @}
 };
+
 #endif

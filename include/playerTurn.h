@@ -1,16 +1,52 @@
+/**
+ * @file playerTurn.h
+ * @brief Управление полным ходом игрока-человека
+ * 
+ * Координирует последовательность действий в течение хода:
+ * 1. Начисление маны и дохода
+ * 2. Фаза использования карт
+ * 3. Фаза действий персонажей
+ */
+
 #ifndef PLAYERTURN_H
 #define PLAYERTURN_H
+
 #include "cardsPhase.h"
 #include "actionsPhase.h"
 
-class PlayerTurn
-{
+/**
+ * @class PlayerTurn
+ * @brief Оркестратор хода игрока
+ * 
+ * Управляет всеми этапами хода:
+ * - Инициализация ресурсов
+ * - Взаимодействие с картами
+ * - Действия персонажей
+ */
+class PlayerTurn {
 public:
-    Field& field;
-    CardsPhase cardsphase;
-    ActionsPhase actionsPhase;
+    Field& field;           ///< Ссылка на игровое поле
+    CardsPhase cardsphase;   ///< Контроллер фазы карт
+    ActionsPhase actionsPhase; ///< Контроллер фазы действий
 
+    /**
+     * @brief Конструктор инициализирует компоненты хода
+     * @param field Ссылка на игровое поле
+     */
     PlayerTurn(Field& field);
+
+    /**
+     * @brief Запускает полный цикл хода игрока
+     * @param player Активный игрок
+     * @param enemy Противник
+     * 
+     * Последовательность выполнения:
+     * 1. Начисление маны (+2)
+     * 2. Получение дохода с ферм
+     * 3. Фаза использования карт
+     * 4. Сброс состояний персонажей
+     * 5. Фаза действий персонажей
+     */
     void start(Player& player, Player& enemy);
 };
 
