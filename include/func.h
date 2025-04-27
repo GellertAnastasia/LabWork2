@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <vector>s
 #include <memory>
 #include <limits>
 #include "coordinates.h"
@@ -52,7 +53,6 @@ bool isWithinBounds(std::shared_ptr<Coordinates> coordinates);
  * - (5,1), (6,1) - Player 1 base
  * - (5,10), (6,10) - Player 2 base
  */
-bool isFree(std::shared_ptr<Coordinates> coordinates, 
-          std::vector<std::vector<std::shared_ptr<Object>>> grid);
+bool isFree(std::shared_ptr<Coordinates> coordinates, std::vector<std::vector<std::shared_ptr<Object>>> grid);
 
 #endif
