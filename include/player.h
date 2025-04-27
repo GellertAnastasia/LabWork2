@@ -1,8 +1,8 @@
 /**
  * @file player.h
- * @brief Класс игрока, управляющего юнитами и ресурсами
+ * @brief Player class managing units and resources
  * 
- * Содержит логику управления ресурсами, инвентарем и юнитами игрока.
+ * Contains logic for managing player resources, inventory and units.
  */
 
 #ifndef PLAYER_H
@@ -16,36 +16,36 @@
 
 /**
  * @class Player
- * @brief Представляет игрока с его ресурсами и объектами
+ * @brief Represents a player with their resources and objects
  * 
- * Управляет:
- * - Маной и деньгами
- * - Зоной контроля на поле
- * - Инвентарем карт
- * - Персонажами на поле
+ * Manages:
+ * - Mana and money
+ * - Controlled zone on the field
+ * - Card inventory
+ * - Field units
  */
 class Player {
 private:
-    int mana;   ///< Текущее количество маны
-    int money;  ///< Текущее количество денег
-    int color;  ///< ANSI код цвета команды (38;5;N)
+    int mana;   ///< Current mana amount
+    int money;  ///< Current money amount
+    int color;  ///< Team color ANSI code (38;5;N)
 
 public:
-    std::shared_ptr<Base> base; ///< База игрока
-    Zone zone;                  ///< Контролируемая зона на поле
-    std::vector<std::shared_ptr<Card>> inventory;        ///< Колода карт
-    std::vector<std::shared_ptr<Character>> charactersOnGrid; ///< Персонажи на поле
+    std::shared_ptr<Base> base; ///< Player's base
+    Zone zone;                  ///< Controlled field zone
+    std::vector<std::shared_ptr<Card>> inventory;        ///< Card deck
+    std::vector<std::shared_ptr<Character>> charactersOnGrid; ///< Field units
 
     /**
-     * @brief Конструктор игрока
-     * @param Mana Начальное значение маны
-     * @param Money Начальное количество денег
-     * @param Color Цвет команды (ANSI код)
-     * @param zone Зона контроля игрока
+     * @brief Player constructor
+     * @param Mana Starting mana value
+     * @param Money Starting money amount
+     * @param Color Team color (ANSI code)
+     * @param zone Player's control zone
      */
     Player(int Mana, int Money, int Color, const Zone& zone);
 
-    /// @name Геттеры
+    /// @name Getters
     /// @{
     int getMana() const;
     int getMoney() const;
@@ -53,30 +53,30 @@ public:
     /// @}
 
     /**
-     * @brief Проверяет принадлежность координат зоне игрока
-     * @param x Координата X (1-based)
-     * @param y Координата Y (1-based)
-     * @return true если координаты в зоне контроля
+     * @brief Checks if coordinates belong to player's zone
+     * @param x X coordinate (1-based)
+     * @param y Y coordinate (1-based)
+     * @return true if coordinates are within control zone
      */
     bool isInsideZone(int x, int y);
 
     /**
-     * @brief Изменяет количество денег
-     * @param profit Может быть положительным или отрицательным
+     * @brief Modifies money amount
+     * @param profit Can be positive or negative
      * @post money += profit
      */
     void addMoney(int profit);
 
-    /// @name Информационный вывод
+    /// @name Information display
     /// @{
     void printInventory();
     void printCharactersOnGrid();
     /// @}
 
     /**
-     * @brief Изменяет количество маны
-     * @param points Может быть положительным или отрицательным
-     * @warning Не проверяет выход за минимальное значение
+     * @brief Modifies mana amount
+     * @param points Can be positive or negative
+     * @warning Doesn't check for minimum value
      * @post mana += points
      */
     void changeMana(int points);

@@ -1,10 +1,10 @@
 /**
  * @class Barrier
- * @brief Класс неподвижного защитного объекта
+ * @brief Immobile defensive object class
  * @inherit Object
- * 
- * Используется как препятствие на поле, блокирующее перемещение.
- * Может быть разрушено атаками.
+ *
+ * Used as an obstacle on the field that blocks movement.
+ * Can be destroyed by attacks.
  */
 #ifndef BARRIER_H
 #define BARRIER_H
@@ -14,18 +14,18 @@ class Barrier : public Object
 {
 public:
     /**
-     * @brief Конструктор инициализирует параметры барьера
-     * @details Устанавливает:
-     * - Символ отображения: "≡"
-     * - Здоровье: 5 единиц
+     * @brief Constructor initializes barrier parameters
+     * @details Sets:
+     * - Display symbol: "≡"
+     * - Health: 5 units
      */
     Barrier();
 
     /**
-     * @brief Возвращает имя и состояние барьера
-     * @return Строка формата:
-     * - "Barrier[X,Y]: X HP" (с координатами)
-     * - "Barrier: X HP" (без координат)
+     * @brief Returns barrier name and status
+     * @return String in format:
+     * - "Barrier[X,Y]: X HP" (with coordinates)
+     * - "Barrier: X HP" (without coordinates)
      */
     std::string getName() const override;
 };

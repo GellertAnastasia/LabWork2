@@ -1,9 +1,9 @@
 /**
  * @class ActionsPhase
- * @brief Управляет фазой действий персонажей игрока
+ * @brief Manages the action phase of player characters
  * 
- * Обрабатывает перемещения, атаки и взаимодействие с игровым полем.
- * Координирует обновление состояния игры через объекты Field и FieldUI.
+ * Handles movement, attacks, and interaction with the game field.
+ * Coordinates game state updates through Field and FieldUI objects.
  */
 #ifndef ACTIONSPHASE_H
 #define ACTIONSPHASE_H
@@ -13,38 +13,38 @@
 class ActionsPhase
 {
 private:
-    Field& field;       ///< Ссылка на игровое поле
-    FieldUI fieldUI;    ///< Интерфейс для отрисовки поля
+    Field& field;       ///< Reference to the game field
+    FieldUI fieldUI;    ///< Interface for rendering the field
 
 public:
     /**
-     * @brief Конструктор, инициализирует привязку к полю
-     * @param field Ссылка на игровое поле
+     * @brief Constructor initializes field binding
+     * @param field Reference to the game field
      */
     ActionsPhase(Field& field);
 
     /**
-     * @brief Запускает фазу действий для текущего игрока
-     * @param player Активный игрок
-     * @param enemy Противник
+     * @brief Starts the action phase for the current player
+     * @param player Active player
+     * @param enemy Enemy player
      */
     void start(Player& player, Player& enemy);
 
     /**
-     * @brief Выполняет перемещение персонажа
-     * @param choice Индекс выбранного персонажа (начиная с 1)
-     * @param player Игрок, чей персонаж перемещается
-     * @param enemy Противник
-     * @return true если перемещение успешно выполнено
+     * @brief Executes character movement
+     * @param choice Selected character index (1-based)
+     * @param player Player whose character is moving
+     * @param enemy Enemy player
+     * @return true if movement was successfully executed
      */
     bool moveCharacter(size_t choice, Player& player, Player& enemy);
 
     /**
-     * @brief Выполняет атаку выбранной цели
-     * @param choice Индекс атакующего персонажа (начиная с 1)
-     * @param player Игрок, чей персонаж атакует
-     * @param enemy Цель атаки
-     * @return true если атака успешно выполнена
+     * @brief Executes attack on selected target
+     * @param choice Attacking character index (1-based)
+     * @param player Player whose character is attacking
+     * @param enemy Attack target
+     * @return true if attack was successfully executed
      */
     bool attack(size_t choice, Player& player, Player& enemy);
 };

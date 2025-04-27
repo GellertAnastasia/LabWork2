@@ -1,8 +1,8 @@
 /**
  * @file wizard.h
- * @brief Класс магического персонажа
+ * @brief Magic character class definition
  * 
- * Содержит определение класса волшебника - персонажа с особым типом атаки.
+ * Contains the Wizard class definition - a character with special attack mechanics.
  */
 
 #ifndef WIZARD_H
@@ -12,34 +12,34 @@
 
 /**
  * @class Wizard
- * @brief Маг, специализирующийся на областиых атаках
+ * @brief Mage specializing in area attacks
  * @inherit Character
  * 
- * Особенности:
- * - Низкое здоровье, но особая механика атаки
- * - Может атаковать по диагонали и в крест
- * - Использует магические символы для отображения
+ * Special traits:
+ * - Low health but unique attack mechanics
+ * - Can attack diagonally and in cross pattern
+ * - Uses magical symbols for display
  */
 class Wizard : public Character {
 public:
     /**
-     * @brief Конструктор инициализирует параметры мага
-     * @details Устанавливает:
-     * - Символ отображения: "✫" (UTF-8 звезда)
-     * - Здоровье: 2 HP
-     * - Силу атаки: 1 ATK
-     * - Направления атаки:
-     *   • Прямые (вверх/вправо)
-     *   • Диагональные (↗→↓)
+     * @brief Constructor initializes wizard parameters
+     * @details Sets:
+     * - Display symbol: "✫" (UTF-8 star)
+     * - Health: 2 HP
+     * - Attack power: 1 ATK
+     * - Attack directions:
+     *   • Straight (up/right)
+     *   • Diagonal (↗→↓)
      */
     Wizard();
 
     /**
-     * @brief Возвращает имя и состояние персонажа
-     * @override Переопределяет метод Character
-     * @return Строка формата:
-     * - "Wizard[X,Y]: X HP Y ATK" (с координатами)
-     * - "Wizard: X HP Y ATK" (без координат)
+     * @brief Returns character name and status
+     * @override Overrides Character method
+     * @return String in format:
+     * - "Wizard[X,Y]: X HP Y ATK" (with coordinates)
+     * - "Wizard: X HP Y ATK" (without coordinates)
      */
     std::string getName() const override;
 };

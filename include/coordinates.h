@@ -1,9 +1,9 @@
 /**
  * @class Coordinates
- * @brief Класс для работы с двумерными координатами
+ * @brief Class for handling 2D coordinates
  * 
- * Предоставляет базовые операции для управления позицией объектов на игровом поле.
- * Используется для определения расположения персонажей, построек и других объектов.
+ * Provides basic operations for managing object positions on the game field.
+ * Used to determine placement of characters, buildings and other objects.
  */
 #ifndef COORDINATES_H
 #define COORDINATES_H
@@ -16,25 +16,25 @@
 
 class Coordinates {
 private:
-    int x; ///< Горизонтальная координата (от 1 до MAX_WIDTH)
-    int y; ///< Вертикальная координата (от 1 до MAX_HEIGHT)
+    int x; ///< Horizontal coordinate (from 1 to MAX_WIDTH)
+    int y; ///< Vertical coordinate (from 1 to MAX_HEIGHT)
 
 public:
     /**
-     * @brief Конструктор инициализирует координаты
-     * @param X Горизонтальная позиция
-     * @param Y Вертикальная позиция
-     * @warning Не проверяет границы поля
+     * @brief Constructor initializes coordinates
+     * @param X Horizontal position
+     * @param Y Vertical position
+     * @warning Doesn't validate field boundaries
      */
     Coordinates(int X, int Y);
 
     /**
-     * @brief Оператор сравнения координат
-     * @return true если x и y совпадают
+     * @brief Coordinate comparison operator
+     * @return true if x and y match
      */
     bool operator==(const Coordinates& other) const;
 
-    /// @name Геттеры и сеттеры
+    /// @name Getters and setters
     /// @{
     int getX() const;
     void setX(int newX);
@@ -43,9 +43,9 @@ public:
     /// @}
 
     /**
-     * @brief Возвращает строковое представление координат
-     * @return Строка формата "(X,Y)"
-     * @example Для (3,5) вернет "(3,5)"
+     * @brief Returns string representation of coordinates
+     * @return String in format "(X,Y)"
+     * @example For (3,5) returns "(3,5)"
      */
     std::string get() const;
 };

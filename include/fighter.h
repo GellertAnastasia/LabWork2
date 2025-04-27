@@ -1,10 +1,10 @@
 /**
  * @class Fighter
- * @brief Класс бойца ближнего боя
+ * @brief Melee combat character class
  * @inherit Character
  * 
- * Характеризуется средними показателями здоровья и атаки. 
- * Основной юнит для ближнего боя.
+ * Features medium health and attack stats.
+ * Primary melee combat unit.
  */
 #ifndef FIGHTER_H
 #define FIGHTER_H
@@ -14,21 +14,21 @@ class Fighter: public Character
 {
 public:
     /**
-     * @brief Конструктор инициализирует параметры бойца
-     * @details Устанавливает:
-     * - Символ: "⚔︎"
-     * - Здоровье: 3
-     * - Сила атаки: 3
-     * - Стоимость призыва: 2
+     * @brief Constructor initializes fighter parameters
+     * @details Sets:
+     * - Symbol: "⚔︎"
+     * - Health: 3
+     * - Attack power: 3
+     * - Summon cost: 2
      */
     Fighter();
 
     /**
-     * @brief Возвращает имя и состояние бойца
-     * @override Переопределяет метод Character
-     * @return Строка формата:
-     * - "Fighter[X,Y]: X HP Y ATK" (с координатами)
-     * - "Fighter: X HP Y ATK" (без координат)
+     * @brief Returns fighter name and status
+     * @override Overrides Character method
+     * @return String in format:
+     * - "Fighter[X,Y]: X HP Y ATK" (with coordinates)
+     * - "Fighter: X HP Y ATK" (without coordinates)
      */
     std::string getName() const override;
 };

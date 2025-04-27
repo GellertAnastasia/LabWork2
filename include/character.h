@@ -1,12 +1,12 @@
 /**
- * @class Character
- * @brief Базовый класс для всех игровых персонажей
+ * @class Character 
+ * @brief Base class for all game characters
  * @inherit Object
- * 
- * Обеспечивает базовую функциональность для:
- * - Перемещения по полю
- * - Атаки вражеских объектов
- * - Управления характеристиками (сила, здоровье)
+ *
+ * Provides core functionality for:
+ * - Field movement
+ * - Attacking enemy objects
+ * - Managing attributes (power, health)
  */
 #ifndef CHARACTER_H
 #define CHARACTER_H
@@ -23,48 +23,48 @@
 class Character: public Object
 {
 private:
-    int power = 1;  ///< Боевая сила персонажа
-    std::vector<std::pair<int, int>> directionOfMove = ///< Направления перемещения
+    int power = 1;  ///< Character's combat strength
+    std::vector<std::pair<int, int>> directionOfMove = ///< Movement directions
     {
-        {-1, 0},  // Влево
-        {1, 0},   // Вправо
-        {0, -1},  // Вверх
-        {0, 1}    // Вниз
+        {-1, 0},  // Left
+        {1, 0},   // Right
+        {0, -1},  // Up
+        {0, 1}    // Down
     };
-    std::vector<std::pair<int, int>> directionOfAttack = ///< Зоны атаки
+    std::vector<std::pair<int, int>> directionOfAttack = ///< Attack zones
     {
-        {1, 0},  // Горизонтальная
-        {0, 1}   // Вертикальная
+        {1, 0},  // Horizontal
+        {0, 1}   // Vertical
     };
 
 public:
-    std::vector<std::shared_ptr<Coordinates>> movement; ///< Доступные клетки для перемещения
-    std::vector<std::shared_ptr<Object>> attack;         ///< Доступные цели для атаки
+    std::vector<std::shared_ptr<Coordinates>> movement; ///< Available movement cells
+    std::vector<std::shared_ptr<Object>> attack;        ///< Available attack targets
 
-    /// @name Управление характеристиками
+    /// @name Attribute Management
     /// @{
     void setPower(int value);
     int getPower() const;
     /// @}
 
-    /// @name Настройка перемещения
+    /// @name Movement Configuration
     /// @{
     const std::vector<std::pair<int, int>>& getDirectionOfMove() const;
     void setDirectionOfMove(const std::vector<std::pair<int, int>>& newDirections);
     /// @}
 
-    /// @name Настройка атаки
+    /// @name Attack Configuration
     /// @{
     const std::vector<std::pair<int, int>>& getDirectionOfAttack() const;
     void setDirectionOfAttack(const std::vector<std::pair<int, int>>& newDirections);
     /// @}
 
-    /// @name Боевая логика
+    /// @name Combat Logic
     /// @{
-    void calculateMovement(const std::shared_ptr<Coordinates>& coordinates, 
+    void calculateMovement(const std::shared_ptr<Coordinates>& coordinates,
                          const std::vector<std::vector<std::shared_ptr<Object>>>& grid);
     void printMovement();
-    bool isWithinAttackRange(int targetX, int targetY, 
+    bool isWithinAttackRange(int targetX, int targetY,
                            const std::shared_ptr<Coordinates>& coordinates);
     void calculateAttack(const std::shared_ptr<Coordinates>& coordinates,
                        const std::vector<std::vector<std::shared_ptr<Object>>>& grid);
@@ -72,9 +72,9 @@ public:
     /// @}
 
     /**
-     * @brief Возвращает имя и состояние персонажа
-     * @override Переопределяет метод Object
-     * @return Строка с информацией (требует реализации в наследниках)
+     * @brief Returns character name and status
+     * @override Overrides Object method
+     * @return String with character info (requires implementation in derived classes)
      */
     std::string getName() const override;
 };

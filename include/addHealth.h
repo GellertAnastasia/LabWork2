@@ -1,9 +1,9 @@
 /**
  * @class AddHealth
- * @brief Класс улучшения, добавляющего здоровье персонажу
+ * @brief Upgrade class that adds health to a character
  * @inherit Improvement
  * 
- * Реализует механизм увеличения здоровья через переопределение методов интерфейса Improvement.
+ * Implements the health increase mechanism by overriding methods of the Improvement interface.
  */
 #ifndef ADDHEALTH_H
 #define ADDHEALTH_H
@@ -13,15 +13,15 @@ class AddHealth: public Improvement
 {
 public:
     /**
-     * @brief Возвращает название улучшения с количеством добавляемого здоровья
-     * @return Строка в формате "Add +X Health", где X — значение getPoints()
+     * @brief Returns the upgrade name with the amount of health added
+     * @return String in format "Add +X Health" where X is getPoints() value
      */
     std::string getName() const override;
 
     /**
-     * @brief Добавляет очки здоровья персонажу
-     * @param character Персонаж, к которому применяется улучшение
-     * @details Также выводит сообщение о применении улучшения в консоль
+     * @brief Adds health points to the character
+     * @param character Character to which the upgrade is applied
+     * @details Also prints a message about the upgrade application to console
      */
     void addPoints(std::shared_ptr<Character>& character) override;
 };

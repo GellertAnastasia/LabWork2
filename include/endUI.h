@@ -1,9 +1,9 @@
 /**
  * @file endUI.h
- * @brief Управление финальным экраном игры
+ * @brief Game over screen management
  * 
- * Содержит функции для отображения анимированного экрана завершения игры,
- * включая анимацию звезд и графику победы.
+ * Contains functions for displaying animated game ending screens,
+ * including star animations and victory graphics.
  */
 
 #ifndef ENDUI_H
@@ -19,30 +19,30 @@
 #include <cstdlib>
 #include <ctime>
 
-extern std::atomic<bool> keepRunning; ///< Флаг для управления анимацией
-extern const std::vector<std::string> stars; ///< Набор звездных символов
-extern const std::vector<int> starColors; ///< Палитра цветов для звезд
+extern std::atomic<bool> keepRunning; ///< Animation control flag
+extern const std::vector<std::string> stars; ///< Collection of star symbols
+extern const std::vector<int> starColors; ///< Color palette for stars
 
 /**
- * @brief Анимирует мерцание звезд в заданной области экрана
- * @param startRow Начальная строка для анимации (1-based)
- * @details Работает в отдельном потоке до сброса флага keepRunning
+ * @brief Animates twinkling stars in specified screen area
+ * @param startRow Starting row for animation (1-based)
+ * @details Runs in separate thread until keepRunning flag is cleared
  */
 void animateStars(int startRow);
 
 /**
- * @brief Ожидает нажатия Enter и останавливает анимацию
- * @warning Блокирует основной поток до ввода
+ * @brief Waits for Enter key press and stops animation
+ * @warning Blocks main thread until input
  */
 void waitForEnter();
 
 /**
- * @brief Отображает экран завершения игры
- * @param winner Название команды-победителя
- * @details Выполняет:
- * - Очистку экрана
- * - Отрисовку ASCII-арта
- * - Запуск анимации в отдельных потоках
+ * @brief Displays game over screen
+ * @param winner Winning team name
+ * @details Performs:
+ * - Screen clearing
+ * - ASCII art rendering
+ * - Animation launch in separate threads
  */
 void showGameOverScreen(const std::string& winner);
 

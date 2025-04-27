@@ -1,11 +1,11 @@
 /**
- * @class BotTurn
- * @brief Управляет полным циклом хода ИИ-игрока
- * 
- * Координирует:
- * - Начисление ресурсов
- * - Сброс состояний персонажей
- * - Вызов логики ИИ для принятия решений
+ * @class BotTurn 
+ * @brief Manages the complete AI player turn cycle
+ *
+ * Coordinates:
+ * - Resource allocation
+ * - Character state reset
+ * - AI decision-making logic
  */
 #ifndef BOTTURN_H
 #define BOTTURN_H
@@ -14,20 +14,20 @@
 class BotTurn
 {
 public:
-    Field& field;       ///< Ссылка на игровое поле
-    AIController ai;    ///< Контроллер ИИ для принятия решений
+    Field& field;       ///< Reference to the game field
+    AIController ai;    ///< AI controller for decision making
 
     /**
-     * @brief Конструктор инициализирует систему хода бота
-     * @param field Игровое поле
-     * @param player ИИ-игрок, для которого выполняется ход
+     * @brief Constructor initializes the bot turn system
+     * @param field Game field
+     * @param player AI player taking the turn
      */
     BotTurn(Field& field, Player& player);
 
     /**
-     * @brief Выполняет полный цикл хода
-     * @param player Активный ИИ-игрок
-     * @param enemy Противник
+     * @brief Executes the complete turn cycle
+     * @param player Active AI player
+     * @param enemy Opponent player
      */
     void start(Player& player, Player& enemy);
 };

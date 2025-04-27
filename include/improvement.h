@@ -1,9 +1,9 @@
 /**
  * @file improvement.h
- * @brief Базовый класс для улучшений персонажей
+ * @brief Base class for character improvements
  * 
- * Абстрактный класс, определяющий интерфейс для всех типов улучшений.
- * Позволяет модифицировать характеристики персонажей.
+ * Abstract class defining the interface for all improvement types.
+ * Allows modification of character attributes.
  */
 
 #ifndef IMPROVEMENT_H
@@ -15,41 +15,41 @@
 
 /**
  * @class Improvement
- * @brief Абстрактное улучшение, применяемое к персонажам
+ * @brief Abstract improvement applied to characters
  * @inherit Card
  * 
- * Реализует базовую функциональность для:
- * - Хранения количества очков улучшения
- * - Применения модификаторов к персонажам
+ * Implements core functionality for:
+ * - Storing improvement points value
+ * - Applying modifiers to characters
  */
 class Improvement : public Card {
 private:
-    int points = 1; ///< Количество очков улучшения
+    int points = 1; ///< Improvement points amount
 
 public:
     /**
-     * @brief Устанавливает значение очков улучшения
-     * @param value Новое значение (должно быть > 0)
-     * @warning Не выполняет проверку на валидность значения
+     * @brief Sets the improvement points value
+     * @param value New value (must be > 0)
+     * @warning Doesn't perform value validation
      */
     void setPoints(int value);
     
     /**
-     * @brief Возвращает текущее значение очков
-     * @return Текущее количество очков улучшения
+     * @brief Returns current points value
+     * @return Current improvement points amount
      */
     int getPoints() const;
     
     /**
-     * @brief Применяет улучшение к персонажу (чисто виртуальный метод)
-     * @param character Целевой персонаж для модификации
-     * @virtual Требует переопределения в производных классах
+     * @brief Applies improvement to character (pure virtual method)
+     * @param character Target character for modification
+     * @virtual Must be overridden in derived classes
      */
     virtual void addPoints(std::shared_ptr<Character>& character) = 0;
     
     /**
-     * @brief Виртуальный деструктор
-     * @details Гарантирует корректное удаление производных классов
+     * @brief Virtual destructor
+     * @details Ensures proper derived class destruction
      */
     virtual ~Improvement() = default;
 };

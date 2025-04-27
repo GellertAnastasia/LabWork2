@@ -1,9 +1,9 @@
 /**
  * @class Farm
- * @brief Класс фермы - объекта, генерирующего ресурсы
+ * @brief Farm class - resource generating object
  * @inherit Object
  * 
- * Автоматически приносит доход владельцу каждый ход. Может быть разрушена атаками.
+ * Automatically generates income for owner each turn. Can be destroyed by attacks.
  */
 #ifndef FARM_H
 #define FARM_H
@@ -15,44 +15,44 @@
 class Farm : public Object
 {
 private:
-    int profit = 1; ///< Количество денег за ход (по умолчанию 1)
+    int profit = 1; ///< Money generated per turn (default 1)
 
 public:
-    Player* owner; ///< Указатель на владельца фермы
+    Player* owner; ///< Pointer to farm owner
 
     /**
-     * @brief Устанавливает доходность фермы
-     * @param value Новое значение дохода (>0)
+     * @brief Sets farm profitability
+     * @param value New income value (>0)
      */
     void setProfit(int value);
 
     /**
-     * @brief Возвращает текущую доходность
-     * @return Значение profit
+     * @brief Returns current profitability
+     * @return profit value
      */
     int getProfit() const;
 
     /**
-     * @brief Конструктор создает ферму для указанного игрока
-     * @param owner Владелец фермы (не может быть nullptr)
-     * @note Устанавливает:
-     * - Символ отображения: "⛃"
-     * - Стоимость постройки: 3
+     * @brief Constructor creates farm for specified player
+     * @param owner Farm owner (cannot be nullptr)
+     * @note Sets:
+     * - Display symbol: "⛃"
+     * - Build cost: 3
      */
     Farm(Player* owner);
 
     /**
-     * @brief Возвращает имя и состояние фермы
-     * @override Переопределяет метод Object
-     * @return Строка формата "Farm[X,Y]: X HP" или "Farm: X HP"
+     * @brief Returns farm name and status
+     * @override Overrides Object method
+     * @return String in format "Farm[X,Y]: X HP" or "Farm: X HP"
      */
     std::string getName() const override;
 
     /**
-     * @brief Генерирует доход для владельца
-     * @return Сумма сгенерированных денег
-     * @warning Если owner == nullptr, возвращает 0
-     * @post Увеличивает счетчик денег владельца на profit
+     * @brief Generates income for owner
+     * @return Amount of money generated
+     * @warning If owner == nullptr, returns 0
+     * @post Increases owner's money counter by profit
      */
     int bringMoney();
 };

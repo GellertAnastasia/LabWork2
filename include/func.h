@@ -1,8 +1,8 @@
 /**
  * @file func.h
- * @brief Вспомогательные функции общего назначения
+ * @brief General-purpose utility functions
  * 
- * Содержит утилиты для работы с консолью, проверки координат и состояния игрового поля.
+ * Contains utilities for console operations, coordinate validation, and game field state checks.
  */
 
 #ifndef FUNC_H
@@ -17,35 +17,35 @@
 #include "constants.h"
 
 /**
- * @brief Очищает консоль с использованием ANSI escape-кодов
- * @details Посылает последовательность "\033c" для полной очистки экрана
+ * @brief Clears console using ANSI escape codes
+ * @details Sends "\033c" sequence for full screen clear
  */
 void clearScreen();
 
 /**
- * @brief Приостанавливает выполнение до нажатия Enter
- * @warning Блокирует поток выполнения до получения ввода пользователя
- * @note Очищает буфер ввода перед ожиданием
+ * @brief Pauses execution until Enter is pressed
+ * @warning Blocks execution thread until user input
+ * @note Clears input buffer before waiting
  */
 void pause_();
 
 /**
- * @brief Проверяет, находятся ли координаты в пределах игрового поля
- * @param coordinates Проверяемые координаты (1-based)
- * @return true если 1 ≤ X ≤ WIDTH и 1 ≤ Y ≤ HEIGHT
+ * @brief Checks if coordinates are within game field bounds
+ * @param coordinates Coordinates to check (1-based)
+ * @return true if 1 ≤ X ≤ WIDTH and 1 ≤ Y ≤ HEIGHT
  */
 bool isWithinBounds(std::shared_ptr<Coordinates> coordinates);
 
 /**
- * @brief Проверяет доступность клетки для размещения объекта
- * @param coordinates Координаты проверки (1-based)
- * @param grid Ссылка на игровое поле
- * @return true если:
- * - Клетка не занята (grid[y][x] == nullptr)
- * - Не является специальной заблокированной клеткой (базы)
- * @note Специальные заблокированные клетки:
- * - (5,1), (6,1) - база игрока 1
- * - (5,10), (6,10) - база игрока 2
+ * @brief Checks if cell is available for object placement
+ * @param coordinates Coordinates to check (1-based)
+ * @param grid Reference to game field
+ * @return true if:
+ * - Cell is unoccupied (grid[y][x] == nullptr)
+ * - Not a special locked cell (bases)
+ * @note Special locked cells:
+ * - (5,1), (6,1) - Player 1 base
+ * - (5,10), (6,10) - Player 2 base
  */
 bool isFree(std::shared_ptr<Coordinates> coordinates, 
           std::vector<std::vector<std::shared_ptr<Object>>> grid);

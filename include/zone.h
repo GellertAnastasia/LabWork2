@@ -1,9 +1,9 @@
 /**
  * @file zone.h
- * @brief Класс для определения прямоугольной зоны на игровом поле
+ * @brief Class for defining rectangular zones on game field
  * 
- * Используется для ограничения области действий игрока, 
- * размещения объектов и управления доступными клетками.
+ * Used to limit player action areas, 
+ * manage object placement and control available cells.
  */
 
 #ifndef ZONE_H
@@ -11,55 +11,55 @@
 
 /**
  * @class Zone
- * @brief Представляет прямоугольную область координат
+ * @brief Represents a rectangular coordinate area
  * 
- * Хранит границы зоны и предоставляет методы для:
- * - Установки границ
- * - Получения текущих значений границ
- * - Копирования зон
+ * Stores zone boundaries and provides methods for:
+ * - Setting boundaries
+ * - Getting current boundary values
+ * - Copying zones
  */
 class Zone {
 private:
-    int minX; ///< Минимальная X-координата (левый край)
-    int maxX; ///< Максимальная X-координата (правый край)
-    int minY; ///< Минимальная Y-координата (нижний край)
-    int maxY; ///< Максимальная Y-координата (верхний край)
+    int minX; ///< Minimum X coordinate (left edge)
+    int maxX; ///< Maximum X coordinate (right edge)
+    int minY; ///< Minimum Y coordinate (bottom edge)
+    int maxY; ///< Maximum Y coordinate (top edge)
 
 public:
     /**
-     * @brief Конструктор по умолчанию
-     * @warning Создает невалидную зону (0,0,0,0)
+     * @brief Default constructor
+     * @warning Creates invalid zone (0,0,0,0)
      */
     Zone() = default;
 
     /**
-     * @brief Основной конструктор зоны
-     * @param minX Левая граница (включительно, >=1)
-     * @param maxX Правая граница (включительно, <=WIDTH)
-     * @param minY Нижняя граница (включительно, >=1)
-     * @param maxY Верхняя граница (включительно, <=HEIGHT)
+     * @brief Main zone constructor
+     * @param minX Left boundary (inclusive, >=1)
+     * @param maxX Right boundary (inclusive, <=WIDTH)
+     * @param minY Bottom boundary (inclusive, >=1)
+     * @param maxY Top boundary (inclusive, <=HEIGHT)
      */
     Zone(int minX, int maxX, int minY, int maxY);
 
-    /// @name Конструкторы копирования
+    /// @name Copy constructors
     /// @{
-    Zone(const Zone&) = default; ///< Копирует границы существующей зоны
+    Zone(const Zone&) = default; ///< Copies boundaries from existing zone
     /// @}
 
-    /// @name Геттеры границ
+    /// @name Boundary getters
     /// @{
-    int getMinX() const; ///< Возвращает minX
-    int getMaxX() const; ///< Возвращает maxX
-    int getMinY() const; ///< Возвращает minY
-    int getMaxY() const; ///< Возвращает maxY
+    int getMinX() const; ///< Returns minX
+    int getMaxX() const; ///< Returns maxX
+    int getMinY() const; ///< Returns minY
+    int getMaxY() const; ///< Returns maxY
     /// @}
 
-    /// @name Сеттеры границ
+    /// @name Boundary setters
     /// @{
-    void setMinX(int value); ///< Устанавливает minX (без проверок)
-    void setMaxX(int value); ///< Устанавливает maxX (без проверок)
-    void setMinY(int value); ///< Устанавливает minY (без проверок)
-    void setMaxY(int value); ///< Устанавливает maxY (без проверок)
+    void setMinX(int value); ///< Sets minX (no validation)
+    void setMaxX(int value); ///< Sets maxX (no validation)
+    void setMinY(int value); ///< Sets minY (no validation)
+    void setMaxY(int value); ///< Sets maxY (no validation)
     /// @}
 };
 

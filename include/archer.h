@@ -1,12 +1,12 @@
 /**
  * @class Archer
- * @brief Класс лучника - дальнобойного персонажа
+ * @brief Archer class - a ranged combat character
  * @inherit Character
  * 
- * Особенности:
- * - Атакует на расстоянии 2 клетки по диагонали
- * - Может перемещаться по диагонали
- * - Низкие показатели здоровья и силы
+ * Special traits:
+ * - Attacks at 2-cell diagonal range
+ * - Can move diagonally
+ * - Low health and attack power stats
  */
 #ifndef ARCHER_H
 #define ARCHER_H
@@ -16,19 +16,19 @@ class Archer: public Character
 {
 public:
     /**
-     * @brief Конструктор инициализирует параметры лучника
-     * @details Устанавливает:
-     * - Здоровье = 2
-     * - Силу атаки = 2
-     * - Стоимость призыва = 2
-     * - Символ отображения: "➶"
+     * @brief Constructor initializes archer parameters
+     * @details Sets:
+     * - Health = 2
+     * - Attack power = 2
+     * - Summoning cost = 2
+     * - Display symbol: "➶"
      */
     Archer();
 
     /**
-     * @brief Возвращает имя и состояние персонажа
-     * @return Строка формата: "Archer[X,Y]: X Health Y Power"
-     * @details Если местоположение не задано, возвращает "Archer: X Health Y Power"
+     * @brief Returns character name and status
+     * @return String in format: "Archer[X,Y]: X Health Y Power"
+     * @details If location is not set, returns "Archer: X Health Y Power"
      */
     std::string getName() const override;
 };

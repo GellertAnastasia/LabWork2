@@ -1,12 +1,12 @@
 /**
  * @class CardsPhase
- * @brief Управляет фазой использования карт в игровом цикле
+ * @brief Manages the card usage phase in the game cycle
  * 
- * Отвечает за:
- * - Отображение интерфейса взаимодействия с картами
- * - Активацию карт из инвентаря
- * - Покупку новых карт
- * - Взаимодействие с игровым полем и игроками
+ * Responsible for:
+ * - Displaying card interaction interface
+ * - Activating cards from inventory
+ * - Purchasing new cards
+ * - Interaction with game field and players
  */
 #ifndef CARDSPHASE_H
 #define CARDSPHASE_H
@@ -19,34 +19,34 @@
 class CardsPhase
 {
 private:
-    Field& field;       ///< Ссылка на игровое поле
-    FieldUI fieldUI;    ///< Интерфейс отрисовки поля
+    Field& field;       ///< Reference to the game field
+    FieldUI fieldUI;    ///< Field rendering interface
 
 public:
     /**
-     * @brief Конструктор, инициализирует привязку к полю
-     * @param field Игровое поле для взаимодействия
+     * @brief Constructor, initializes field binding
+     * @param field Game field for interaction
      */
     CardsPhase(Field& field);
 
     /**
-     * @brief Основной цикл фазы использования карт
-     * @param player Активный игрок
-     * @param enemy Противник
+     * @brief Main card usage phase cycle
+     * @param player Active player
+     * @param enemy Target player for effects
      */
     void start(Player& player, Player& enemy);
 
     /**
-     * @brief Логика активации карты из инвентаря
-     * @param player Игрок, активирующий карту
-     * @param enemy Целевой игрок для эффектов
+     * @brief Logic for activating card from inventory
+     * @param player Player activating the card
+     * @param enemy Target player for effects
      */
     void playCard(Player& player, Player& enemy);
 
     /**
-     * @brief Покупка случайной карты за игровую валюту
-     * @param player Игрок, совершающий покупку
-     * @warning Требует 3 единицы денег
+     * @brief Purchasing random card with in-game currency
+     * @param player Player making the purchase
+     * @warning Requires 3 units of money
      */
     void buyCard(Player& player);
 };

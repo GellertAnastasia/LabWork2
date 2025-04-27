@@ -1,11 +1,11 @@
 /**
  * @file playerTurn.h
- * @brief Управление полным ходом игрока-человека
+ * @brief Management of human player's full turn
  * 
- * Координирует последовательность действий в течение хода:
- * 1. Начисление маны и дохода
- * 2. Фаза использования карт
- * 3. Фаза действий персонажей
+ * Coordinates the sequence of actions during a turn:
+ * 1. Mana and income allocation
+ * 2. Card usage phase
+ * 3. Character actions phase
  */
 
 #ifndef PLAYERTURN_H
@@ -16,36 +16,36 @@
 
 /**
  * @class PlayerTurn
- * @brief Оркестратор хода игрока
+ * @brief Player turn orchestrator
  * 
- * Управляет всеми этапами хода:
- * - Инициализация ресурсов
- * - Взаимодействие с картами
- * - Действия персонажей
+ * Manages all turn phases:
+ * - Resource initialization
+ * - Card interactions
+ * - Character actions
  */
 class PlayerTurn {
 public:
-    Field& field;           ///< Ссылка на игровое поле
-    CardsPhase cardsphase;   ///< Контроллер фазы карт
-    ActionsPhase actionsPhase; ///< Контроллер фазы действий
+    Field& field;           ///< Reference to game field
+    CardsPhase cardsphase;   ///< Card phase controller
+    ActionsPhase actionsPhase; ///< Action phase controller
 
     /**
-     * @brief Конструктор инициализирует компоненты хода
-     * @param field Ссылка на игровое поле
+     * @brief Constructor initializes turn components
+     * @param field Reference to game field
      */
     PlayerTurn(Field& field);
 
     /**
-     * @brief Запускает полный цикл хода игрока
-     * @param player Активный игрок
-     * @param enemy Противник
+     * @brief Executes full player turn cycle
+     * @param player Active player
+     * @param enemy Opponent
      * 
-     * Последовательность выполнения:
-     * 1. Начисление маны (+2)
-     * 2. Получение дохода с ферм
-     * 3. Фаза использования карт
-     * 4. Сброс состояний персонажей
-     * 5. Фаза действий персонажей
+     * Execution sequence:
+     * 1. Mana allocation (+2)
+     * 2. Farm income collection
+     * 3. Card usage phase
+     * 4. Character state reset
+     * 5. Character actions phase
      */
     void start(Player& player, Player& enemy);
 };

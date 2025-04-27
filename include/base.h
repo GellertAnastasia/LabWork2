@@ -1,10 +1,10 @@
 /**
  * @class Base
- * @brief Класс главного здания игрока
+ * @brief Player's main building class
  * @inherit Object
- * 
- * Представляет собой основную цель для атаки противника. 
- * Уничтожение базы приводит к поражению игрока.
+ *
+ * Represents the primary attack target for the opponent.
+ * Destroying the base results in player's defeat.
  */
 #ifndef BASE_H
 #define BASE_H
@@ -15,20 +15,20 @@ class Base : public Object
 {
 public:
     /**
-     * @brief Конструктор инициализирует базовые параметры
-     * @param value Идентификатор игрока (используется для цвета)
-     * @details Устанавливает:
-     * - Символ: "☖" (шахматная ладья)
-     * - Здоровье: 10 единиц
-     * - Цвет в соответствии с идентификатором игрока
+     * @brief Constructor initializes base parameters
+     * @param value Player identifier (used for color)
+     * @details Sets:
+     * - Symbol: "☖" (chess rook)
+     * - Health: 10 units
+     * - Color according to player identifier
      */
     Base(int value);
 
     /**
-     * @brief Возвращает состояние базы с координатами
-     * @return Строка формата:
-     * - "Base[X,Y]: X HP" (с координатами)
-     * - "Base: X HP" (без координат)
+     * @brief Returns base status with coordinates
+     * @return String in format:
+     * - "Base[X,Y]: X HP" (with coordinates)
+     * - "Base: X HP" (without coordinates)
      */
     std::string getName() const override;
 };

@@ -1,9 +1,9 @@
 /**
  * @file startUI.h
- * @brief Интерфейс стартового меню игры
+ * @brief Game start menu interface
  * 
- * Содержит функции для отображения главного заголовка и меню с ASCII-графикой.
- * Использует цветовое оформление из constants.h.
+ * Contains functions for displaying the main title and menu with ASCII graphics.
+ * Uses color schemes from constants.h.
  */
 
 #ifndef STARTUI_H
@@ -15,22 +15,22 @@
 #include "func.h"
 
 /**
- * @brief Выводит главный заголовок игры
- * @details Очищает экран и отображает ASCII-арт названия игры
- * @warning Использует ANSI escape-коды для:
- * - Очистки экрана
- * - Цветового оформления
+ * @brief Displays the game's main title
+ * @details Clears screen and shows game name ASCII art
+ * @warning Uses ANSI escape codes for:
+ * - Screen clearing
+ * - Color formatting
  */
 void printTitle();
 
 /**
- * @brief Рисует меню с тремя пунктами
- * @param one Текст первого пункта меню
- * @param two Текст второго пункта меню
- * @param three Текст третьего пункта меню
+ * @brief Renders a three-option menu
+ * @param one First menu option text
+ * @param two Second menu option text
+ * @param three Third menu option text
  * 
- * @image html menu_layout.png "Структура меню"
- * @note Автоматически подстраивает ширину под длину текста
+ * @image html menu_layout.png "Menu structure"
+ * @note Automatically adjusts width to text length
  */
 void printMenu(std::string one, std::string two, std::string three);
 

@@ -1,12 +1,12 @@
 /**
  * @class Card
- * @brief Базовый класс для игровых карт
- * 
- * Предоставляет интерфейс и базовую функциональность для всех типов карт:
- * - Управление стоимостью
- * - Получение названия
- * 
- * @note Это абстрактный класс, требующий переопределения getName()
+ * @brief Base class for game cards
+ *
+ * Provides interface and base functionality for all card types:
+ * - Cost management
+ * - Name retrieval
+ *
+ * @note This is an abstract class requiring getName() override
  */
 #ifndef CARD_H
 #define CARD_H
@@ -15,13 +15,13 @@
 class Card
 {
 private:
-    int cost = 1; ///< Стоимость карты в мане (по умолчанию 1)
+    int cost = 1; ///< Card cost in mana (default 1)
 
 public:
     /**
-     * @brief Возвращает название карты
-     * @virtual Требует переопределения в производных классах
-     * @return Строка с названием карты
+     * @brief Returns card name
+     * @virtual Must be overridden in derived classes
+     * @return String with card name
      */
     virtual std::string getName() const
     {
@@ -29,14 +29,14 @@ public:
     }
 
     /**
-     * @brief Устанавливает стоимость использования карты
-     * @param value Новая стоимость (должна быть > 0)
+     * @brief Sets card usage cost
+     * @param value New cost (must be > 0)
      */
     void setCost(int value);
 
     /**
-     * @brief Возвращает текущую стоимость карты
-     * @return Текущее значение стоимости
+     * @brief Returns current card cost
+     * @return Current cost value
      */
     int getCost() const;
 };

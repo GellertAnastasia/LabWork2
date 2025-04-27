@@ -1,9 +1,9 @@
 /**
  * @file generateCard.h
- * @brief Генератор случайных игровых карт
+ * @brief Random game card generator
  * 
- * Создает карты различных типов с заданными вероятностями.
- * Вероятности распределены равномерно между 7 типами.
+ * Creates cards of various types with specified probabilities.
+ * Probabilities are evenly distributed between 7 types.
  */
 
 #ifndef GENERATECARD_H
@@ -21,9 +21,9 @@
 #include "addPower.h"
 
 /**
- * @brief Генерирует случайную карту
- * @param owner Указатель на игрока-владельца (для Farm)
- * @return shared_ptr<Card> Сгенерированная карта
+ * @brief Generates a random card
+ * @param owner Pointer to owner player (for Farm)
+ * @return shared_ptr<Card> Generated card
  */
 std::shared_ptr<Card> generateCard(Player* owner);
 

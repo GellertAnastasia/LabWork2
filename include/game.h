@@ -1,12 +1,12 @@
 /**
  * @class Game
- * @brief Основной класс управления игровым процессом
+ * @brief Core game management class
  * 
- * Координирует взаимодействие всех компонентов игры:
- * - Инициализацию игроков и бота
- * - Управление очередью ходов
- * - Проверку условий победы
- * - Запуск финального экрана
+ * Coordinates interaction between all game components:
+ * - Player and bot initialization
+ * - Turn queue management
+ * - Victory condition checking
+ * - Final screen triggering
  */
 #ifndef GAME_H
 #define GAME_H
@@ -19,38 +19,38 @@
 class Game
 {
 public:
-    Field field;            ///< Игровое поле
-    Zone zone1;             ///< Зона контроля игрока 1 (нижняя часть)
-    Zone zone2;             ///< Зона контроля игрока 2 (верхняя часть)
-    Player player1;         ///< Основной игрок (человек)
-    Player player2;         ///< Второй игрок (человек или бот)
-    PlayerTurn playerTurn;  ///< Контроллер хода игрока-человека
-    BotTurn botTurn;        ///< Контроллер хода ИИ
+    Field field;            ///< Game field
+    Zone zone1;             ///< Player 1 control zone (bottom area)
+    Zone zone2;             ///< Player 2 control zone (top area)
+    Player player1;         ///< Main player (human)
+    Player player2;         ///< Second player (human or bot)
+    PlayerTurn playerTurn;  ///< Human player turn controller
+    BotTurn botTurn;        ///< AI turn controller
 
     /**
-     * @brief Конструктор инициализирует игровые объекты
-     * @details Выполняет:
-     * 1. Настройку зон игроков
-     * 2. Размещение баз на поле
-     * 3. Начальную выдачу карт
+     * @brief Constructor initializes game objects
+     * @details Performs:
+     * 1. Player zone configuration
+     * 2. Base placement on field
+     * 3. Initial card distribution
      */
     Game();
 
     /**
-     * @brief Запуск игры против другого игрока (PvP)
+     * @brief Starts player vs player game (PvP)
      * @algorithm
-     * - Поочередные ходы игроков
-     * - Проверка состояния баз после каждого хода
-     * - Завершение при разрушении базы
+     * - Alternating player turns
+     * - Base status check after each turn
+     * - Game end when base is destroyed
      */
     void startA();
 
     /**
-     * @brief Запуск игры против ИИ (PvE)
+     * @brief Starts player vs AI game (PvE)
      * @algorithm
-     * - Чередование ходов игрока и бота
-     * - Автоматическое принятие решений ИИ
-     * - Обработка условий победы
+     * - Alternating player/AI turns
+     * - Automated AI decision making
+     * - Victory condition processing
      */
     void startB();
 };

@@ -1,11 +1,11 @@
 /**
  * @class FieldUI
- * @brief Класс для графического отображения игрового поля
+ * @brief Class for graphical representation of the game field
  * 
- * Обеспечивает визуализацию:
- * - Сетки игрового поля с объектами
- * - Статистики игроков (здоровье базы, мана, деньги)
- * - Системы координат
+ * Provides visualization for:
+ * - Game field grid with objects
+ * - Player statistics (base health, mana, money)
+ * - Coordinate system
  */
 #ifndef FIELDUI_H
 #define FIELDUI_H
@@ -19,24 +19,24 @@
 class FieldUI
 {
 private:
-    Field& field; ///< Ссылка на игровое поле для отрисовки
+    Field& field; ///< Reference to game field for rendering
 
 public:
     /**
-     * @brief Конструктор инициализирует привязку к полю
-     * @param field Ссылка на объект Field для визуализации
+     * @brief Constructor initializes field binding
+     * @param field Reference to Field object for visualization
      */
     FieldUI(Field& field);
 
     /**
-     * @brief Отрисовывает полное игровое состояние
-     * @param player Левый игрок (текущий)
-     * @param enemy Правый игрок (противник)
-     * @details Выполняет:
-     * 1. Очистку экрана
-     * 2. Отрисовку координатной сетки
-     * 3. Визуализацию объектов поля
-     * 4. Вывод статистики игроков
+     * @brief Renders complete game state
+     * @param player Left player (current)
+     * @param enemy Right player (opponent)
+     * @details Performs:
+     * 1. Screen clearing
+     * 2. Coordinate grid rendering
+     * 3. Field objects visualization
+     * 4. Player statistics display
      */
     void draw(Player& player, Player& enemy);
 };

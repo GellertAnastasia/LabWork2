@@ -1,12 +1,12 @@
 /**
  * @file object.h
- * @brief Базовый класс для всех игровых объектов
+ * @brief Base class for all game objects
  * 
- * Содержит основные свойства и методы, общие для всех объектов на поле:
- * - Визуальное представление
- * - Здоровье
- * - Цветовую принадлежность
- * - Позицию на карте
+ * Contains core properties and methods common to all field objects:
+ * - Visual representation
+ * - Health
+ * - Team color affiliation
+ * - Map position
  */
 
 #ifndef OBJECT_H
@@ -18,80 +18,80 @@
 
 /**
  * @class Object
- * @brief Абстракция игрового объекта
+ * @brief Game object abstraction
  * @inherit Card
  * 
- * Используется как базовый класс для:
- * - Персонажей
- * - Строений
- * - Улучшений
- * - Препятствий
+ * Serves as base class for:
+ * - Characters
+ * - Buildings
+ * - Improvements
+ * - Obstacles
  */
 class Object : public Card {
 protected:
-    std::string cell;   ///< Символьное представление объекта (UTF-8)
-    int health = 1;     ///< Текущее здоровье объекта
-    int color;          ///< Цвет команды (код ANSI)
+    std::string cell;   ///< Symbolic representation (UTF-8)
+    int health = 1;     ///< Current object health
+    int color;          ///< Team color (ANSI code)
 
 public:
-    bool hasActed = false; ///< Флаг выполнения действия за ход
-    std::shared_ptr<Coordinates> location; ///< Координаты на поле
+    bool hasActed = false; ///< Action performed flag (per turn)
+    std::shared_ptr<Coordinates> location; ///< Field coordinates
 
     /**
-     * @brief Устанавливает символьное представление
-     * @param value Строка с UTF-8 символом
+     * @brief Sets symbolic representation
+     * @param value UTF-8 character string
      */
     void setCell(const std::string& value);
     
     /**
-     * @brief Возвращает текущий символ объекта
-     * @return UTF-8 строка для отображения
+     * @brief Returns object's current symbol
+     * @return UTF-8 string for display
      */
     std::string getCell() const;
 
     /**
-     * @brief Устанавливает цвет команды
-     * @param value Код цвета ANSI (38;5;N)
+     * @brief Sets team color
+     * @param value ANSI color code (38;5;N)
      */
     void setColor(int value);
     
     /**
-     * @brief Возвращает текущий цвет объекта
-     * @return Код цвета ANSI
+     * @brief Returns current object color
+     * @return ANSI color code
      */
     int getColor() const;
 
     /**
-     * @brief Устанавливает значение здоровья
-     * @param value Новое значение здоровья (>0)
-     * @warning Не проверяет допустимость значения
+     * @brief Sets health value
+     * @param value New health (>0)
+     * @warning Doesn't validate value
      */
     void setHealth(int value);
     
     /**
-     * @brief Возвращает текущее здоровье
-     * @return Значение здоровья в диапазоне [0..MAX_HEALTH]
+     * @brief Returns current health
+     * @return Health value in range [0..MAX_HEALTH]
      */
     int getHealth() const;
 
     /**
-     * @brief Устанавливает позицию объекта
-     * @param newLocation shared_ptr на координаты
-     * @note Автоматически обновляет позицию на поле
+     * @brief Sets object position
+     * @param newLocation shared_ptr to coordinates
+     * @note Automatically updates field position
      */
     void setLocation(const std::shared_ptr<Coordinates>& newLocation);
     
     /**
-     * @brief Возвращает текущую позицию
-     * @return shared_ptr с координатами или nullptr
+     * @brief Returns current position
+     * @return shared_ptr with coordinates or nullptr
      */
     std::shared_ptr<Coordinates> getLocation() const;
 
     /**
-     * @brief Изменяет здоровье объекта
-     * @param points Положительное/отрицательное значение
-     * @post Здоровье изменяется на указанное количество пунктов
-     * @warning Не ограничивает минимальное значение
+     * @brief Modifies object health
+     * @param points Positive/negative value
+     * @post Health changes by specified amount
+     * @warning Doesn't enforce minimum value
      */
     void changeHealth(int points);
 };
