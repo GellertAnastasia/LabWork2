@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 /**
  * @file zone.h
  * @brief Class for defining rectangular zones on game field

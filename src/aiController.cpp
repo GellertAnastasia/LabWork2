@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 #include "aiController.h"
 
 AIController::AIController(Player& player, Field& field) : player(player), field(field), fieldUI(field)

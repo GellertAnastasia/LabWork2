@@ -1,3 +1,7 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
 #include "../include/game.h"
 #include "../include/startUI.h"
 

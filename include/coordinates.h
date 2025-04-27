@@ -1,3 +1,7 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
 /**
  * @class Coordinates
  * @brief Class for handling 2D coordinates

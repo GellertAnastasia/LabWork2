@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 /**
  * @class BotTurn 
  * @brief Manages the complete AI player turn cycle

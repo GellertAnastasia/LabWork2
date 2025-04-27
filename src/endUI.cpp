@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 #include "endUI.h"
 
 std::atomic<bool> keepRunning(true);

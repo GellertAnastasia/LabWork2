@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 /**
  * @class CardsPhase
  * @brief Manages the card usage phase in the game cycle

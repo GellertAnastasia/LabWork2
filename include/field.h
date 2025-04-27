@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 /**
  * @class Field
  * @brief Manages game field and object interactions

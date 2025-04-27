@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 #include "botTurn.h"
 
 BotTurn::BotTurn(Field& field, Player& player) : field(field), ai(player, field) {}

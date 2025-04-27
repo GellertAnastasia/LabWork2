@@ -1,3 +1,7 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
 #include "zone.h"
 
 Zone::Zone(int minX, int maxX, int minY, int maxY)

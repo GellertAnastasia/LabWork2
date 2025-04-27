@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 #include "coordinates.h"
 
 Coordinates::Coordinates(int X, int Y) : x(X), y(Y) {}

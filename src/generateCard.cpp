@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 #include "generateCard.h"
 
 std::shared_ptr<Card> generateCard(Player* owner)

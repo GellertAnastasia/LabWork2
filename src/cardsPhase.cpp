@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 #include "cardsPhase.h"
 
 CardsPhase::CardsPhase(Field& field) : field(field), fieldUI(field) {}

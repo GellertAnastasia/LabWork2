@@ -1,3 +1,8 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
+
 #include "farm.h"
 
 Farm::Farm(Player* owner) : owner(owner)

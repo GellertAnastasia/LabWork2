@@ -1,3 +1,7 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
 #include "player.h"
 
 Player::Player(int Mana, int Money, int Color, const Zone& zone)

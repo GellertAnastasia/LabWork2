@@ -1,3 +1,7 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
 /**
  * @class AddPower
  * @brief Upgrade class that increases character's attack power

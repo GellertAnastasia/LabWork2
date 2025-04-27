@@ -1,3 +1,7 @@
+/* Anastasia Gellert st130144@student.spbu.ru
+	labwork 2
+*/
+
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #include <string>
