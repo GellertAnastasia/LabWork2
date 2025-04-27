@@ -15,7 +15,7 @@
 
 #include <iostream>
 #include <algorithm>
-#include <vector>s
+#include <vector>
 #include <memory>
 #include <limits>
 #include "coordinates.h"

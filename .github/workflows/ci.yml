@@ -2,7 +2,7 @@ name: C++ CI
 
 on:
   push:
-    branches: [second_branch]
+    branches: [Core_of_the_game]
   pull_request:
     branches: [main]
 
@@ -17,17 +17,8 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y g++ cmake libgtest-dev
 
-      - name: Build gtest
-        run: |
-          cd /usr/src/gtest
-          sudo cmake CMakeLists.txt
-          sudo make
-          sudo cp lib/*.a /usr/lib
-          sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a
-          sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
-
       - name: Build
         run: make
 
       - name: Run tests
-        run: ./test-all
+        run: make runtests
