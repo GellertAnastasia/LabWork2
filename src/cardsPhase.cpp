@@ -24,147 +24,62 @@ void CardsPhase::start(Player& player, Player& enemy)
             continue;
         }
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        if (choice == 1)
+        switch(choice)
         {
+        case 1:
             playCard(player, enemy);
-        }
-        else if (choice == 2)
-        {
+            break;
+        case 2:
             buyCard(player);
             pause_();
-        }
-        else if (choice == 3)
-        {
+            break;
+        case 3:
             cardsPhase = false;
-        }
-        else
-        {
+            break;
+        default:
+            break;
         }
     }
 }
 
 
-void CardsPhase::playCard(Player& player, Player& enemy)
-{
+void CardsPhase::playCard(Player& player, Player& enemy) {
     size_t choice;
     bool played = false;
-    while (played != true)
-    {
+    
+    PlayingCards playing(player, enemy, field, fieldUI);
+
+    while (!played) {
         fieldUI.draw(player, enemy);
         player.printInventory();
-        std::cout << player.inventory.size()+1 << ". Back\n";
+        std::cout << player.inventory.size() + 1 << ". Back\n";
         std::cout << "Your choice: ";
-        if (!(std::cin >> choice))
-        {
+
+        if (!(std::cin >> choice)) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
-        if (choice == player.inventory.size()+1)
-        {
-            return;
-        }
-        else if ((choice < 1) || (choice > player.inventory.size()+1))
-        {
-            continue;
-        }
-        else
-        {
-            auto objectPtr = std::dynamic_pointer_cast<Object>(player.inventory[choice-1]);
-            auto improvePtr = std::dynamic_pointer_cast<Improvement>(player.inventory[choice-1]);
-            if (objectPtr)
-            {
-                if (!field.isEmpty(player))
-                {
-                    std::cout << "There is no place for objects\n";
-                    pause_();
-                    continue;
-                }
-                else if (player.inventory[choice-1]->getCost() > player.getMana())
-                {
-                    std::cout << "Not enough mana\n";
-                    pause_();
-                    continue;
-                }
-                player.changeMana(-player.inventory[choice-1]->getCost());
-                fieldUI.draw(player, enemy);
-                int x,y;
-                bool added = false;
-                while (added != true)
-                {
-                    bool coord = false;
-                    while (coord != true)
-                    {
-                        fieldUI.draw(player, enemy);
-                        std::cout << "Write the coordinates: ";
-                        if (!(std::cin >> x))
-                        {
-                            std::cin.clear();
-                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                            continue;
-                        }
-                        else if (!(std::cin >> y))
-                        {
-                            std::cin.clear();
-                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                            continue;
-                        }
-                        else if (!player.isInsideZone(x, y))
-                        {
-                            std::cout << "Coordinates out of your zone\n";
-                            pause_();
-                            continue;
-                        }
-                        else
-                        {
-                            coord = true;
-                        }
-                    }
-                    added = field.placeNewCharacter(player, std::make_shared<Coordinates>(x,y), objectPtr);
-                }
-                player.inventory.erase(player.inventory.begin() + choice-1);
+
+        if (choice == player.inventory.size() + 1) return;
+
+        if (choice < 1 || choice > player.inventory.size()) continue;
+
+        auto& card = player.inventory[choice - 1];
+        
+        if (auto object = std::dynamic_pointer_cast<Object>(card)) {
+            if (playing.characters(object)) {
+                player.inventory.erase(player.inventory.begin() + choice - 1);
                 played = true;
             }
-
-            else
-            {
-                if (player.charactersOnGrid.size()<=0)
-                {
-                    std::cout << "No characters on field. try again\n";
-                    pause_();
-                    continue;
-                }
-                else if (player.inventory[choice-1]->getCost() > player.getMana())
-                {
-                    std::cout << "Not enough mana\n";
-                    pause_();
-                    continue;
-                }
-                else
-                {
-                    size_t choice1;
-                    fieldUI.draw(player, enemy);
-                    player.printCharactersOnGrid();
-                    std::cout << "Your choice: ";
-                    if (!(std::cin >> choice1))
-                    {
-                        std::cin.clear();
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        continue;
-                    }
-                    else if (choice1 >= player.charactersOnGrid.size()+1)
-                    {
-                        std::cout << "Error. Try again\n";
-                        pause_();
-                        continue;
-                    }
-                    player.changeMana(-player.charactersOnGrid[choice1-1]->getCost());
-                    improvePtr->addPoints(player.charactersOnGrid[choice1-1]);
-                    pause_();
-                    player.inventory.erase(player.inventory.begin() + choice-1);
-                    played = true;
-                }
+            pause_();
+        }
+        else if (auto improvement = std::dynamic_pointer_cast<Improvement>(card)) {
+            if (playing.improvements(improvement)) {
+                player.inventory.erase(player.inventory.begin() + choice - 1);
+                played = true;
             }
+            pause_();
         }
     }
 }
