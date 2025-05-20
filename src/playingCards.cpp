@@ -5,6 +5,8 @@
 #include "playingCards.h"
 #include <limits>
 
+PlayingCards::PlayingCards(Player& player, Player& enemy, Field& field, FieldUI& fieldUI): player(player), enemy(enemy), field(field), fieldUI(fieldUI) {};
+
 bool PlayingCards::characters(std::shared_ptr<Object> object) {
     if (!field.isEmpty(player)) {
         std::cout << "There is no place for objects\n";

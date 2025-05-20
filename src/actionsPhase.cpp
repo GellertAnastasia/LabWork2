@@ -55,15 +55,14 @@ void ActionsPhase::start(Player& player, Player& enemy)
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 continue;
             }
-
-            if (action == 1)
+            switch(action)
             {
+            case 1:
                 current->hasActed = moveCharacter(choice, player, enemy);
                 current.reset();
                 done = true;
-            }
-            else if (action == 2)
-            {
+                break;
+            case 2:
                 current->hasActed = attack(choice, player, enemy);
                 current.reset();
                 pause_();
@@ -72,16 +71,13 @@ void ActionsPhase::start(Player& player, Player& enemy)
                     actionsPhase = false;
                 }
                 done = true;
-            }
-            else if (action == 3)
-            {
+                break;
+            case 3:
                 done = true;
+                break;
+            default:
+                break;
             }
-            else
-            {
-                continue;
-            }
-
         }
         continue;
     }
