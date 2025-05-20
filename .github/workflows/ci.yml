@@ -2,9 +2,9 @@ name: C++ CI
 
 on:
   push:
-    branches: [Core_of_the_game]
+    branches: ['**']
   pull_request:
-    branches: [main]
+    branches: ['**']
 
 jobs:
   build-and-test:
