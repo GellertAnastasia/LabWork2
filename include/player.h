@@ -52,7 +52,7 @@ public:
 
     /// @name Getters
     /// @{
-    int getMana() const;
+    virtual int getMana() const;
     int getMoney() const;
     int getColor() const;
     /// @}
@@ -63,7 +63,7 @@ public:
      * @param y Y coordinate (1-based)
      * @return true if coordinates are within control zone
      */
-    bool isInsideZone(int x, int y);
+    virtual bool isInsideZone(int x, int y);
 
     /**
      * @brief Modifies money amount
@@ -75,7 +75,7 @@ public:
     /// @name Information display
     /// @{
     void printInventory();
-    void printCharactersOnGrid();
+    virtual void printCharactersOnGrid();
     /// @}
 
     /**
@@ -84,7 +84,7 @@ public:
      * @warning Doesn't check for minimum value
      * @post mana += points
      */
-    void changeMana(int points);
+    virtual void changeMana(int points);
 };
 
 #endif

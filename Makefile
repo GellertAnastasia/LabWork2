@@ -4,7 +4,7 @@ TESTPROJECT = test-labwork
 CXX = g++
 CCXFLAGS = -Iinclude -std=c++17 -Werror -Wpedantic -Wall -g -fPIC
 LDXXFLAGS = $(CCXFLAGS) -L.
-LDGTESTFLAGS = $(LDXXFLAGS) -lgtest -lgtest_main -lpthread
+LDGTESTFLAGS = $(LDXXFLAGS) -lgtest -lgmock -lgtest_main -lpthread
 
 SRC_DIR = src/
 INC_DIR = include/

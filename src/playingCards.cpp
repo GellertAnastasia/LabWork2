@@ -17,8 +17,6 @@ bool PlayingCards::characters(std::shared_ptr<Object> object) {
         std::cout << "Not enough mana\n";
         return false;
     }
-
-    player.changeMana(-object->getCost());
     
     int x, y;
     bool placed = false;
@@ -31,6 +29,7 @@ bool PlayingCards::characters(std::shared_ptr<Object> object) {
             object
         );
     }
+    player.changeMana(-object->getCost());
     return true;
 }
 

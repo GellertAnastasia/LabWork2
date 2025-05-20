@@ -36,6 +36,9 @@ public:
      * @brief Constructor creates HEIGHT x WIDTH field
      * @details Initializes all cells with nullptr
      */
+    
+    virtual ~Field() = default;
+    
     Field();
 
     /**
@@ -43,7 +46,7 @@ public:
      * @param player Player to check zone for
      * @return true if at least one empty cell exists
      */
-    bool isEmpty(Player& player);
+    virtual bool isEmpty(Player& player);
 
     /**
      * @brief Places new object on the field
@@ -53,7 +56,7 @@ public:
      * @return true on successful placement
      * @throws logic_error If coordinates outside player's zone
      */
-    bool placeNewCharacter(Player& player, 
+    virtual bool placeNewCharacter(Player& player, 
                          const std::shared_ptr<Coordinates>& coordinates,
                          std::shared_ptr<Object> character);
 
