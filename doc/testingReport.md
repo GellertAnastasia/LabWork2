@@ -49,4 +49,4 @@ Manaclash Testing Report
 
 ---  
 ### 3. Conclusion  
-The game meets all core requirements with no critical defects. It is recommended to continue testing with external testers to evaluate game balance and user experience.
+The game meets all core requirements with no critical defects. 
