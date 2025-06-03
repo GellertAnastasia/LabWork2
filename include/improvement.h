@@ -32,6 +32,8 @@ private:
     int points = 1; ///< Improvement points amount
 
 public:
+    //Improvement();
+    //virtual ~Improvement() = default;
     /**
      * @brief Sets the improvement points value
      * @param value New value (must be > 0)
