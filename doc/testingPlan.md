@@ -49,4 +49,6 @@
 
 | Test Case                 | Steps                                         | Expected Result                                                      | Automation       |
 |---------------------------|-----------------------------------------------|----------------------------------------------------------------------|------------------|
-| Maximum Number of Units    | Fill the field with characters
+| Maximum Number of Units    | Fill the field with characters   | New cards are not placed   | Manual
+
+
