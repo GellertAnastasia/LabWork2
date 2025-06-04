@@ -1,3 +1,4 @@
+
 # Manaclash Testing Plan
 
 ## 1. Core Gameplay Testing
@@ -50,5 +51,3 @@
 | Test Case                 | Steps                                         | Expected Result                                                      | Automation       |
 |---------------------------|-----------------------------------------------|----------------------------------------------------------------------|------------------|
 | Maximum Number of Units    | Fill the field with characters   | New cards are not placed   | Manual
-
-
