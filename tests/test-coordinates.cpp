@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
 #include "coordinates.h"
 
-TEST(CoordinatesTest, EqualityOperator) {
+TEST(CoordinatesTest, EqualityOperator)
+{
     Coordinates pos1(2, 5);
     Coordinates pos2(2, 5);
     Coordinates pos3(3, 5);
@@ -12,7 +13,8 @@ TEST(CoordinatesTest, EqualityOperator) {
     EXPECT_FALSE(pos3 == pos4);
 }
 
-TEST(CoordinatesTest, SettersAndGetters) {
+TEST(CoordinatesTest, SettersAndGetters)
+{
     Coordinates pos(0, 0);
     pos.setX(5);
     pos.setY(7);
@@ -20,7 +22,8 @@ TEST(CoordinatesTest, SettersAndGetters) {
     EXPECT_EQ(pos.getY(), 7);
 }
 
-TEST(CoordinatesTest, StringRepresentation) {
+TEST(CoordinatesTest, StringRepresentation)
+{
     Coordinates pos1(3, 5);
     EXPECT_EQ(pos1.get(), "(3,5)");
 }

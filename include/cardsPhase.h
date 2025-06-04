@@ -16,10 +16,8 @@
 #ifndef CARDSPHASE_H
 #define CARDSPHASE_H
 
-#include <iostream>
-#include "fieldUI.h"
+#include "playingCards.h"
 #include "base.h"
-#include "generateCard.h"
 
 class CardsPhase
 {

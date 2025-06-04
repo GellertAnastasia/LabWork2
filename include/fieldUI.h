@@ -31,6 +31,8 @@ public:
      * @brief Constructor initializes field binding
      * @param field Reference to Field object for visualization
      */
+    virtual ~FieldUI() = default;
+    
     FieldUI(Field& field);
 
     /**
@@ -43,7 +45,7 @@ public:
      * 3. Field objects visualization
      * 4. Player statistics display
      */
-    void draw(Player& player, Player& enemy);
+    virtual void draw(Player& player, Player& enemy);
 };
 
 #endif

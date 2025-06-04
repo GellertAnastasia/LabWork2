@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
-#include "addHealth.h"
+#include "addPower.h"
 
-TEST(AddHealthTest, SettersAndGetters)
+TEST(AddPowerTest, SettersAndGetters)
 {
-    AddHealth imp;
+    AddPower imp;
     imp.setPoints(100);
     EXPECT_EQ(imp.getPoints(), 100);
 }

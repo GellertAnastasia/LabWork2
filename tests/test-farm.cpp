@@ -3,7 +3,8 @@
 #include "player.h"
 #include "zone.h"
 
-TEST(FarmTest, ProfitGettersAndSetters) {
+TEST(FarmTest, ProfitGettersAndSetters)
+{
     Zone zone(1, 10, 1, 10);
     Player player(3, 3, 94, zone);
     Farm farm(&player);
@@ -11,7 +12,8 @@ TEST(FarmTest, ProfitGettersAndSetters) {
     EXPECT_EQ(farm.getProfit(), 5);
 }
 
-TEST(FarmTest, BringMoneyFunctionality) {
+TEST(FarmTest, BringMoneyFunctionality)
+{
     Zone zone(1, 10, 1, 10);
     Player player(0, 0, 0, zone);
     Farm farm(&player);
