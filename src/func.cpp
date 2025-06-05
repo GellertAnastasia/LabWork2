@@ -42,3 +42,9 @@ bool isFree(std::shared_ptr<Coordinates> coordinates, std::vector<std::vector<st
     }
 }
 
+int distance(std::shared_ptr<Coordinates> a, std::shared_ptr<Coordinates> b) 
+{
+    return std::max(abs(a->getX() - b->getX()), abs(a->getY() - b->getY()));
+}
+
+

@@ -41,7 +41,25 @@ int main()
             }
             else if (choice1 == 2)
             {
-                game.startB();
+                clearScreen();
+                printMenu("Easy", "Normal", "Back");
+                std::cout << "Your choice: ";
+                int choice2;
+                if (!(std::cin >> choice2))
+                {
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    continue;
+                }
+                if (choice2 == 1)
+                {
+                    game.startB1();
+                }
+                else if (choice2 == 2)
+                {
+                    game.startB2();
+                }
+
             }
         }
         else if (choice == 2)

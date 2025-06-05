@@ -55,4 +55,6 @@ bool isWithinBounds(std::shared_ptr<Coordinates> coordinates);
  */
 bool isFree(std::shared_ptr<Coordinates> coordinates, std::vector<std::vector<std::shared_ptr<Object>>> grid);
 
+int distance(std::shared_ptr<Coordinates> a, std::shared_ptr<Coordinates> b);
+
 #endif
