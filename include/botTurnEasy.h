@@ -12,22 +12,22 @@
  * - Character state reset
  * - AI decision-making logic
  */
-#ifndef BOTTURN_H
-#define BOTTURN_H
-#include "aiController.h"
+#ifndef BOTTURNEASY_H
+#define BOTTURNEASY_H
+#include "aiControllerEasy.h"
 
-class BotTurn
+class BotTurnEasy
 {
 public:
     Field& field;       ///< Reference to the game field
-    AIController ai;    ///< AI controller for decision making
+    AIControllerEasy ai;    ///< AI controller for decision making
 
     /**
      * @brief Constructor initializes the bot turn system
      * @param field Game field
      * @param player AI player taking the turn
      */
-    BotTurn(Field& field, Player& player);
+    BotTurnEasy(Field& field, Player& player);
 
     /**
      * @brief Executes the complete turn cycle

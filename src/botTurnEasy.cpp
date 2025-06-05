@@ -3,11 +3,11 @@
 */
 
 
-#include "botTurn.h"
+#include "botTurnEasy.h"
 
-BotTurn::BotTurn(Field& field, Player& player) : field(field), ai(player, field) {}
+BotTurnEasy::BotTurnEasy(Field& field, Player& player) : field(field), ai(player, field) {}
 
-void BotTurn::start(Player& player, Player& enemy)
+void BotTurnEasy::start(Player& player, Player& enemy)
 {
     player.changeMana(2);
     field.processFarmsIncome(player);

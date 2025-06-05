@@ -42,7 +42,7 @@ int main()
             else if (choice1 == 2)
             {
                 clearScreen();
-                printMenu("Easy", "Normal", "Hard");
+                printMenu("Easy", "Normal", "Back");
                 std::cout << "Your choice: ";
                 int choice2;
                 if (!(std::cin >> choice2))
@@ -53,20 +53,13 @@ int main()
                 }
                 if (choice2 == 1)
                 {
-                    game.startB();
+                    game.startB1();
                 }
                 else if (choice2 == 2)
                 {
-                    game.startB();
+                    game.startB2();
                 }
-                else if (choice2 == 3)
-                {
-                    game.startB();
-                }
-                else
-                {
-                    continue;
-                }
+
             }
         }
         else if (choice == 2)

@@ -11,7 +11,8 @@ Game::Game() :
     player1(3, 3, 94, zone1),
     player2(5, 3, 32, zone2),
     playerTurn(field),
-    botTurn(field, player2)
+    botTurnEasy(field, player2),
+    botTurnNormal(field, player2)
 {
     field.grid[9][4] = player1.base;
     field.grid[9][5] = player1.base;
@@ -58,7 +59,8 @@ void Game::startA()
         showGameOverScreen("\033["+ std::to_string(player1.getColor()) +"m Player\033[0m\n");
     }
 }
-void Game::startB()
+
+void Game::startB1()
 {
     int turn = 0;
     while (player1.base->getHealth() > 0 && player2.base->getHealth() > 0)
@@ -78,7 +80,43 @@ void Game::startB()
             clearScreen();
             std::cout << "Turn bot\n";
             pause_();
-            botTurn.start(player2, player1);
+            botTurnEasy.start(player2, player1);
+        }
+    }
+
+    clearScreen();
+    std::cout << "Game over\n";
+    if (player1.base->getHealth() <= 0)
+    {
+        showGameOverScreen("\033["+ std::to_string(player2.getColor()) +"m Bot\033[0m\n");
+    }
+    else
+    {
+        showGameOverScreen("\033["+ std::to_string(player1.getColor()) +"m Player\033[0m\n");
+    }
+}
+
+void Game::startB2()
+{
+    int turn = 0;
+    while (player1.base->getHealth() > 0 && player2.base->getHealth() > 0)
+    {
+        turn += 1;
+        if (turn % 2 == 1)
+        {
+            player1.inventory.push_back(generateCard(&player1));
+            clearScreen();
+            std::cout << "Turn player\n";
+            pause_();
+            playerTurn.start(player1, player2);
+        }
+        else
+        {
+            player2.inventory.push_back(generateCard(&player2));
+            clearScreen();
+            std::cout << "Turn bot\n";
+            pause_();
+            botTurnNormal.start(player2, player1);
         }
     }
 

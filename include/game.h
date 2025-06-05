@@ -17,7 +17,8 @@
 #define GAME_H
 
 #include "playerTurn.h"
-#include "botTurn.h"
+#include "botTurnEasy.h"
+#include "botTurnNormal.h"
 #include "zone.h"
 #include "endUI.h"
 
@@ -30,7 +31,8 @@ public:
     Player player1;         ///< Main player (human)
     Player player2;         ///< Second player (human or bot)
     PlayerTurn playerTurn;  ///< Human player turn controller
-    BotTurn botTurn;        ///< AI turn controller
+    BotTurnEasy botTurnEasy;        ///< AI turn controller
+    BotTurnNormal botTurnNormal;
 
     /**
      * @brief Constructor initializes game objects
@@ -57,7 +59,8 @@ public:
      * - Automated AI decision making
      * - Victory condition processing
      */
-    void startB();
+    void startB1();
+    void startB2();
 };
 
 #endif

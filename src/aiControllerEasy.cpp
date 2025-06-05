@@ -3,14 +3,14 @@
 */
 
 
-#include "aiController.h"
+#include "aiControllerEasy.h"
 
-AIController::AIController(Player& player, Field& field) : player(player), field(field), fieldUI(field)
+AIControllerEasy::AIControllerEasy(Player& player, Field& field) : player(player), field(field), fieldUI(field)
 {
     std::srand(std::time(0));
 }
 
-void AIController::makeMove(Player& enemy)
+void AIControllerEasy::makeMove(Player& enemy)
 {
     fieldUI.draw(player, enemy);
     pause_();
@@ -20,15 +20,17 @@ void AIController::makeMove(Player& enemy)
     }
     while(!player.inventory.empty() && shouldPlayCard())
     {
-        playRandomCard(enemy);
+        playCard(enemy);
     }
 
 }
 
-void AIController::playRandomCard(Player& enemy)
+void AIControllerEasy::playRandomCard(Player& enemy)
 {
+    if (player.inventory.empty()) return;
     size_t choice = rand() % player.inventory.size();
     auto card = player.inventory[choice];
+    if (player.getMana() < card->getCost()) return;
     player.changeMana(-card->getCost());
 
     if (auto objectPtr = std::dynamic_pointer_cast<Object>(card))
@@ -49,14 +51,22 @@ void AIController::playRandomCard(Player& enemy)
         if (!player.charactersOnGrid.empty())
         {
             size_t charChoice = rand() % player.charactersOnGrid.size();
-            improvePtr->addPoints(player.charactersOnGrid[charChoice]);
-            pause_();
-            player.inventory.erase(player.inventory.begin() + choice);
+            if (charChoice < player.charactersOnGrid.size())
+            {
+                improvePtr->addPoints(player.charactersOnGrid[charChoice]);
+                pause_();
+                player.inventory.erase(player.inventory.begin() + choice);
+            }
         }
     }
 }
 
-void AIController::buyRandomCard()
+void AIControllerEasy::playCard(Player& enemy)
+{
+    playRandomCard(enemy);
+}
+
+void AIControllerEasy::buyRandomCard()
 {
     if (player.getMoney() >= 3)
     {
@@ -66,12 +76,12 @@ void AIController::buyRandomCard()
     }
 }
 
-bool AIController::shouldBuyCard() const
+bool AIControllerEasy::shouldBuyCard() const
 {
     return player.getMoney() >= 3;
 }
 
-bool AIController::shouldPlayCard() const
+bool AIControllerEasy::shouldPlayCard() const
 {
     if (field.isEmpty(player) && player.getMana() >= 3)
     {
@@ -83,7 +93,7 @@ bool AIController::shouldPlayCard() const
     }
 }
 
-void AIController::makeActionsMove(Player& enemy)
+void AIControllerEasy::makeActionsMove(Player& enemy)
 {
     bool restartLoop = false;
 
@@ -113,7 +123,7 @@ void AIController::makeActionsMove(Player& enemy)
     while (restartLoop);
 }
 
-bool AIController::aiMoveCharacter(std::shared_ptr<Character> character, Player& enemy)
+bool AIControllerEasy::aiMoveCharacter(std::shared_ptr<Character> character, Player& enemy)
 {
     character->calculateMovement(character->location, field.grid);
     if (character->movement.empty()) return false;
@@ -143,42 +153,50 @@ bool AIController::aiMoveCharacter(std::shared_ptr<Character> character, Player&
 
     return true;
 }
-bool AIController::aiAttack(std::shared_ptr<Character> attacker, Player& enemy)
+
+bool AIControllerEasy::aiAttack(std::shared_ptr<Character> attacker, Player& enemy)
 {
+    if (!attacker || !attacker->location)
+    {
+        std::cerr << "Error: attcker or location == nullptr" << std::endl;
+        return false;
+    }
     attacker->calculateAttack(attacker->location, field.grid);
-    if (attacker->attack.empty()) return false;
-
+    if (attacker->attack.empty())
+    {
+        return false;
+    }
     auto target = selectBestTarget(attacker, enemy);
-    if (!target) return false;
-
+    if (!target)
+    {
+        std::cerr << "Erroe: target == nullptr" << std::endl;
+        return false;
+    }
     target->changeHealth(-attacker->getPower());
     attacker->hasActed = true;
-
     if (target->getHealth() <= 0)
     {
-        auto it = std::find(enemy.charactersOnGrid.begin(), enemy.charactersOnGrid.end(), target);
-        if (it != enemy.charactersOnGrid.end())
+        if (auto charTarget = std::dynamic_pointer_cast<Character>(target))
         {
-            enemy.charactersOnGrid.erase(it);
+            auto& enemies = enemy.charactersOnGrid;
+            enemies.erase(std::remove(enemies.begin(), enemies.end(), charTarget), enemies.end());
         }
-
-        for (size_t y = 0; y < field.grid.size(); ++y)
+        for (auto& row : field.grid)
         {
-            for (size_t x = 0; x < field.grid[y].size(); ++x)
+            for (auto& cell : row)
             {
-                if (field.grid[y][x] == target)
+                if (cell == target)
                 {
-                    field.grid[y][x] = nullptr;
+                    cell = nullptr;
                 }
             }
         }
     }
-
     attacker->attack.clear();
     return true;
 }
 
-std::shared_ptr<Object> AIController::selectBestTarget(std::shared_ptr<Character> attacker, Player& enemy)
+std::shared_ptr<Object> AIControllerEasy::selectBestTarget(std::shared_ptr<Character> attacker, Player& enemy)
 {
     std::shared_ptr<Object> bestTarget = attacker->attack[0];
     return bestTarget;
